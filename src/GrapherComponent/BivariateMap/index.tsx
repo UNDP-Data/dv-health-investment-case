@@ -17,7 +17,6 @@ import {
 } from '../../Types';
 import Context from '../../Context/Context';
 import World from '../../Data/worldMap.json';
-import { LABEL_EXTRA } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
@@ -276,46 +275,11 @@ export function BivariateMap(props: Props) {
               selectedCountries.indexOf(d['Country or Area']) !== -1;
             const countryGroupOpacity =
               selectedCountryGroup === 'All' ? true : d[selectedCountryGroup];
-            const xIndicatorLabelExtraIndex =
-              LABEL_EXTRA.findIndex(
-                el => el.forLabel === xIndicatorMetaData.DataKey,
-              ) === -1 || xIndicatorIndex === -1
-                ? -1
-                : d.data.findIndex(
-                    el =>
-                      LABEL_EXTRA[
-                        LABEL_EXTRA.findIndex(
-                          el1 => el1.forLabel === xIndicatorMetaData.DataKey,
-                        )
-                      ].labelExtra === el.indicator,
-                  );
-            const xLabelExtra =
-              xIndicatorLabelExtraIndex === -1
-                ? undefined
-                : d.data[xIndicatorLabelExtraIndex].value;
-            const yIndicatorLabelExtraIndex =
-              LABEL_EXTRA.findIndex(
-                el => el.forLabel === yIndicatorMetaData.DataKey,
-              ) === -1 || yIndicatorIndex === -1
-                ? -1
-                : d.data.findIndex(
-                    el =>
-                      LABEL_EXTRA[
-                        LABEL_EXTRA.findIndex(
-                          el1 => el1.forLabel === yIndicatorMetaData.DataKey,
-                        )
-                      ].labelExtra === el.indicator,
-                  );
-            const yLabelExtra =
-              yIndicatorLabelExtraIndex === -1
-                ? undefined
-                : d.data[yIndicatorLabelExtraIndex].value;
 
             const rowData: HoverRowDataType[] = [
               {
                 title: xAxisIndicator,
                 value: xVal === undefined || xVal === null ? 'NA' : xVal,
-                labelExtra: xLabelExtra,
                 type: 'color',
                 color,
                 prefix: xIndicatorMetaData?.LabelPrefix,
@@ -325,7 +289,6 @@ export function BivariateMap(props: Props) {
                 title: yAxisIndicator,
                 value: yVal === undefined || yVal === null ? 'NA' : yVal,
                 type: 'color',
-                labelExtra: yLabelExtra,
                 color,
                 prefix: yIndicatorMetaData?.LabelPrefix,
                 suffix: yIndicatorMetaData?.LabelSuffix,
@@ -339,30 +302,11 @@ export function BivariateMap(props: Props) {
                 sizeIndicatorIndex === -1
                   ? undefined
                   : d.data[sizeIndicatorIndex].value;
-              const sizeIndicatorLabelExtraIndex =
-                LABEL_EXTRA.findIndex(
-                  el => el.forLabel === sizeIndicatorMetaData.DataKey,
-                ) === -1 || sizeIndicatorIndex === -1
-                  ? -1
-                  : d.data.findIndex(
-                      el =>
-                        LABEL_EXTRA[
-                          LABEL_EXTRA.findIndex(
-                            el1 =>
-                              el1.forLabel === sizeIndicatorMetaData.DataKey,
-                          )
-                        ].labelExtra === el.indicator,
-                    );
-              const sizeLabelExtra =
-                sizeIndicatorLabelExtraIndex === -1
-                  ? undefined
-                  : d.data[sizeIndicatorLabelExtraIndex].value;
 
               rowData.push({
                 title: sizeIndicator,
                 value:
                   sizeVal !== undefined && sizeVal !== null ? sizeVal : 'NA',
-                labelExtra: sizeLabelExtra,
                 type: 'size',
                 prefix: sizeIndicatorMetaData?.LabelPrefix,
                 suffix: sizeIndicatorMetaData?.LabelSuffix,

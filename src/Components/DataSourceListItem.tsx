@@ -1,10 +1,9 @@
 import { CSVLink } from 'react-csv';
-import { DataType, IndicatorMetaDataType, LastUpdatedDataType } from '../Types';
+import { DataType, IndicatorMetaDataType } from '../Types';
 import DownloadExcel from './DownloadExcel';
 
 interface Props {
   indicatorData: IndicatorMetaDataType;
-  lastUpdated: LastUpdatedDataType[];
   data: DataType[];
 }
 
@@ -40,7 +39,7 @@ const dataTableForExcel = (
 };
 
 export function DataSourceListItem(props: Props) {
-  const { indicatorData, lastUpdated, data } = props;
+  const { indicatorData, data } = props;
 
   return (
     <div className='padding-top-07 padding-bottom-05'>
@@ -56,28 +55,6 @@ export function DataSourceListItem(props: Props) {
           Description
         </h6>
         <div>{indicatorData.IndicatorDescription}</div>
-      </div>
-      <div
-        className='flex-div margin-bottom-07'
-        style={{ alignItems: 'baseline' }}
-      >
-        <h6
-          className='undp-typography margin-top-00 margin-bottom-00'
-          style={{ width: '15%', flexShrink: 0 }}
-        >
-          Data By
-        </h6>
-        <div>
-          {indicatorData.DataSourceName.split(';').map((d, i) => (
-            <div key={i}>
-              {d} (last updated:{' '}
-              {lastUpdated.findIndex(el => el.Source === d) !== -1
-                ? lastUpdated[lastUpdated.findIndex(el => el.Source === d)].Date
-                : null}
-              )
-            </div>
-          ))}
-        </div>
       </div>
       <div
         className='flex-div margin-bottom-07'

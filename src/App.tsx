@@ -5,11 +5,17 @@ import { json, csv } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
 import styled from 'styled-components';
-import { DataType, IndicatorMetaDataType, LastUpdatedDataType } from './Types';
+import {
+  CountryDataFromCSV,
+  CountryGroupDataTypeFromFile,
+  DataType,
+  IndicatorDataType,
+  IndicatorMetaDataType,
+} from './Types';
 import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
 import Context from './Context/Context';
-import { DEFAULT_VALUES } from './Constants';
+import { DEFAULT_VALUES, KEYS_FROM_DATA } from './Constants';
 
 const VizAreaEl = styled.div`
   display: flex;
@@ -28,9 +34,6 @@ function App() {
   const [countryList, setCountryList] = useState<string[] | undefined>(
     undefined,
   );
-  const [lastUpdated, setLastUpdated] = useState<
-    LastUpdatedDataType[] | undefined
-  >(undefined);
   const queryParams = new URLSearchParams(window.location.search);
   const initialState = {
     graphType: queryParams.get('graphType') || 'map',
@@ -165,39 +168,87 @@ function App() {
 
   useEffect(() => {
     queue()
+      .defer(csv, './Data/countryData.csv')
+      .defer(json, './Data/indicatorMetaData.json')
       .defer(
         json,
-        'https://raw.githubusercontent.com/UNDP-Data/Vaccine-Equity-Data-Repo/main/output_minified.json',
-      )
-      .defer(json, 'src/Data/indicatorMetaData.json')
-      .defer(
-        csv,
-        'https://raw.githubusercontent.com/UNDP-Data/Vaccine-Equity-Dashboard-Indicator-Metadata/main/last-updated.csv',
+        'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json',
       )
       .await(
         (
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           err: any,
-          data: DataType[],
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          data: CountryDataFromCSV[],
           indicatorMetaData: IndicatorMetaDataType[],
-          lastUpdate: LastUpdatedDataType[],
+          countryTaxonomy: CountryGroupDataTypeFromFile[],
         ) => {
           if (err) throw err;
-          setFinalData(data.filter(d => d['Alpha-3 code'] !== 'ATA'));
-          setCountryList(data.map(d => d['Country or Area']));
-          setRegionList(uniqBy(data, d => d['Group 2']).map(d => d['Group 2']));
+          const countryListFromTaxonomy: DataType[] = countryTaxonomy.map(
+            d => ({
+              'Alpha-3 code': d['Alpha-3 code-1'],
+              'Country or Area': d['Country or Area'],
+              'Group 1': d['Group 1'],
+              'Group 2': d['Group 2'],
+              LDC: d.LDC,
+              LLDC: d.LLDC,
+              'Latitude (average)': +d['Latitude (average)'],
+              'Longitude (average)': +d['Longitude (average)'],
+              SIDS: d.SIDS,
+              'Income group': d['Income group'],
+              data: [],
+            }),
+          );
+          const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
+            if (data.findIndex(el => el.ISO_code === d['Alpha-3 code']) === -1)
+              return d;
+            const countryData =
+              data[
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                data.findIndex(el => el.ISO_code === d['Alpha-3 code'])
+              ];
+            const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
+              key => ({
+                indicator: key,
+                value: countryData[key] === '' ? -1 : +countryData[key],
+              }),
+            ).filter(el => el.value !== -1);
+            return {
+              ...d,
+              data: indicatorData,
+              WHO_region: countryData.WHO_region,
+              modelling_year: countryData.modelling_year,
+              reference_year: countryData.reference_year,
+              total_population_source: countryData.total_population_source,
+              adult_population_source: countryData.adult_population_source,
+              GDP_source: countryData.GDP_source,
+              Country_total_health_expenditure_year:
+                countryData.Country_total_health_expenditure_year,
+              Government_total_health_expenditure_year:
+                countryData.Government_total_health_expenditure_year,
+              USD_exchange_rate_source: countryData.USD_exchange_rate_source,
+              year_of_prevalence_data: countryData.year_of_prevalence_data,
+              prevelance_data_source: countryData.prevelance_data_source,
+            };
+          });
+          setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));
+          setCountryList(
+            dataFormatted
+              .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
+              .map(d => d['Country or Area']),
+          );
+          setRegionList(
+            uniqBy(dataFormatted, d => d.WHO_region)
+              .map(d => d.WHO_region)
+              .filter(d => d && d !== '') as string[],
+          );
           setIndicatorsList(indicatorMetaData);
-          setLastUpdated(lastUpdate);
         },
       );
   }, []);
   return (
     <div>
-      {indicatorsList &&
-      finalData &&
-      regionList &&
-      countryList &&
-      lastUpdated ? (
+      {indicatorsList && finalData && regionList && countryList ? (
         <div className='undp-container'>
           <Context.Provider
             value={{
@@ -224,7 +275,6 @@ function App() {
               indicators={indicatorsList}
               regions={regionList}
               countries={countryList}
-              lastUpdated={lastUpdated}
             />
           </Context.Provider>
         </div>

@@ -13,12 +13,7 @@ import {
   IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
-import {
-  CONTINENTS,
-  HDI_LEVELS,
-  INCOME_GROUPS,
-  LABEL_EXTRA,
-} from '../../Constants';
+import { CONTINENTS, HDI_LEVELS, INCOME_GROUPS } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
@@ -72,23 +67,6 @@ export function Graph(props: Props) {
 
         const xVal =
           xIndicatorIndex === -1 ? undefined : d.data[xIndicatorIndex].value;
-        const xIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === xIndicatorMetaData.DataKey,
-          ) === -1 || xIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === xIndicatorMetaData.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const xLabelExtra =
-          xIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[xIndicatorLabelExtraIndex].value;
         const colorVal =
           colorIndicator === 'Continents'
             ? d['Group 1']
@@ -97,23 +75,6 @@ export function Graph(props: Props) {
             : colorIndicatorIndex === -1
             ? undefined
             : d.data[colorIndicatorIndex].value;
-        const colorIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === colorIndicatorMetaData?.DataKey,
-          ) === -1 || colorIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === colorIndicatorMetaData?.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const colorLabelExtra =
-          colorIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[colorIndicatorLabelExtraIndex].value;
         const countryGroup =
           selectedCountryGroup === 'All' ? true : d[selectedCountryGroup];
         const incomeGroup = !!(
@@ -132,9 +93,7 @@ export function Graph(props: Props) {
           countryCode: d['Alpha-3 code'],
           countryName: d['Country or Area'],
           xVal,
-          xLabelExtra,
           colorVal,
-          colorLabelExtra,
           region,
           countryGroup,
           incomeGroup,
@@ -388,7 +347,6 @@ export function Graph(props: Props) {
               {
                 title: xAxisIndicator,
                 value: d.xVal !== undefined && d.xVal !== null ? d.xVal : 'NA',
-                labelExtra: d.xLabelExtra,
                 type: 'y-axis',
                 prefix: xIndicatorMetaData?.LabelPrefix,
                 suffix: xIndicatorMetaData?.LabelSuffix,
@@ -401,7 +359,6 @@ export function Graph(props: Props) {
                   d.colorVal !== undefined && d.colorVal !== null
                     ? d.colorVal
                     : 'NA',
-                labelExtra: d.colorLabelExtra,
                 type: 'color',
                 color: d.colorVal
                   ? (colorScale(d.colorVal) as string)

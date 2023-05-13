@@ -19,7 +19,6 @@ import {
   CONTINENTS,
   HDI_LEVELS,
   INCOME_GROUPS,
-  LABEL_EXTRA,
   MAX_TEXT_LENGTH,
   TRUNCATE_MAX_TEXT_LENGTH,
 } from '../../Constants';
@@ -122,61 +121,10 @@ export function Graph(props: Props) {
           : radiusIndicatorIndex === -1
           ? undefined
           : d.data[radiusIndicatorIndex].value;
-        const radiusIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === sizeIndicatorMetaData?.DataKey,
-          ) === -1 || radiusIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === sizeIndicatorMetaData?.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const radiusLabelExtra =
-          radiusIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[radiusIndicatorLabelExtraIndex].value;
         const xVal =
           xIndicatorIndex === -1 ? undefined : d.data[xIndicatorIndex].value;
-        const xIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === xIndicatorMetaData.DataKey,
-          ) === -1 || xIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === xIndicatorMetaData.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const xLabelExtra =
-          xIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[xIndicatorLabelExtraIndex].value;
         const yVal =
           yIndicatorIndex === -1 ? undefined : d.data[yIndicatorIndex].value;
-        const yIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === yIndicatorMetaData.DataKey,
-          ) === -1 || yIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === yIndicatorMetaData.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const yLabelExtra =
-          yIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[yIndicatorLabelExtraIndex].value;
         const colorVal =
           colorIndicator === 'Continents'
             ? d['Group 1']
@@ -185,23 +133,6 @@ export function Graph(props: Props) {
             : colorIndicatorIndex === -1
             ? undefined
             : d.data[colorIndicatorIndex].value;
-        const colorIndicatorLabelExtraIndex =
-          LABEL_EXTRA.findIndex(
-            el => el.forLabel === colorIndicatorMetaData?.DataKey,
-          ) === -1 || colorIndicatorIndex === -1
-            ? -1
-            : d.data.findIndex(
-                el =>
-                  LABEL_EXTRA[
-                    LABEL_EXTRA.findIndex(
-                      el1 => el1.forLabel === colorIndicatorMetaData?.DataKey,
-                    )
-                  ].labelExtra === el.indicator,
-              );
-        const colorLabelExtra =
-          colorIndicatorLabelExtraIndex === -1
-            ? undefined
-            : d.data[colorIndicatorLabelExtraIndex].value;
         const countryGroup =
           selectedCountryGroup === 'All' ? true : d[selectedCountryGroup];
         const region = !!(
@@ -211,13 +142,9 @@ export function Graph(props: Props) {
         return {
           countryCode: d['Alpha-3 code'],
           radiusValue,
-          radiusLabelExtra,
           xVal,
-          xLabelExtra,
           yVal,
-          yLabelExtra,
           colorVal,
-          colorLabelExtra,
           region,
           countryGroup,
         };
@@ -585,7 +512,6 @@ export function Graph(props: Props) {
               {
                 title: xAxisIndicator,
                 value: d.xVal !== undefined && d.xVal !== null ? d.xVal : 'NA',
-                labelExtra: d.xLabelExtra,
                 type: 'x-axis',
                 prefix: xIndicatorMetaData?.LabelPrefix,
                 suffix: xIndicatorMetaData?.LabelSuffix,
@@ -593,7 +519,6 @@ export function Graph(props: Props) {
               {
                 title: yAxisIndicator,
                 value: d.yVal !== undefined && d.yVal !== null ? d.yVal : 'NA',
-                labelExtra: d.yLabelExtra,
                 type: 'y-axis',
                 prefix: yIndicatorMetaData?.LabelPrefix,
                 suffix: yIndicatorMetaData?.LabelSuffix,
@@ -606,7 +531,6 @@ export function Graph(props: Props) {
                   d.radiusValue !== undefined && d.radiusValue !== null
                     ? d.radiusValue
                     : 'NA',
-                labelExtra: d.radiusLabelExtra,
                 type: 'size',
                 prefix: sizeIndicatorMetaData?.LabelPrefix,
                 suffix: sizeIndicatorMetaData?.LabelSuffix,
@@ -619,7 +543,6 @@ export function Graph(props: Props) {
                   d.colorVal !== undefined && d.colorVal !== null
                     ? d.colorVal
                     : 'NA',
-                labelExtra: d.colorLabelExtra,
                 type: 'color',
                 color: d.colorVal
                   ? (colorScale(d.colorVal) as string)

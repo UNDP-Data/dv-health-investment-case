@@ -17,7 +17,6 @@ import {
 } from '../../Types';
 import Context from '../../Context/Context';
 import World from '../../Data/worldMap.json';
-import { LABEL_EXTRA } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
@@ -154,24 +153,6 @@ export function UnivariateMap(props: Props) {
             );
             const val =
               indicatorIndex === -1 ? undefined : d.data[indicatorIndex].value;
-            const valIndicatorLabelExtraIndex =
-              LABEL_EXTRA.findIndex(
-                el => el.forLabel === xIndicatorMetaData.DataKey,
-              ) === -1 || indicatorIndex === -1
-                ? -1
-                : d.data.findIndex(
-                    el =>
-                      LABEL_EXTRA[
-                        LABEL_EXTRA.findIndex(
-                          el1 => el1.forLabel === xIndicatorMetaData.DataKey,
-                        )
-                      ].labelExtra === el.indicator,
-                  );
-            const valLabelExtra =
-              valIndicatorLabelExtraIndex === -1
-                ? undefined
-                : d.data[valIndicatorLabelExtraIndex].value;
-
             const color =
               val !== undefined && val !== null
                 ? colorScale(
@@ -195,7 +176,6 @@ export function UnivariateMap(props: Props) {
               {
                 title: xAxisIndicator,
                 value: val === undefined || val === null ? 'NA' : val,
-                labelExtra: valLabelExtra,
                 type: 'color',
                 color,
                 prefix: xIndicatorMetaData?.LabelPrefix,
@@ -210,29 +190,10 @@ export function UnivariateMap(props: Props) {
                 sizeIndicatorIndex === -1
                   ? undefined
                   : d.data[sizeIndicatorIndex].value;
-              const sizeIndicatorLabelExtraIndex =
-                LABEL_EXTRA.findIndex(
-                  el => el.forLabel === sizeIndicatorMetaData.DataKey,
-                ) === -1 || sizeIndicatorIndex === -1
-                  ? -1
-                  : d.data.findIndex(
-                      el =>
-                        LABEL_EXTRA[
-                          LABEL_EXTRA.findIndex(
-                            el1 =>
-                              el1.forLabel === sizeIndicatorMetaData.DataKey,
-                          )
-                        ].labelExtra === el.indicator,
-                    );
-              const sizeLabelExtra =
-                sizeIndicatorLabelExtraIndex === -1
-                  ? undefined
-                  : d.data[sizeIndicatorLabelExtraIndex].value;
               rowData.push({
                 title: sizeIndicator,
                 value:
                   sizeVal !== undefined && sizeVal !== null ? sizeVal : 'NA',
-                labelExtra: sizeLabelExtra,
                 type: 'size',
                 prefix: sizeIndicatorMetaData?.LabelPrefix,
                 suffix: sizeIndicatorMetaData?.LabelSuffix,
@@ -463,24 +424,6 @@ export function UnivariateMap(props: Props) {
                 const sizeIndicatorIndex = d.data.findIndex(
                   el => sizeIndicatorMetaData.DataKey === el.indicator,
                 );
-                const sizeIndicatorLabelExtraIndex =
-                  LABEL_EXTRA.findIndex(
-                    el => el.forLabel === sizeIndicatorMetaData.DataKey,
-                  ) === -1 || sizeIndicatorIndex === -1
-                    ? -1
-                    : d.data.findIndex(
-                        el =>
-                          LABEL_EXTRA[
-                            LABEL_EXTRA.findIndex(
-                              el1 =>
-                                el1.forLabel === sizeIndicatorMetaData.DataKey,
-                            )
-                          ].labelExtra === el.indicator,
-                      );
-                const sizeLabelExtra =
-                  sizeIndicatorLabelExtraIndex === -1
-                    ? undefined
-                    : d.data[sizeIndicatorLabelExtraIndex].value;
                 const sizeVal =
                   sizeIndicatorIndex === -1
                     ? undefined
@@ -496,26 +439,6 @@ export function UnivariateMap(props: Props) {
                   indicatorIndex === -1
                     ? undefined
                     : d.data[indicatorIndex].value;
-
-                const valIndicatorLabelExtraIndex =
-                  LABEL_EXTRA.findIndex(
-                    el => el.forLabel === xIndicatorMetaData.DataKey,
-                  ) === -1 || indicatorIndex === -1
-                    ? -1
-                    : d.data.findIndex(
-                        el =>
-                          LABEL_EXTRA[
-                            LABEL_EXTRA.findIndex(
-                              el1 =>
-                                el1.forLabel === xIndicatorMetaData.DataKey,
-                            )
-                          ].labelExtra === el.indicator,
-                      );
-                const valLabelExtra =
-                  valIndicatorLabelExtraIndex === -1
-                    ? undefined
-                    : d.data[valIndicatorLabelExtraIndex].value;
-
                 const color =
                   val !== undefined && val !== null
                     ? colorScale(
@@ -543,7 +466,6 @@ export function UnivariateMap(props: Props) {
                   {
                     title: xAxisIndicator,
                     value: val === undefined || val === null ? 'NA' : val,
-                    labelExtra: valLabelExtra,
                     type: 'color',
                     color,
                     prefix: xIndicatorMetaData?.LabelPrefix,
@@ -557,7 +479,6 @@ export function UnivariateMap(props: Props) {
                       sizeVal !== undefined && sizeVal !== null
                         ? sizeVal
                         : 'NA',
-                    labelExtra: sizeLabelExtra,
                     type: 'size',
                     prefix: sizeIndicatorMetaData?.LabelPrefix,
                     suffix: sizeIndicatorMetaData?.LabelSuffix,

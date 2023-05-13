@@ -1,22 +1,16 @@
 import { useContext } from 'react';
 
-import {
-  CtxDataType,
-  DataType,
-  IndicatorMetaDataType,
-  LastUpdatedDataType,
-} from '../Types';
+import { CtxDataType, DataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
 import { DataSourceListItem } from '../Components/DataSourceListItem';
 
 interface Props {
   indicators: IndicatorMetaDataType[];
   data: DataType[];
-  lastUpdated: LastUpdatedDataType[];
 }
 
 export function DataSources(props: Props) {
-  const { indicators, data, lastUpdated } = props;
+  const { indicators, data } = props;
   const {
     graphType,
     xAxisIndicator,
@@ -45,19 +39,11 @@ export function DataSources(props: Props) {
 
   return (
     <div className='undp-scrollbar'>
-      <DataSourceListItem
-        indicatorData={xIndicatorMetaData}
-        lastUpdated={lastUpdated}
-        data={data}
-      />
+      <DataSourceListItem indicatorData={xIndicatorMetaData} data={data} />
       {graphType !== 'barGraph' && yIndicatorMetaData ? (
         <>
           <hr className='undp-style' />
-          <DataSourceListItem
-            indicatorData={yIndicatorMetaData}
-            lastUpdated={lastUpdated}
-            data={data}
-          />
+          <DataSourceListItem indicatorData={yIndicatorMetaData} data={data} />
         </>
       ) : null}
       {graphType !== 'map' && colorIndicatorMetaData ? (
@@ -65,7 +51,6 @@ export function DataSources(props: Props) {
           <hr className='undp-style' />
           <DataSourceListItem
             indicatorData={colorIndicatorMetaData}
-            lastUpdated={lastUpdated}
             data={data}
           />
         </>
@@ -76,7 +61,6 @@ export function DataSources(props: Props) {
           <hr className='undp-style' />
           <DataSourceListItem
             indicatorData={sizeIndicatorMetaData}
-            lastUpdated={lastUpdated}
             data={data}
           />
         </>

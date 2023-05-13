@@ -161,7 +161,6 @@
     "DataSourceName": "",
     "DataSourceLink": "",
     "LabelSuffix": "",
-    "LabelExtra": "",
     "LabelPrefix": "",
     "LabelFormat": "",
     "BinningRange5": [300, 350, 400, 450],

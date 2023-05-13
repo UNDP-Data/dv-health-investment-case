@@ -42,59 +42,17 @@ export function Settings(props: Props) {
   } = useContext(Context) as CtxDataType;
   const options =
     graphType === 'scatterPlot'
-      ? indicators
-          .filter(d => d.ScatterPlot && d.Themes === '')
-          .map(d => d.Indicator)
+      ? indicators.filter(d => d.ScatterPlot).map(d => d.Indicator)
       : graphType === 'map'
-      ? indicators.filter(d => d.Map && d.Themes === '').map(d => d.Indicator)
-      : indicators
-          .filter(d => d.BarGraph && d.Themes === '')
-          .map(d => d.Indicator);
-  const sizeOptions = indicators
-    .filter(d => d.Sizing && d.Themes === '')
-    .map(d => d.Indicator);
+      ? indicators.filter(d => d.Map).map(d => d.Indicator)
+      : indicators.filter(d => d.BarGraph).map(d => d.Indicator);
+  const sizeOptions = indicators.filter(d => d.Sizing).map(d => d.Indicator);
   const colorOptions = indicators
-    .filter(d => d.IsCategorical && d.Themes === '')
+    .filter(d => d.IsCategorical)
     .map(d => d.Indicator);
   colorOptions.unshift('Human development index (HDI)');
   colorOptions.unshift('Income Groups');
   colorOptions.unshift('Continents');
-  const optionsAcc =
-    graphType === 'scatterPlot'
-      ? indicators
-          .filter(d => d.ScatterPlot && d.Themes === 'Accessibility')
-          .map(d => d.Indicator)
-      : graphType === 'map'
-      ? indicators
-          .filter(d => d.Map && d.Themes === 'Accessibility')
-          .map(d => d.Indicator)
-      : indicators
-          .filter(d => d.BarGraph && d.Themes === 'Accessibility')
-          .map(d => d.Indicator);
-  const sizeOptionsAcc = indicators
-    .filter(d => d.Sizing && d.Themes === 'Accessibility')
-    .map(d => d.Indicator);
-  const colorOptionsAcc = indicators
-    .filter(d => d.IsCategorical && d.Themes === 'Accessibility')
-    .map(d => d.Indicator);
-  const optionsAfor =
-    graphType === 'scatterPlot'
-      ? indicators
-          .filter(d => d.ScatterPlot && d.Themes === 'Affordability')
-          .map(d => d.Indicator)
-      : graphType === 'map'
-      ? indicators
-          .filter(d => d.Map && d.Themes === 'Affordability')
-          .map(d => d.Indicator)
-      : indicators
-          .filter(d => d.BarGraph && d.Themes === 'Affordability')
-          .map(d => d.Indicator);
-  const sizeOptionsAfor = indicators
-    .filter(d => d.Sizing && d.Themes === 'Affordability')
-    .map(d => d.Indicator);
-  const colorOptionsAfor = indicators
-    .filter(d => d.IsCategorical && d.Themes === 'Affordability')
-    .map(d => d.Indicator);
   const [settingExpanded, setSettingsExpanded] = useState(true);
   const [filterExpanded, setFilterExpanded] = useState(true);
   useEffect(() => {
@@ -139,27 +97,11 @@ export function Settings(props: Props) {
                   }}
                   defaultValue={DEFAULT_VALUES.firstMetric}
                 >
-                  <Select.OptGroup label='Accessibility'>
-                    {optionsAcc.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
-                  </Select.OptGroup>
-                  <Select.OptGroup label='Affordability'>
-                    {optionsAfor.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
-                  </Select.OptGroup>
-                  <Select.OptGroup label='Common'>
-                    {options.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
-                  </Select.OptGroup>
+                  {options.map(d => (
+                    <Select.Option className='undp-select-option' key={d}>
+                      {d}
+                    </Select.Option>
+                  ))}
                 </Select>
               </div>
               {graphType === 'scatterPlot' ? (
@@ -177,27 +119,11 @@ export function Settings(props: Props) {
                     defaultValue={DEFAULT_VALUES.secondMetric}
                     listHeight={400}
                   >
-                    <Select.OptGroup label='Accessibility'>
-                      {optionsAcc.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Affordability'>
-                      {optionsAfor.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Common'>
-                      {options.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
+                    {options.map(d => (
+                      <Select.Option className='undp-select-option' key={d}>
+                        {d}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </div>
               ) : graphType === 'map' ? (
@@ -217,27 +143,11 @@ export function Settings(props: Props) {
                     defaultValue={DEFAULT_VALUES.secondMetric}
                     listHeight={400}
                   >
-                    <Select.OptGroup label='Accessibility'>
-                      {optionsAcc.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Affordability'>
-                      {optionsAfor.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Common'>
-                      {options.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
+                    {options.map(d => (
+                      <Select.Option className='undp-select-option' key={d}>
+                        {d}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </div>
               ) : null}
@@ -261,27 +171,11 @@ export function Settings(props: Props) {
                     }}
                     listHeight={400}
                   >
-                    <Select.OptGroup label='Accessibility'>
-                      {sizeOptionsAcc.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Affordability'>
-                      {sizeOptionsAfor.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Common'>
-                      {sizeOptions.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
+                    {sizeOptions.map(d => (
+                      <Select.Option className='undp-select-option' key={d}>
+                        {d}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </div>
               ) : null}
@@ -298,27 +192,11 @@ export function Settings(props: Props) {
                     }}
                     defaultValue={DEFAULT_VALUES.colorMetric}
                   >
-                    <Select.OptGroup label='Accessibility'>
-                      {colorOptionsAcc.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Affordability'>
-                      {colorOptionsAfor.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='Common'>
-                      {colorOptions.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
+                    {colorOptions.map(d => (
+                      <Select.Option className='undp-select-option' key={d}>
+                        {d}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </div>
               ) : null}
@@ -445,7 +323,7 @@ export function Settings(props: Props) {
               style={{ display: filterExpanded ? 'flex' : 'none' }}
             >
               <div className='settings-option-div'>
-                <p className='label'>Region</p>
+                <p className='label'>WHO Region</p>
                 <Select
                   mode='multiple'
                   allowClear

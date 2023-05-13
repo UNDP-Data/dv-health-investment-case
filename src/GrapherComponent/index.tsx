@@ -1,12 +1,7 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'antd';
-import {
-  CtxDataType,
-  DataType,
-  IndicatorMetaDataType,
-  LastUpdatedDataType,
-} from '../Types';
+import { CtxDataType, DataType, IndicatorMetaDataType } from '../Types';
 import {
   ScatterPlotIcon,
   BarGraphIcon,
@@ -18,15 +13,12 @@ import Context from '../Context/Context';
 import { Settings } from './Settings';
 import { Graph } from './Graph';
 import { DataSources } from './DataSources';
-import { GetEmbedParams } from '../Components/GetEmbedParams';
-import { CopyLinkWithParamButton } from '../Components/CopyLinkWithParamButton';
 
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
   regions: string[];
   countries: string[];
-  lastUpdated: LastUpdatedDataType[];
 }
 
 const IconEl = styled.div`
@@ -37,10 +29,9 @@ const IconEl = styled.div`
 `;
 
 export function GrapherComponent(props: Props) {
-  const { data, indicators, regions, countries, lastUpdated } = props;
+  const { data, indicators, regions, countries } = props;
   const { graphType, showSource, updateGraphType, updateShowSource } =
     useContext(Context) as CtxDataType;
-  const [modalVisibility, setModalVisibility] = useState(false);
   const queryParams = new URLSearchParams(window.location.search);
   return (
     <div className='margin-top-06 margin-bottom-06'>
@@ -58,20 +49,6 @@ export function GrapherComponent(props: Props) {
               Exploring national health investment cases
             </h6>
           </div>
-        </div>
-        <div className='flex-div'>
-          {queryParams.get('embeded') === 'true' ? null : (
-            <CopyLinkWithParamButton />
-          )}
-          <button
-            className='undp-button button-primary'
-            type='button'
-            onClick={() => {
-              setModalVisibility(true);
-            }}
-          >
-            {window.innerWidth < 600 ? '</>' : 'Embed'}
-          </button>
         </div>
       </div>
       <div className='dashboard-container'>
@@ -173,20 +150,6 @@ export function GrapherComponent(props: Props) {
         </div>
       </div>
       <Modal
-        open={modalVisibility}
-        className='undp-modal'
-        title='Embed Code'
-        onOk={() => {
-          setModalVisibility(false);
-        }}
-        onCancel={() => {
-          setModalVisibility(false);
-        }}
-        width='75%'
-      >
-        <GetEmbedParams />
-      </Modal>
-      <Modal
         open={showSource}
         className='undp-modal'
         title='Data Sources'
@@ -198,11 +161,7 @@ export function GrapherComponent(props: Props) {
         }}
         width='75%'
       >
-        <DataSources
-          indicators={indicators}
-          data={data}
-          lastUpdated={lastUpdated}
-        />
+        <DataSources indicators={indicators} data={data} />
       </Modal>
     </div>
   );
