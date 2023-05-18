@@ -53,13 +53,13 @@ export function DataList(props: Props) {
               style={{ top: '101px' }}
             >
               <div
-                style={{ width: '70%' }}
+                style={{ width: '70%', paddingLeft: '1rem' }}
                 className='undp-table-head-cell undp-sticky-head-column'
               >
                 Indicator
               </div>
               <div
-                style={{ width: '30%' }}
+                style={{ width: '30%', paddingRight: '1rem' }}
                 className='undp-table-head-cell undp-sticky-head-column align-right'
               >
                 Value
@@ -75,13 +75,17 @@ export function DataList(props: Props) {
                   style={{ backgroundColor: 'var(--white)' }}
                 >
                   <div
-                    style={{ width: '70%', fontSize: '1rem' }}
+                    style={{
+                      width: '70%',
+                      fontSize: '1.1rem',
+                      paddingLeft: '1rem',
+                    }}
                     className='undp-table-row-cell'
                   >
-                    <h5 className='undp-typography'>{d.Indicator}</h5>
+                    <div className='undp-typography'>{d.Indicator}</div>
                   </div>
                   <div
-                    style={{ width: '30%' }}
+                    style={{ width: '30%', paddingRight: '1rem' }}
                     className='undp-table-row-cell align-right'
                   >
                     {dataFilteredByCountry.findIndex(
