@@ -67,7 +67,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
               ].value
             }
-            year={2023}
+            year={2022}
             source={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
@@ -82,7 +82,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
@@ -103,7 +103,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP')
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
@@ -127,7 +127,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -155,7 +155,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -183,7 +183,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -211,7 +211,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -238,7 +238,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
@@ -258,7 +258,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'averted_deaths')
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'averted_deaths')
@@ -281,7 +281,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
@@ -301,7 +301,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'econ_benefits')
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'econ_benefits')
@@ -325,7 +325,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -354,7 +354,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -379,7 +379,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'all_ROI_15years')
               ].value
             }
-            year={2023}
+            year={2022}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'all_ROI_15years')

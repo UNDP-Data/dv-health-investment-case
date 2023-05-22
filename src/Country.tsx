@@ -102,7 +102,7 @@ function CountryEl() {
               .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
               .map(d => d['Country or Area']),
           );
-          setCountryId('Egypt');
+          setCountryId('Tunisia');
           setIndicatorsList(indicatorMetaData);
         },
       );
