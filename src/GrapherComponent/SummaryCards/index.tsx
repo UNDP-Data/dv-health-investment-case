@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useRef, useState } from 'react';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 import { ValueCard } from '../../CardComponents/ValueCard';
-import { DotPlot } from '../../CardComponents/DotPlot';
+// import { DotPlot } from '../../CardComponents/DotPlot';
 
 interface Props {
   data: DataType;
@@ -54,7 +54,7 @@ export function CountrySummary(props: Props) {
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}
       >
-        {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
+        {/* {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
           <DotPlot
             graphTitle={
               indicators[
@@ -74,7 +74,7 @@ export function CountrySummary(props: Props) {
               ].DataSourceName
             }
           />
-        ) : null}
+        ) : null} */}
         {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
           <ValueCard
             value={
@@ -88,14 +88,86 @@ export function CountrySummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
               ].Indicator
             }
-            graphDescription={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'tobacco_burden')
-              ].IndicatorDescription
-            }
             source={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP') !==
+        -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP')
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'costs_per_adult_smoker',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'costs_per_adult_smoker',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'costs_per_adult_smoker',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'costs_per_adult_smoker',
+                )
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'tobacco-attributable_deaths',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'tobacco-attributable_deaths',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'tobacco-attributable_deaths',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'tobacco-attributable_deaths',
+                )
               ].DataSourceName
             }
           />
