@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { App } from './App';
+import { AppTopGraphs } from './AppTopGraphs';
 
 const getEl = (embedSelector: string) => {
   if (typeof embedSelector === 'string') {
@@ -21,6 +22,16 @@ if (visContainer) {
   rootEmbed.render(
     <React.StrictMode>
       <App />
+    </React.StrictMode>,
+  );
+}
+
+const visTopContainer = getEl('[data-bucket-embed-top-card]');
+if (visTopContainer) {
+  const rootEmbed = ReactDOM.createRoot(visTopContainer);
+  rootEmbed.render(
+    <React.StrictMode>
+      <AppTopGraphs />
     </React.StrictMode>,
   );
 }

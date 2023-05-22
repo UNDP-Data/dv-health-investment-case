@@ -13,6 +13,7 @@ import Context from '../Context/Context';
 import { Settings } from './Settings';
 import { Graph } from './Graph';
 import { DataSources } from './DataSources';
+import { DataListForCountry } from './DataList/DataListForCountry';
 
 interface Props {
   data: DataType[];
@@ -163,6 +164,55 @@ export function GrapherComponent(props: Props) {
       >
         <DataSources indicators={indicators} data={data} />
       </Modal>
+    </div>
+  );
+}
+
+interface CountryProps {
+  data: DataType[];
+  indicators: IndicatorMetaDataType[];
+  countrySelected: string;
+}
+export function GrapherComponentForCountry(props: CountryProps) {
+  const { data, indicators, countrySelected } = props;
+  return (
+    <div className='margin-top-06 margin-bottom-06'>
+      <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
+        <div className='flex-div flex-vert-align-center'>
+          <Logo height={75} />
+          <div>
+            <h3
+              className='undp-typography margin-bottom-00'
+              style={{ color: 'var(--blue-600)' }}
+            >
+              Health Investment Case
+            </h3>
+            <h6 className='undp-typography margin-bottom-00'>
+              Exploring national health investment cases for {countrySelected}
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div className='dashboard-container'>
+        <div className='tabs-for-graphing-interface-container'>
+          <button
+            type='button'
+            className='tabs-for-graphing-interface selected'
+          >
+            <IconEl>
+              <DualAxesChartIcon size={48} fill='var(--blue-600)' />
+            </IconEl>
+            Data List
+          </button>
+        </div>
+        <div className='graph-container'>
+          <DataListForCountry
+            data={data}
+            indicators={indicators}
+            country={countrySelected}
+          />
+        </div>
+      </div>
     </div>
   );
 }
