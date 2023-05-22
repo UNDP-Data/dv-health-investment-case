@@ -89,7 +89,7 @@ export function Graph(props: Props) {
         );
         const region = !!(
           selectedRegions.length === 0 ||
-          selectedRegions.indexOf(d['Group 2']) !== -1
+          selectedRegions.indexOf(d.WHO_region || '') !== -1
         );
         const country = !!(
           selectedCountries.length === 0 ||

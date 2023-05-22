@@ -137,7 +137,7 @@ export function Graph(props: Props) {
           selectedCountryGroup === 'All' ? true : d[selectedCountryGroup];
         const region = !!(
           selectedRegions.length === 0 ||
-          selectedRegions.indexOf(d['Group 2']) !== -1
+          selectedRegions.indexOf(d.WHO_region || '') !== -1
         );
         return {
           countryCode: d['Alpha-3 code'],

@@ -172,6 +172,226 @@ export function CountrySummary(props: Props) {
             }
           />
         ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'econ_productivity_losses',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'econ_productivity_losses',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'econ_productivity_losses',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'econ_productivity_losses',
+                )
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'healthcare_expenditures',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'healthcare_expenditures',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'healthcare_expenditures',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'healthcare_expenditures',
+                )
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'econ_losses_15years') !==
+        -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'econ_losses_15years',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'averted_deaths') !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'averted_deaths')
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'averted_deaths')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'averted_deaths')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'annual_deaths_averted') !==
+        -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'annual_deaths_averted',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'econ_benefits') !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'econ_benefits')
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'econ_benefits')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'econ_benefits')
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'avoided_econ_productivity_losses',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'avoided_econ_productivity_losses',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'avoided_econ_productivity_losses',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'avoided_econ_productivity_losses',
+                )
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(
+          el => el.indicator === 'annual_avoided_econ_productivity_losses',
+        ) !== -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(
+                  el =>
+                    el.indicator === 'annual_avoided_econ_productivity_losses',
+                )
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'annual_avoided_econ_productivity_losses',
+                )
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(
+                  d => d.DataKey === 'annual_avoided_econ_productivity_losses',
+                )
+              ].DataSourceName
+            }
+          />
+        ) : null}
+        {data.data.findIndex(el => el.indicator === 'all_ROI_15years') !==
+        -1 ? (
+          <ValueCard
+            value={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'all_ROI_15years')
+              ].value
+            }
+            year={2023}
+            graphTitle={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'all_ROI_15years')
+              ].Indicator
+            }
+            source={
+              indicators[
+                indicators.findIndex(d => d.DataKey === 'all_ROI_15years')
+              ].DataSourceName
+            }
+          />
+        ) : null}
       </WrapperEl>
     </div>
   );
