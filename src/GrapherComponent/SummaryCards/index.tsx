@@ -54,27 +54,6 @@ export function CountrySummary(props: Props) {
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}
       >
-        {/* {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
-          <DotPlot
-            graphTitle={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'tobacco_burden')
-              ].Indicator
-            }
-            size={200}
-            value={
-              data.data[
-                data.data.findIndex(el => el.indicator === 'tobacco_burden')
-              ].value
-            }
-            year={2022}
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'tobacco_burden')
-              ].DataSourceName
-            }
-          />
-        ) : null} */}
         {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
           <ValueCard
             value={
@@ -82,7 +61,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
@@ -103,7 +82,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP')
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
@@ -127,7 +106,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -155,7 +134,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -183,7 +162,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -211,7 +190,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -238,7 +217,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
@@ -258,7 +237,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'averted_deaths')
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'averted_deaths')
@@ -281,7 +260,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
@@ -301,7 +280,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'econ_benefits')
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'econ_benefits')
@@ -325,7 +304,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -354,7 +333,7 @@ export function CountrySummary(props: Props) {
                 )
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -379,7 +358,7 @@ export function CountrySummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'all_ROI_15years')
               ].value
             }
-            year={2022}
+            year={data.reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'all_ROI_15years')

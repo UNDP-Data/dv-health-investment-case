@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { format } from 'd3-format';
 
 interface Props {
-  year: number;
+  year?: string | number;
   value: number;
   graphTitle: string;
   graphDescription?: string;
@@ -88,15 +88,19 @@ export function ValueCard(props: Props) {
           justifyContent: 'center',
         }}
       >
-        <StatEl>
-          {prefix || ''}{' '}
-          {Math.abs(value) < 1
-            ? value
-            : format(labelFormat || '.3s')(value).replace('G', 'B')}
-          {suffix || ''} <YearEl>({year})</YearEl>
-        </StatEl>
+        {year ? (
+          <StatEl>
+            {prefix || ''}{' '}
+            {Math.abs(value) < 1
+              ? value
+              : format(labelFormat || '.3s')(value).replace('G', 'B')}
+            {suffix || ''} <YearEl>({year})</YearEl>
+          </StatEl>
+        ) : null}
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      {source && source !== '' ? (
+        <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      ) : null}
     </StatCardsEl>
   );
 }
