@@ -3,8 +3,9 @@ import styled from 'styled-components';
 interface Props {
   value: number;
   year: number;
+  note?: string;
   size: number;
-  graphTitle: string;
+  graphTitle?: string;
   source: string;
   dotColors?: string;
   graphDescription?: string;
@@ -34,8 +35,16 @@ const SourceEl = styled.div`
 `;
 
 export function DotPlot(props: Props) {
-  const { value, size, graphTitle, year, source, dotColors, graphDescription } =
-    props;
+  const {
+    value,
+    size,
+    graphTitle,
+    note,
+    year,
+    source,
+    dotColors,
+    graphDescription,
+  } = props;
   const margin = {
     top: 0,
     bottom: 0,
@@ -46,9 +55,11 @@ export function DotPlot(props: Props) {
   const radius = (gridSize - 6) / 2;
   return (
     <StatCardsEl>
-      <p className='undp-typography margin-bottom-00'>
-        {graphTitle} ({year})
-      </p>
+      {graphTitle ? (
+        <p className='undp-typography margin-bottom-00'>
+          {graphTitle} ({year})
+        </p>
+      ) : null}
       {graphDescription ? (
         <p
           className='undp-typography small-font margin-bottom-00'
@@ -57,9 +68,12 @@ export function DotPlot(props: Props) {
           {graphDescription}
         </p>
       ) : null}
-      <h2 className='undp-typography bold margin-bottom-02 margin-top-03'>
-        {value} out of 100
-      </h2>
+      <div>
+        <h2 className='undp-typography bold margin-bottom-00 margin-top-05'>
+          {value} out of 100{' '}
+        </h2>
+        {note ? <p className='undp-typography bold'>{note}</p> : null}
+      </div>
       <svg
         style={{ maxWidth: '15rem', margin: '0' }}
         width='100%'

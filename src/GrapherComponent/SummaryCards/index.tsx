@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useRef, useState } from 'react';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 import { ValueCard } from '../../CardComponents/ValueCard';
+import { ValueCardDouble } from '../../CardComponents/ValueCardDouble';
 // import { DotPlot } from '../../CardComponents/DotPlot';
 
 interface Props {
@@ -54,8 +55,10 @@ export function CountrySummary(props: Props) {
         className='flex-div stat-container undp-scrollbar'
         ref={WrapperRef}
       >
-        {data.data.findIndex(el => el.indicator === 'tobacco_burden') !== -1 ? (
-          <ValueCard
+        {data.data.findIndex(
+          el => el.indicator === 'tobacco_burden' && 'tobacco_burden_GDP',
+        ) !== -1 ? (
+          <ValueCardDouble
             value={
               data.data[
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
@@ -67,27 +70,17 @@ export function CountrySummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
               ].Indicator
             }
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'tobacco_burden')
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP') !==
-        -1 ? (
-          <ValueCard
-            value={
+            value2={
               data.data[
                 data.data.findIndex(el => el.indicator === 'tobacco_burden_GDP')
               ].value
             }
-            year={data.reference_year}
-            graphTitle={
+            graphTitle2={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
               ].Indicator
             }
+            year2={data.reference_year}
             source={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
@@ -96,13 +89,13 @@ export function CountrySummary(props: Props) {
           />
         ) : null}
         {data.data.findIndex(
-          el => el.indicator === 'costs_per_adult_smoker',
+          el => el.indicator === 'tobacco_attributable_deaths',
         ) !== -1 ? (
           <ValueCard
             value={
               data.data[
                 data.data.findIndex(
-                  el => el.indicator === 'costs_per_adult_smoker',
+                  el => el.indicator === 'tobacco_attributable_deaths',
                 )
               ].value
             }
@@ -110,122 +103,15 @@ export function CountrySummary(props: Props) {
             graphTitle={
               indicators[
                 indicators.findIndex(
-                  d => d.DataKey === 'costs_per_adult_smoker',
+                  d => d.DataKey === 'tobacco_attributable_deaths',
                 )
               ].Indicator
             }
             source={
               indicators[
                 indicators.findIndex(
-                  d => d.DataKey === 'costs_per_adult_smoker',
+                  d => d.DataKey === 'tobacco_attributable_deaths',
                 )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'tobacco-attributable_deaths',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'tobacco-attributable_deaths',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'tobacco-attributable_deaths',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'tobacco-attributable_deaths',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'econ_productivity_losses',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'econ_productivity_losses',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'econ_productivity_losses',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'econ_productivity_losses',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'healthcare_expenditures',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'healthcare_expenditures',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'healthcare_expenditures',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'healthcare_expenditures',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(el => el.indicator === 'econ_losses_15years') !==
-        -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'econ_losses_15years',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'econ_losses_15years')
               ].DataSourceName
             }
           />
@@ -250,31 +136,10 @@ export function CountrySummary(props: Props) {
             }
           />
         ) : null}
-        {data.data.findIndex(el => el.indicator === 'annual_deaths_averted') !==
-        -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'annual_deaths_averted',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'annual_deaths_averted')
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(el => el.indicator === 'econ_benefits') !== -1 ? (
-          <ValueCard
+        {data.data.findIndex(
+          el => el.indicator === 'econ_benefits' && 'all_ROI_15years',
+        ) !== -1 ? (
+          <ValueCardDouble
             value={
               data.data[
                 data.data.findIndex(el => el.indicator === 'econ_benefits')
@@ -286,87 +151,20 @@ export function CountrySummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'econ_benefits')
               ].Indicator
             }
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'econ_benefits')
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'avoided_econ_productivity_losses',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'avoided_econ_productivity_losses',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'avoided_econ_productivity_losses',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'avoided_econ_productivity_losses',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'annual_avoided_econ_productivity_losses',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el =>
-                    el.indicator === 'annual_avoided_econ_productivity_losses',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'annual_avoided_econ_productivity_losses',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'annual_avoided_econ_productivity_losses',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
-        {data.data.findIndex(el => el.indicator === 'all_ROI_15years') !==
-        -1 ? (
-          <ValueCard
-            value={
+            value2={
               data.data[
                 data.data.findIndex(el => el.indicator === 'all_ROI_15years')
               ].value
             }
-            year={data.reference_year}
-            graphTitle={
+            graphTitle2={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'all_ROI_15years')
               ].Indicator
             }
+            year2={data.reference_year}
             source={
               indicators[
-                indicators.findIndex(d => d.DataKey === 'all_ROI_15years')
+                indicators.findIndex(d => d.DataKey === 'econ_benefits')
               ].DataSourceName
             }
           />
