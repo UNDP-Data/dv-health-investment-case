@@ -39,7 +39,7 @@ function CountryEl() {
       )
       .defer(
         json,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.jsons',
+        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.json',
       )
       .defer(
         json,
