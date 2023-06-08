@@ -172,8 +172,14 @@ function WorldEl() {
 
   useEffect(() => {
     queue()
-      .defer(csv, './Data/countryData.csv')
-      .defer(json, './Data/indicatorMetaData.json')
+      .defer(
+        csv,
+        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/countryData.csv',
+      )
+      .defer(
+        json,
+        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.json',
+      )
       .defer(
         json,
         'https://raw.githubusercontent.com/UNDP-Data/country-taxonomy-from-azure/main/country_territory_groups.json',
