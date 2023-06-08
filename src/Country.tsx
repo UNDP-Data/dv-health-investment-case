@@ -11,7 +11,7 @@ import {
   IndicatorMetaDataType,
 } from './Types';
 import { GrapherComponentForCountry } from './GrapherComponent';
-import { KEYS_FROM_DATA } from './Constants';
+import { KEYS_FROM_DATA, KEY_WITH_PERCENT_VALUE } from './Constants';
 import { CountrySummary } from './GrapherComponent/SummaryCards';
 
 const VizAreaEl = styled.div`
@@ -74,16 +74,18 @@ function CountryEl() {
             if (data.findIndex(el => el.ISO_code === d['Alpha-3 code']) === -1)
               return d;
             const countryData =
-              data[
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                data.findIndex(el => el.ISO_code === d['Alpha-3 code'])
-              ];
+              data[data.findIndex(el => el.ISO_code === d['Alpha-3 code'])];
             const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
               key => ({
                 indicator: key,
-                value: countryData[key] === '' ? -1 : +countryData[key],
+                value:
+                  countryData[key] === ''
+                    ? -999999
+                    : KEY_WITH_PERCENT_VALUE.indexOf(key) !== -1
+                    ? +countryData[key] * 100
+                    : +countryData[key],
               }),
-            ).filter(el => el.value !== -1);
+            ).filter(el => el.value !== -999999);
             return {
               ...d,
               data: indicatorData,

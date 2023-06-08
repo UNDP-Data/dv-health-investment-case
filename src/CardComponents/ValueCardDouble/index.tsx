@@ -10,6 +10,13 @@ interface Props {
   prefix?: string;
   labelFormat?: string;
   source: string;
+  year2?: string | number;
+  value2: number;
+  graphTitle2: string;
+  graphDescription2?: string;
+  suffix2?: string;
+  prefix2?: string;
+  labelFormat2?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -57,7 +64,7 @@ const YearEl = styled.span`
   margin-bottom: 1rem !important;
 `;
 
-export function ValueCard(props: Props) {
+export function ValueCardDouble(props: Props) {
   const {
     year,
     value,
@@ -67,6 +74,13 @@ export function ValueCard(props: Props) {
     prefix,
     labelFormat,
     graphDescription,
+    year2,
+    value2,
+    graphTitle2,
+    suffix2,
+    prefix2,
+    labelFormat2,
+    graphDescription2,
   } = props;
 
   return (
@@ -95,6 +109,33 @@ export function ValueCard(props: Props) {
               ? value
               : format(labelFormat || '.3s')(value).replace('G', 'B')}
             {suffix || ''} <YearEl>({year})</YearEl>
+          </StatEl>
+        ) : null}
+      </div>
+      <p className='undp-typography margin-bottom-00'>{graphTitle2}</p>
+      {graphDescription2 ? (
+        <p
+          className='undp-typography small-font margin-bottom-00'
+          style={{ color: 'var(--gray-500)' }}
+        >
+          {graphDescription2}
+        </p>
+      ) : null}
+      <div
+        style={{
+          flexGrow: 1,
+          flexDirection: 'column',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        {year2 ? (
+          <StatEl>
+            {prefix2 || ''}{' '}
+            {Math.abs(value2) < 1
+              ? value2
+              : format(labelFormat2 || '.3s')(value2).replace('G', 'B')}
+            {suffix2 || ''} <YearEl>({year2})</YearEl>
           </StatEl>
         ) : null}
       </div>

@@ -15,7 +15,11 @@ import {
 import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
 import Context from './Context/Context';
-import { DEFAULT_VALUES, KEYS_FROM_DATA } from './Constants';
+import {
+  DEFAULT_VALUES,
+  KEYS_FROM_DATA,
+  KEY_WITH_PERCENT_VALUE,
+} from './Constants';
 
 const VizAreaEl = styled.div`
   display: flex;
@@ -216,9 +220,14 @@ function WorldEl() {
             const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
               key => ({
                 indicator: key,
-                value: countryData[key] === '' ? -1 : +countryData[key],
+                value:
+                  countryData[key] === ''
+                    ? -999999
+                    : KEY_WITH_PERCENT_VALUE.indexOf(key) !== -1
+                    ? +countryData[key] * 100
+                    : +countryData[key],
               }),
-            ).filter(el => el.value !== -1);
+            ).filter(el => el.value !== -999999);
             return {
               ...d,
               data: indicatorData,
