@@ -490,7 +490,7 @@
     "DataKey": "all_ROI_15years",
     "DataSourceName": "",
     "DataSourceLink": "",
-    "LabelSuffix": "",
+    "LabelSuffix": ": 1",
     "LabelPrefix": "",
     "LabelFormat": "",
     "BinningRange5": [15,25,50,150],

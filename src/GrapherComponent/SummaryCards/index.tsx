@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 import { ValueCard } from '../../CardComponents/ValueCard';
 import { ValueCardDouble } from '../../CardComponents/ValueCardDouble';
+import { CircleChart } from '../../CardComponents/CircleChart';
 // import { DotPlot } from '../../CardComponents/DotPlot';
 
 interface Props {
@@ -88,34 +89,6 @@ export function CountrySummary(props: Props) {
             }
           />
         ) : null}
-        {data.data.findIndex(
-          el => el.indicator === 'tobacco_attributable_deaths',
-        ) !== -1 ? (
-          <ValueCard
-            value={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === 'tobacco_attributable_deaths',
-                )
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'tobacco_attributable_deaths',
-                )
-              ].Indicator
-            }
-            source={
-              indicators[
-                indicators.findIndex(
-                  d => d.DataKey === 'tobacco_attributable_deaths',
-                )
-              ].DataSourceName
-            }
-          />
-        ) : null}
         {data.data.findIndex(el => el.indicator === 'averted_deaths') !== -1 ? (
           <ValueCard
             value={
@@ -137,36 +110,27 @@ export function CountrySummary(props: Props) {
           />
         ) : null}
         {data.data.findIndex(
-          el => el.indicator === 'econ_benefits' && 'all_ROI_15years',
+          el => el.indicator === 'all_ROI_15years' && 'econ_benefits',
         ) !== -1 ? (
-          <ValueCardDouble
-            value={
-              data.data[
-                data.data.findIndex(el => el.indicator === 'econ_benefits')
-              ].value
-            }
-            year={data.reference_year}
-            graphTitle={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'econ_benefits')
-              ].Indicator
-            }
-            value2={
+          <CircleChart
+            valuePrimary={
               data.data[
                 data.data.findIndex(el => el.indicator === 'all_ROI_15years')
               ].value
             }
-            graphTitle2={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'all_ROI_15years')
-              ].Indicator
+            valueSecondary={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'econ_benefits')
+              ].value
             }
-            year2={data.reference_year}
-            source={
-              indicators[
-                indicators.findIndex(d => d.DataKey === 'econ_benefits')
-              ].DataSourceName
-            }
+            graphTitle='Return-on-investment over 15 years if all interventions are implemented'
+            year={2022}
+            labelPrimary='Benefits'
+            labelSecondary='Investment'
+            colorPrimary='var(--blue-600)'
+            colorSecondary='var(--white)'
+            size={200}
+            suffix=' : 1'
           />
         ) : null}
       </WrapperEl>

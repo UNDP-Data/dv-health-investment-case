@@ -26,39 +26,37 @@ export function DonutChartGraph(props: Props) {
     <svg width={svgWidth} height={svgHeight}>
       <g transform={`translate(${svgWidth / 2} ${svgHeight / 2})`}>
         {createPie.map((datum, i) => (
-          <>
-            <g key={i} className='arc'>
-              <path
-                className='arc'
-                d={createArc(datum)!}
-                fill={colors[i % colors.length]}
-              />
-              {datum.value}
-            </g>
-            <text
-              x={0}
-              y={0}
-              textAnchor='middle'
-              fontSize='2.813rem'
-              fontWeight='bold'
-              style={{ fill: 'var(--black)' }}
-            >
-              {/* {datum.value} */}
-              {valueDonut}
-              {suffix}
-            </text>
-            <text
-              x={0}
-              y={0 + 30}
-              textAnchor='middle'
-              fontSize='1.25rem'
-              fontWeight='bold'
-              style={{ fill: 'var(--black)' }}
-            >
-              {noteDonut}
-            </text>
-          </>
+          <g key={i} className='arc'>
+            <path
+              className='arc'
+              d={createArc(datum)!}
+              fill={colors[i % colors.length]}
+            />
+            {datum.value}
+          </g>
         ))}
+        <text
+          x={0}
+          y={0}
+          textAnchor='middle'
+          fontSize='2.813rem'
+          fontWeight='bold'
+          style={{ fill: 'var(--black)' }}
+        >
+          {/* {datum.value} */}
+          {valueDonut}
+          {suffix}
+        </text>
+        <text
+          x={0}
+          y={0 + 30}
+          textAnchor='middle'
+          fontSize='1.25rem'
+          fontWeight='bold'
+          style={{ fill: 'var(--black)' }}
+        >
+          {noteDonut}
+        </text>
       </g>
     </svg>
   );
