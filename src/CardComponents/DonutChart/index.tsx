@@ -21,7 +21,7 @@ const StatCardsEl = styled.div`
   flex-grow: 1;
   flex-basis: 22.5rem;
   min-width: 22.5rem;
-  min-width: 22.5rem;
+  min-height: 22.5rem;
   background-color: var(--gray-200);
   font-size: 1.25rem;
   color: var(--black);
@@ -46,12 +46,6 @@ export function DonutChart(props: Props) {
     graphDescription,
     note,
   } = props;
-  const margin = {
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  };
   return (
     <StatCardsEl>
       {graphTitle ? (
@@ -77,8 +71,8 @@ export function DonutChart(props: Props) {
         <DonutChartGraph
           data={value}
           colors={colors}
-          svgWidth={size - margin.left - margin.right}
-          svgHeight={size - margin.top - margin.bottom}
+          svgWidth={size}
+          svgHeight={size}
           valueDonut={value[0]}
           suffix='%'
           noteDonut={note}
