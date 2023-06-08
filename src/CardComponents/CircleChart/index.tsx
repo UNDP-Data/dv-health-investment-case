@@ -26,7 +26,6 @@ const StatCardsEl = styled.div`
   flex-grow: 1;
   flex-basis: 22.5rem;
   min-width: 22.5rem;
-  min-width: 22.5rem;
   background-color: var(--gray-200);
   font-size: 1.25rem;
   color: var(--black);
@@ -69,7 +68,6 @@ export function CircleChart(props: Props) {
   const radiusPrimary = size / 2;
   const areaPrimary = radiusPrimary ** 2 * Math.PI;
   const radiusSecondary = Math.sqrt(areaPrimary / valuePrimary / Math.PI);
-
   return (
     <StatCardsEl>
       {graphTitle ? (
@@ -101,18 +99,13 @@ export function CircleChart(props: Props) {
       >
         <g
           transform={`translate(${radiusPrimary},${
-            radiusPrimary - labelHeight
+            radiusPrimary + labelHeight * 2
           })`}
         >
+          <circle cx={0} cy={0} r={radiusPrimary} fill={colorPrimary} />
           <circle
             cx={0}
-            cy={labelHeight * 2}
-            r={radiusPrimary}
-            fill={colorPrimary}
-          />
-          <circle
-            cx={0}
-            cy={radiusPrimary - radiusSecondary + labelHeight * 2}
+            cy={radiusPrimary - radiusSecondary}
             r={radiusSecondary}
             stroke={colorSecondary}
             strokeWidth={1}
@@ -120,22 +113,21 @@ export function CircleChart(props: Props) {
           />
           <LabelEl
             x={0}
-            y={radiusPrimary - radiusSecondary * 2 - 10 + labelHeight * 2}
+            y={radiusPrimary - radiusSecondary * 2 - 10}
             style={{ fill: 'var(--white)' }}
           >
-            {' '}
-            {labelSecondary}{' '}
+            {labelSecondary}
           </LabelEl>
           <LabelEl
             x={0}
-            y={-radiusPrimary + labelHeight + 10}
+            y={0 - radiusPrimary - 8}
             style={{ fill: 'var(--black)' }}
           >
             {labelPrimary}
           </LabelEl>
           <LabelEl
             x={0}
-            y={-radiusPrimary + labelHeight * 2 - 8}
+            y={0 - radiusPrimary - 24}
             style={{ fill: 'var(--black)', fontWeight: '600' }}
           >
             {format('.3s')(valueSecondary).replace('G', 'B')}

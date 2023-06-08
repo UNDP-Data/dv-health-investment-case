@@ -95,13 +95,13 @@ function CountryEl() {
               year_of_prevalence_data: countryData.year_of_prevalence_data,
               prevelance_data_source: countryData.prevelance_data_source,
               adult_cigarette_smoking_prevalence_percent:
-                countryData.adult_cigarette_smoking_prevalence_percent * 100,
+                +countryData.adult_cigarette_smoking_prevalence_percent * 100,
               adult_tobacco_use_prevalence_percent:
-                countryData.adult_tobacco_use_prevalence_percent * 100,
+                +countryData.adult_tobacco_use_prevalence_percent * 100,
               percent_reduction_premature_mortality_2030:
-                countryData.percent_reduction_premature_mortality_2030 * 100,
+                +countryData.percent_reduction_premature_mortality_2030 * 100,
               percent_of_tobacco_attributable_deaths_that_are_premature:
-                countryData.percent_of_tobacco_attributable_deaths_that_are_premature *
+                +countryData.percent_of_tobacco_attributable_deaths_that_are_premature *
                 100,
             };
           });
