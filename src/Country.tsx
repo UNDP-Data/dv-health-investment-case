@@ -11,7 +11,7 @@ import {
   IndicatorMetaDataType,
 } from './Types';
 import { GrapherComponentForCountry } from './GrapherComponent';
-import { KEYS_FROM_DATA } from './Constants';
+import { KEYS_FROM_DATA, KEY_WITH_PERCENT_VALUE } from './Constants';
 import { CountrySummary } from './GrapherComponent/SummaryCards';
 
 const VizAreaEl = styled.div`
@@ -75,9 +75,14 @@ function CountryEl() {
             const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
               key => ({
                 indicator: key,
-                value: countryData[key] === '' ? -1 : +countryData[key],
+                value:
+                  countryData[key] === ''
+                    ? -999999
+                    : KEY_WITH_PERCENT_VALUE.indexOf(key) !== -1
+                    ? +countryData[key] * 100
+                    : +countryData[key],
               }),
-            ).filter(el => el.value !== -1);
+            ).filter(el => el.value !== -999999);
             return {
               ...d,
               data: indicatorData,
@@ -94,15 +99,6 @@ function CountryEl() {
               USD_exchange_rate_source: countryData.USD_exchange_rate_source,
               year_of_prevalence_data: countryData.year_of_prevalence_data,
               prevelance_data_source: countryData.prevelance_data_source,
-              adult_cigarette_smoking_prevalence_percent:
-                +countryData.adult_cigarette_smoking_prevalence_percent * 100,
-              adult_tobacco_use_prevalence_percent:
-                +countryData.adult_tobacco_use_prevalence_percent * 100,
-              percent_reduction_premature_mortality_2030:
-                +countryData.percent_reduction_premature_mortality_2030 * 100,
-              percent_of_tobacco_attributable_deaths_that_are_premature:
-                +countryData.percent_of_tobacco_attributable_deaths_that_are_premature *
-                100,
             };
           });
           setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));

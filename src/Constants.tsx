@@ -62,3 +62,11 @@ export const KEYS_FROM_DATA: KeyListType[] = [
   'cigarette_smoking_prevalence_change',
   'all_ROI_15years',
 ];
+
+export const KEY_WITH_PERCENT_VALUE = [
+  'adult_tobacco_use_prevalence_percent',
+  'adult_cigarette_smoking_prevalence_percent',
+  'adult_tobacco_smoking_prevalence_percent',
+  'percent_of_tobacco_attributable_deaths_that_are_premature',
+  'percent_reduction_premature_mortality_2030',
+];
