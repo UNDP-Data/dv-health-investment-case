@@ -68,10 +68,7 @@ function CountryEl() {
             if (data.findIndex(el => el.ISO_code === d['Alpha-3 code']) === -1)
               return d;
             const countryData =
-              data[
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                data.findIndex(el => el.ISO_code === d['Alpha-3 code'])
-              ];
+              data[data.findIndex(el => el.ISO_code === d['Alpha-3 code'])];
             const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
               key => ({
                 indicator: key,
