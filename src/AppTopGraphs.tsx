@@ -55,7 +55,7 @@ export function AppTopGraphs() {
           value={74}
           year={2022}
           note='Total deaths: 41 million'
-          source='WHO NCD stats'
+          source='WHO NCD Key Facts'
           dotColors='var(--dark-red)'
         />
         <DonutChart
@@ -65,7 +65,7 @@ export function AppTopGraphs() {
           colors={['var(--blue-600)', 'var(--gray-400)']}
           year={2022}
           note='31.6 million'
-          source='WHO NCD stats'
+          source='WHO NCD Key Facts'
         />
         <DonutChart
           graphTitle='Premature NCD deaths (before age 70)'
@@ -74,15 +74,8 @@ export function AppTopGraphs() {
           colors={['var(--dark-red)', 'var(--gray-400)']}
           year={2022}
           note='13.5 million'
-          source='WHO NCD stats'
+          source='WHO NCD Key Facts'
         />
-        {/* <ValueCard
-          value={33.3}
-          graphTitle='Premature NCD deaths (before age 70)'
-          source='WHO NCD stats'
-          suffix='%'
-          year={2022}
-        /> */}
         <ValueCardDouble
           value={1.3}
           value2={93}
@@ -93,21 +86,21 @@ export function AppTopGraphs() {
           labelFormat='.2'
           labelFormat2='.2'
           graphTitle='People die from road traffic crashes'
-          graphTitle2='Deaths in Low- and Middle-income Countries (LMICs)'
-          source='WHO road traffic injuries stats'
+          graphTitle2='Deaths in Low- and Middle-income Countries'
+          source='WHO road traffic injuries Key Facts'
         />
-        <DotPlot
+        <DonutChart
           graphTitle='Global population live in unhealthy air (where the WHO air quality guidelines are not met)'
-          size={200}
-          value={99}
+          size={340}
+          value={[99, 1]}
+          colors={['var(--dark-red)', 'var(--gray-400)']}
           year={2022}
-          source='WHO air pollution stats'
-          dotColors='var(--dark-red)'
+          source='WHO air pollution Key Facts'
         />
         <ValueCard
           value={1}
           graphTitle='People in the world have a mental disorder'
-          source='WHO mental health stats'
+          source='WHO mental health Key Facts'
           suffix=' in 8 people'
           year={2022}
           labelFormat='.1'
@@ -121,36 +114,36 @@ export function AppTopGraphs() {
           year2={2022}
           graphTitle='Number of neglected topical diseases'
           graphTitle2='People affected by one of these diseases'
-          source='WHO NTDs stats'
+          source='WHO NTDs Key Facts'
           labelFormat='.2'
           labelFormat2='.2'
         />
         <DotPlot
           graphTitle='People in the world risk of falling into poverty due to out-of-pocket payments'
           size={200}
-          value={11.7}
+          value={12}
           year={2022}
           note='Total number: 930 million'
-          source='WHO Primary Health Care stats, UN World population prospect 2022'
+          source='WHO Primary Health Care Key Facts, UN World population prospect 2022'
           dotColors='var(--dark-red)'
         />
         <DotPlot
           graphTitle='People in the world do not have access to basic medicines'
           size={200}
-          value={25.2}
+          value={25}
           year={2022}
           note='Total number: 2 billion'
-          source='WHO Access to medicines stats, UN World population prospect 2022'
+          source='WHO Access to medicines Key Facts, UN World population prospect 2022'
           dotColors='var(--dark-red)'
         />
-        <DotPlot
+        <DonutChart
           graphTitle='People are moderately or severely food insecure'
-          size={200}
-          value={29}
-          year={2022}
+          size={340}
+          value={[29, 71]}
+          colors={['var(--dark-red)', 'var(--gray-400)']}
           note='Total number: 2.3 billion'
-          source='Global Nutrition report'
-          dotColors='var(--dark-red)'
+          year={2022}
+          source='Global Nutrition Report'
         />
       </WrapperEl>
     </div>
