@@ -128,7 +128,7 @@ export function CountrySummary(props: Props) {
             labelPrimary='Benefits'
             labelSecondary='Investment'
             colorPrimary='var(--blue-600)'
-            colorSecondary='var(--white)'
+            colorSecondary='transparent'
             size={200}
             suffix=' : 1'
           />

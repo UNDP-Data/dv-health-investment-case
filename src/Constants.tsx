@@ -69,4 +69,7 @@ export const KEY_WITH_PERCENT_VALUE = [
   'adult_tobacco_smoking_prevalence_percent',
   'percent_of_tobacco_attributable_deaths_that_are_premature',
   'percent_reduction_premature_mortality_2030',
+  'econ_productivity_losses_15years_decrease',
+  'cigarette_smoking_prevalence_change',
+  'tobacco_burden_GDP',
 ];

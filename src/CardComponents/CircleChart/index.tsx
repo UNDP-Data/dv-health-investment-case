@@ -110,8 +110,7 @@ export function CircleChart(props: Props) {
             r={radiusSecondary}
             stroke={colorSecondary}
             strokeWidth={1.5}
-            fill='transparent'
-            strokeDasharray='6,4'
+            fill='var(--blue-200)'
           />
           <LabelEl
             x={0}
