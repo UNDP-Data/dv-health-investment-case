@@ -96,7 +96,15 @@ export function ValueCard(props: Props) {
               : format(labelFormat || '.3s')(value).replace('G', 'B')}
             {suffix || ''} <YearEl>({year})</YearEl>
           </StatEl>
-        ) : null}
+        ) : (
+          <StatEl>
+            {prefix || ''}{' '}
+            {Math.abs(value) < 1
+              ? value
+              : format(labelFormat || '.3s')(value).replace('G', 'B')}
+            {suffix || ''}
+          </StatEl>
+        )}
       </div>
       {source && source !== '' ? (
         <SourceEl className='margin-top-05'>Source: {source}</SourceEl>

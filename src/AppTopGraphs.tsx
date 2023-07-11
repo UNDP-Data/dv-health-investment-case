@@ -58,23 +58,27 @@ export function AppTopGraphs() {
           source='WHO NCD Key Facts'
           dotColors='var(--dark-red)'
         />
-        <DonutChart
-          graphTitle='NCD deaths in Low- and Middle-income Countries'
-          size={340}
-          value={[77, 23]}
-          colors={['var(--blue-600)', 'var(--gray-400)']}
-          year={2022}
-          note='31.6 million'
-          source='WHO NCD Key Facts'
+        <ValueCard
+          value={8}
+          graphTitle='Death caused by tobacco every year'
+          source='WHO'
+          suffix='M'
         />
-        <DonutChart
-          graphTitle='Premature NCD deaths (before age 70)'
-          size={340}
-          value={[33, 66]}
-          colors={['var(--dark-red)', 'var(--gray-400)']}
+        <ValueCard
+          value={1}
+          graphTitle='Death caused by tobacco every year'
+          source='WHO mental health Key Facts'
+          suffix=' in 8 people'
           year={2022}
-          note='13.5 million'
-          source='WHO NCD Key Facts'
+          labelFormat='.1'
+        />
+        <ValueCard
+          value={1}
+          graphTitle='People in the world have a mental disorder'
+          source='WHO mental health Key Facts'
+          suffix=' in 8 people'
+          year={2022}
+          labelFormat='.1'
         />
         <ValueCardDouble
           value={1.3}
@@ -96,14 +100,6 @@ export function AppTopGraphs() {
           colors={['var(--dark-red)', 'var(--gray-400)']}
           year={2022}
           source='WHO air pollution Key Facts'
-        />
-        <ValueCard
-          value={1}
-          graphTitle='People in the world have a mental disorder'
-          source='WHO mental health Key Facts'
-          suffix=' in 8 people'
-          year={2022}
-          labelFormat='.1'
         />
         <ValueCardDouble
           value={20}
