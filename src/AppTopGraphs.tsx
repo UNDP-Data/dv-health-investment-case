@@ -66,14 +66,6 @@ export function AppTopGraphs() {
         />
         <ValueCard
           value={1}
-          graphTitle='Death caused by tobacco every year'
-          source='WHO mental health Key Facts'
-          suffix=' in 8 people'
-          year={2022}
-          labelFormat='.1'
-        />
-        <ValueCard
-          value={1}
           graphTitle='People in the world have a mental disorder'
           source='WHO mental health Key Facts'
           suffix=' in 8 people'
