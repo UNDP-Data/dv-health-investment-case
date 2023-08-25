@@ -57,7 +57,7 @@ function CountryEl() {
           if (err) throw err;
           const countryListFromTaxonomy: DataType[] = countryTaxonomy.map(
             d => ({
-              'Alpha-3 code': d['Alpha-3 code-1'],
+              'Alpha-3 code': d['Alpha-3 code'],
               'Country or Area': d['Country or Area'],
               'Group 1': d['Group 1'],
               'Group 2': d['Group 2'],
