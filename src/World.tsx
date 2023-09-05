@@ -29,7 +29,12 @@ const VizAreaEl = styled.div`
   height: 10rem;
 `;
 
-function WorldEl() {
+interface Props {
+  focusArea: string;
+}
+
+function WorldEl(props: Props) {
+  const { focusArea } = props;
   const [finalData, setFinalData] = useState<DataType[] | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<
     IndicatorMetaDataType[] | undefined
@@ -174,11 +179,11 @@ function WorldEl() {
     queue()
       .defer(
         csv,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/countryData.csv',
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}.csv`,
       )
       .defer(
         json,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.json',
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}MetaData.json`,
       )
       .defer(
         json,

@@ -14,6 +14,10 @@ import { GrapherComponentForCountry } from './GrapherComponent';
 import { KEYS_FROM_DATA, KEY_WITH_PERCENT_VALUE } from './Constants';
 import { CountrySummary } from './GrapherComponent/SummaryCards';
 
+interface Props {
+  focusArea: string;
+}
+
 const VizAreaEl = styled.div`
   display: flex;
   margin: auto;
@@ -22,7 +26,8 @@ const VizAreaEl = styled.div`
   height: 10rem;
 `;
 
-function CountryEl() {
+function CountryEl(props: Props) {
+  const { focusArea } = props;
   const [finalData, setFinalData] = useState<DataType[] | undefined>(undefined);
   const [countryId, setCountryId] = useState<string | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<
@@ -35,11 +40,11 @@ function CountryEl() {
     queue()
       .defer(
         csv,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/countryData.csv',
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}.csv`,
       )
       .defer(
         json,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.json',
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}MetaData.json`,
       )
       .defer(
         json,
@@ -135,6 +140,7 @@ function CountryEl() {
             ))}
           </Select>
           <CountrySummary
+            focusArea={focusArea}
             indicators={indicatorsList}
             data={finalData.filter(d => d['Country or Area'] === countryId)[0]}
           />
