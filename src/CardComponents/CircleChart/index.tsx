@@ -2,6 +2,7 @@ import { format } from 'd3-format';
 import styled from 'styled-components';
 
 interface Props {
+  isPercentage: boolean;
   valuePrimary: number;
   valueSecondary: number;
   graphTitle?: string;
@@ -14,7 +15,10 @@ interface Props {
   colorPrimary?: string;
   colorSecondary?: string;
   size: number;
-  suffix: string;
+  suffix?: string;
+  prefix?: string;
+  valueOnTop: number;
+  labelFormat?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -50,8 +54,10 @@ const SourceEl = styled.div`
 
 export function CircleChart(props: Props) {
   const {
+    isPercentage,
     valuePrimary,
     valueSecondary,
+    valueOnTop,
     graphTitle,
     note,
     year,
@@ -63,12 +69,17 @@ export function CircleChart(props: Props) {
     colorSecondary,
     size,
     suffix,
+    prefix,
+    labelFormat,
   } = props;
 
   const labelHeight = 32;
   const radiusPrimary = size / 2;
   const areaPrimary = radiusPrimary ** 2 * Math.PI;
-  const radiusSecondary = Math.sqrt(areaPrimary / valuePrimary / Math.PI);
+  const areaSecondry = isPercentage
+    ? (areaPrimary * valuePrimary) / 100
+    : areaPrimary / valuePrimary;
+  const radiusSecondary = Math.sqrt(areaSecondry / Math.PI);
   return (
     <StatCardsEl>
       {graphTitle ? (
@@ -86,7 +97,11 @@ export function CircleChart(props: Props) {
       ) : null}
       <div>
         <h2 className='undp-typography bold margin-bottom-05 margin-top-05'>
-          {valuePrimary} {suffix}
+          {prefix}
+          {Math.abs(valueOnTop) < 1
+            ? valueOnTop
+            : format(labelFormat || '.2s')(valueOnTop).replace('G', 'B')}{' '}
+          {suffix}
         </h2>
         {note ? <p className='undp-typography bold'>{note}</p> : null}
       </div>
@@ -103,14 +118,30 @@ export function CircleChart(props: Props) {
             radiusPrimary + labelHeight * 2
           })`}
         >
+          {/* Primary circle */}
           <circle cx={0} cy={0} r={radiusPrimary} fill={colorPrimary} />
+          <LabelEl
+            x={0}
+            y={0 - radiusPrimary - 8}
+            style={{ fill: 'var(--black)' }}
+          >
+            {labelPrimary}
+          </LabelEl>
+          {!isPercentage ? (
+            <LabelEl
+              x={0}
+              y={0 - radiusPrimary - 24}
+              style={{ fill: 'var(--black)', fontWeight: '600' }}
+            >
+              {format('.3s')(valueSecondary).replace('G', 'B')}
+            </LabelEl>
+          ) : null}
+          {/* Secondary circle */}
           <circle
             cx={0}
             cy={radiusPrimary - radiusSecondary}
             r={radiusSecondary}
-            stroke={colorSecondary}
-            strokeWidth={1.5}
-            fill='var(--blue-200)'
+            fill={colorSecondary}
           />
           <LabelEl
             x={0}
@@ -119,20 +150,16 @@ export function CircleChart(props: Props) {
           >
             {labelSecondary}
           </LabelEl>
-          <LabelEl
-            x={0}
-            y={0 - radiusPrimary - 8}
-            style={{ fill: 'var(--black)' }}
-          >
-            {labelPrimary}
-          </LabelEl>
-          <LabelEl
-            x={0}
-            y={0 - radiusPrimary - 24}
-            style={{ fill: 'var(--black)', fontWeight: '600' }}
-          >
-            {format('.3s')(valueSecondary).replace('G', 'B')}
-          </LabelEl>
+          {isPercentage ? (
+            <LabelEl
+              x={0}
+              y={radiusPrimary - radiusSecondary * 2 - 24}
+              style={{ fill: 'var(--white)', fontWeight: '600' }}
+            >
+              {' '}
+              {format('.2s')(valuePrimary)}%
+            </LabelEl>
+          ) : null}
         </g>
       </svg>
       {source ? (

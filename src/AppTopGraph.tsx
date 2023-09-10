@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { useRef, useState } from 'react';
-import { DotPlot } from './CardComponents/DotPlot';
-import { ValueCardDouble } from './CardComponents/ValueCardDouble';
-import { ValueCard } from './CardComponents/ValueCard';
 import { DonutChart } from './CardComponents/DonutChart';
+import { DotPlot } from './CardComponents/DotPlot';
+import { ValueCard } from './CardComponents/ValueCard';
+import { ValueCardDouble } from './CardComponents/ValueCardDouble';
 
 const WrapperEl = styled.div`
   scroll-snap-type: x mandatory;
@@ -15,7 +15,7 @@ const WrapperEl = styled.div`
   user-select: none;
 `;
 
-export function AppTopGraphs() {
+export function AppTopGraph() {
   const WrapperRef = useRef<HTMLDivElement>(null);
   const [cursor, setCursor] = useState(
     'url(https://design.undp.org/static/media/arrow-right.125a0586.svg)',
@@ -62,6 +62,7 @@ export function AppTopGraphs() {
           value={8}
           graphTitle='Death caused by tobacco every year'
           source='WHO'
+          labelFormat='.2'
           suffix='M'
         />
         <ValueCard

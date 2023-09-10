@@ -4,15 +4,25 @@ import { queue } from 'd3-queue';
 import styled from 'styled-components';
 import { Select } from 'antd';
 import {
-  CountryDataFromCSV,
   CountryGroupDataTypeFromFile,
   DataType,
   IndicatorDataType,
   IndicatorMetaDataType,
 } from './Types';
 import { GrapherComponentForCountry } from './GrapherComponent';
-import { KEYS_FROM_DATA, KEY_WITH_PERCENT_VALUE } from './Constants';
+import {
+  KEYS_FROM_DATA_TOBACCO,
+  KEY_WITH_PERCENT_VALUE_TOBACCO,
+  KEYS_FROM_DATA_NCD,
+  KEY_WITH_PERCENT_VALUE_NCD,
+  KEYS_FROM_DATA_ALL,
+  KEY_WITH_PERCENT_VALUE_ALL,
+} from './Constants';
 import { CountrySummary } from './GrapherComponent/SummaryCards';
+
+interface Props {
+  focusArea: string;
+}
 
 const VizAreaEl = styled.div`
   display: flex;
@@ -22,7 +32,8 @@ const VizAreaEl = styled.div`
   height: 10rem;
 `;
 
-function CountryEl() {
+function CountryEl(props: Props) {
+  const { focusArea } = props;
   const [finalData, setFinalData] = useState<DataType[] | undefined>(undefined);
   const [countryId, setCountryId] = useState<string | undefined>(undefined);
   const [indicatorsList, setIndicatorsList] = useState<
@@ -35,11 +46,13 @@ function CountryEl() {
     queue()
       .defer(
         csv,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/countryData.csv',
+        `./Data/${focusArea}.csv`,
+        // `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}.csv`,
       )
       .defer(
         json,
-        'https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/indicatorMetaData.json',
+        `./Data/${focusArea}MetaData.json`,
+        // `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}MetaData.json`,
       )
       .defer(
         json,
@@ -50,7 +63,7 @@ function CountryEl() {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           err: any,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data: CountryDataFromCSV[],
+          data: any,
           indicatorMetaData: IndicatorMetaDataType[],
           countryTaxonomy: CountryGroupDataTypeFromFile[],
         ) => {
@@ -71,21 +84,42 @@ function CountryEl() {
             }),
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
-            if (data.findIndex(el => el.ISO_code === d['Alpha-3 code']) === -1)
+            if (
+              data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
+              -1
+            )
               return d;
             const countryData =
-              data[data.findIndex(el => el.ISO_code === d['Alpha-3 code'])];
-            const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
-              key => ({
+              data[
+                data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code'])
+              ];
+            const selectedKeys =
+              focusArea === 'Tobacco'
+                ? KEYS_FROM_DATA_TOBACCO
+                : focusArea === 'NCD'
+                ? KEYS_FROM_DATA_NCD
+                : focusArea === 'All'
+                ? KEYS_FROM_DATA_ALL
+                : [];
+            const selectedKeysPercent =
+              focusArea === 'Tobacco'
+                ? KEY_WITH_PERCENT_VALUE_TOBACCO
+                : focusArea === 'NCD'
+                ? KEY_WITH_PERCENT_VALUE_NCD
+                : focusArea === 'All'
+                ? KEY_WITH_PERCENT_VALUE_ALL
+                : [];
+            const indicatorData: IndicatorDataType[] = selectedKeys
+              .map(key => ({
                 indicator: key,
                 value:
                   countryData[key] === ''
                     ? -999999
-                    : KEY_WITH_PERCENT_VALUE.indexOf(key) !== -1
+                    : selectedKeysPercent.indexOf(key) !== -1
                     ? +countryData[key] * 100
                     : +countryData[key],
-              }),
-            ).filter(el => el.value !== -999999);
+              }))
+              .filter(el => el.value !== -999999);
             return {
               ...d,
               data: indicatorData,
@@ -110,11 +144,12 @@ function CountryEl() {
               .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
               .map(d => d['Country or Area']),
           );
-          setCountryId('Tunisia');
+          setCountryId('Armenia');
           setIndicatorsList(indicatorMetaData);
         },
       );
   }, []);
+
   return (
     <div>
       {indicatorsList && finalData && countryId && countryList ? (
@@ -135,6 +170,7 @@ function CountryEl() {
             ))}
           </Select>
           <CountrySummary
+            focusArea={focusArea}
             indicators={indicatorsList}
             data={finalData.filter(d => d['Country or Area'] === countryId)[0]}
           />

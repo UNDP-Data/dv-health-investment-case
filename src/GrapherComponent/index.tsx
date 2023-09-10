@@ -20,6 +20,7 @@ interface Props {
   indicators: IndicatorMetaDataType[];
   regions: string[];
   countries: string[];
+  focusArea: string;
 }
 
 const IconEl = styled.div`
@@ -30,7 +31,7 @@ const IconEl = styled.div`
 `;
 
 export function GrapherComponent(props: Props) {
-  const { data, indicators, regions, countries } = props;
+  const { data, indicators, regions, countries, focusArea } = props;
   const { graphType, showSource, updateGraphType, updateShowSource } =
     useContext(Context) as CtxDataType;
   const queryParams = new URLSearchParams(window.location.search);
@@ -145,6 +146,7 @@ export function GrapherComponent(props: Props) {
               indicators={indicators}
               regions={regions}
               countries={countries}
+              focusArea={focusArea}
             />
           )}
           <Graph data={data} indicators={indicators} countries={countries} />

@@ -2,17 +2,22 @@ import { Tabs } from 'antd';
 import WorldEl from './World';
 import CountryEl from './Country';
 
-export function App() {
+interface Props {
+  focusArea: string;
+}
+
+export function App(props: Props) {
+  const { focusArea } = props;
   const mainTabs = [
     {
       key: 'worldData',
       label: 'World Data',
-      children: <WorldEl />,
+      children: <WorldEl focusArea={focusArea} />,
     },
     {
       key: 'countryProfile',
       label: 'Country Profiles',
-      children: <CountryEl />,
+      children: <CountryEl focusArea={focusArea} />,
     },
   ];
   return (

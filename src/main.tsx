@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import { AppTopGraphs } from './AppTopGraphs';
+import { AppTopGraph } from './AppTopGraph';
 
 const getEl = (embedSelector: string) => {
   if (typeof embedSelector === 'string') {
@@ -16,12 +16,22 @@ const getEl = (embedSelector: string) => {
   return embedSelector;
 };
 
+const getFocusArea = (embedSelector: string) => {
+  const el = document.querySelector(embedSelector);
+  if (!el) {
+    return undefined;
+  }
+  const elClass: string[] = el.className.split('~');
+  if (elClass[0] === 'focusArea') return elClass[1].replaceAll('+', ' ');
+  return undefined;
+};
+
 const visContainer = getEl('[data-bucket-embed]');
 if (visContainer) {
   const rootEmbed = ReactDOM.createRoot(visContainer);
   rootEmbed.render(
     <React.StrictMode>
-      <App />
+      <App focusArea={getFocusArea('[data-bucket-embed]') || ''} />
     </React.StrictMode>,
   );
 }
@@ -31,7 +41,7 @@ if (visTopContainer) {
   const rootEmbed = ReactDOM.createRoot(visTopContainer);
   rootEmbed.render(
     <React.StrictMode>
-      <AppTopGraphs />
+      <AppTopGraph />
     </React.StrictMode>,
   );
 }
