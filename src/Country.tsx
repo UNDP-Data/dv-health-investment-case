@@ -46,13 +46,13 @@ function CountryEl(props: Props) {
     queue()
       .defer(
         csv,
-        `./Data/${focusArea}.csv`,
-        // `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}.csv`,
+        // `./Data/${focusArea}.csv`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}.csv`,
       )
       .defer(
         json,
-        `./Data/${focusArea}MetaData.json`,
-        // `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}MetaData.json`,
+        // `./Data/${focusArea}MetaData.json`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case/main/public/Data/${focusArea}MetaData.json`,
       )
       .defer(
         json,
