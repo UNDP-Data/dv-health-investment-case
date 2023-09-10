@@ -125,10 +125,16 @@ export function TobaccoSummary(props: Props) {
             }
             graphTitle='Return-on-investment over 15 years if all interventions are implemented'
             year={2022}
+            isPercentage={false}
+            valueOnTop={
+              data.data[
+                data.data.findIndex(el => el.indicator === 'all_ROI_15years')
+              ].value
+            }
             labelPrimary='Benefits'
             labelSecondary='Investment'
             colorPrimary='var(--blue-600)'
-            colorSecondary='transparent'
+            colorSecondary='var(--blue-200)'
             size={200}
             suffix=' : 1'
           />

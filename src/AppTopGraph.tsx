@@ -62,6 +62,7 @@ export function AppTopGraph() {
           value={8}
           graphTitle='Death caused by tobacco every year'
           source='WHO'
+          labelFormat='.2'
           suffix='M'
         />
         <ValueCard

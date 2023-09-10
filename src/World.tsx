@@ -6,7 +6,6 @@ import uniqBy from 'lodash.uniqby';
 import { queue } from 'd3-queue';
 import styled from 'styled-components';
 import {
-  CountryDataFromCSV,
   CountryGroupDataTypeFromFile,
   DataType,
   IndicatorDataType,
@@ -16,9 +15,15 @@ import { GrapherComponent } from './GrapherComponent';
 import Reducer from './Context/Reducer';
 import Context from './Context/Context';
 import {
-  DEFAULT_VALUES,
-  KEYS_FROM_DATA,
-  KEY_WITH_PERCENT_VALUE,
+  DEFAULT_VALUES_TOBACCO,
+  DEFAULT_VALUES_NCD,
+  DEFAULT_VALUES_ALL,
+  KEYS_FROM_DATA_NCD,
+  KEYS_FROM_DATA_ALL,
+  KEYS_FROM_DATA_TOBACCO,
+  KEY_WITH_PERCENT_VALUE_NCD,
+  KEY_WITH_PERCENT_VALUE_ALL,
+  KEY_WITH_PERCENT_VALUE_TOBACCO,
 } from './Constants';
 
 const VizAreaEl = styled.div`
@@ -51,11 +56,23 @@ function WorldEl(props: Props) {
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
     selectedCountryGroup: queryParams.get('countryGroup') || 'All',
     xAxisIndicator:
-      queryParams.get('firstMetric') || DEFAULT_VALUES.firstMetric,
+      queryParams.get('firstMetric') || focusArea === 'Tobacco'
+        ? DEFAULT_VALUES_TOBACCO.firstMetric
+        : focusArea === 'NCD'
+        ? DEFAULT_VALUES_NCD.firstMetric
+        : DEFAULT_VALUES_ALL.firstMetric,
     yAxisIndicator:
-      queryParams.get('secondMetric') || DEFAULT_VALUES.secondMetric,
+      queryParams.get('secondMetric') || focusArea === 'Tobacco'
+        ? DEFAULT_VALUES_TOBACCO.secondMetric
+        : focusArea === 'NCD'
+        ? DEFAULT_VALUES_NCD.secondMetric
+        : DEFAULT_VALUES_ALL.secondMetric,
     colorIndicator:
-      queryParams.get('colorMetric') || DEFAULT_VALUES.colorMetric,
+      queryParams.get('colorMetric') || focusArea === 'Tobacco'
+        ? DEFAULT_VALUES_TOBACCO.colorMetric
+        : focusArea === 'NCD'
+        ? DEFAULT_VALUES_NCD.colorMetric
+        : DEFAULT_VALUES_ALL.colorMetric,
     sizeIndicator: queryParams.get('sizeMetric') || undefined,
     showLabel: queryParams.get('showLabel') === 'true',
     showSource: false,
@@ -63,7 +80,6 @@ function WorldEl(props: Props) {
     dataListCountry: undefined,
     verticalBarLayout: queryParams.get('verticalBarLayout') !== 'false',
   };
-
   const [state, dispatch] = useReducer(Reducer, initialState);
 
   const updateGraphType = (
@@ -196,7 +212,7 @@ function WorldEl(props: Props) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           err: any,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          data: CountryDataFromCSV[],
+          data: any,
           indicatorMetaData: IndicatorMetaDataType[],
           countryTaxonomy: CountryGroupDataTypeFromFile[],
         ) => {
@@ -217,24 +233,43 @@ function WorldEl(props: Props) {
             }),
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
-            if (data.findIndex(el => el.ISO_code === d['Alpha-3 code']) === -1)
+            if (
+              data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
+              -1
+            )
               return d;
             const countryData =
               data[
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                data.findIndex(el => el.ISO_code === d['Alpha-3 code'])
+                data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code'])
               ];
-            const indicatorData: IndicatorDataType[] = KEYS_FROM_DATA.map(
-              key => ({
+            const selectedKeys =
+              focusArea === 'Tobacco'
+                ? KEYS_FROM_DATA_TOBACCO
+                : focusArea === 'NCD'
+                ? KEYS_FROM_DATA_NCD
+                : focusArea === 'All'
+                ? KEYS_FROM_DATA_ALL
+                : [];
+            const selectedKeysPercent =
+              focusArea === 'Tobacco'
+                ? KEY_WITH_PERCENT_VALUE_TOBACCO
+                : focusArea === 'NCD'
+                ? KEY_WITH_PERCENT_VALUE_NCD
+                : focusArea === 'All'
+                ? KEY_WITH_PERCENT_VALUE_ALL
+                : [];
+            const indicatorData: IndicatorDataType[] = selectedKeys
+              .map(key => ({
                 indicator: key,
                 value:
                   countryData[key] === ''
                     ? -999999
-                    : KEY_WITH_PERCENT_VALUE.indexOf(key) !== -1
+                    : selectedKeysPercent.indexOf(key) !== -1
                     ? +countryData[key] * 100
                     : +countryData[key],
-              }),
-            ).filter(el => el.value !== -999999);
+              }))
+              .filter(el => el.value !== -999999);
             return {
               ...d,
               data: indicatorData,
@@ -297,6 +332,7 @@ function WorldEl(props: Props) {
               indicators={indicatorsList}
               regions={regionList}
               countries={countryList}
+              focusArea={focusArea}
             />
           </Context.Provider>
         </div>

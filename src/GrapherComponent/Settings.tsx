@@ -3,17 +3,23 @@ import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
 import { CtxDataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
-import { DEFAULT_VALUES, INCOME_GROUPS } from '../Constants';
+import {
+  DEFAULT_VALUES_TOBACCO,
+  DEFAULT_VALUES_NCD,
+  INCOME_GROUPS,
+  DEFAULT_VALUES_ALL,
+} from '../Constants';
 import { ChevronDown, ChevronLeft } from '../Icons';
 
 interface Props {
   indicators: IndicatorMetaDataType[];
   regions: string[];
   countries: string[];
+  focusArea: string;
 }
 
 export function Settings(props: Props) {
-  const { indicators, regions, countries } = props;
+  const { indicators, regions, countries, focusArea } = props;
   const {
     graphType,
     xAxisIndicator,
@@ -53,6 +59,36 @@ export function Settings(props: Props) {
   colorOptions.unshift('Human development index (HDI)');
   colorOptions.unshift('Income Groups');
   colorOptions.unshift('Continents');
+  const optionsTobacco =
+    graphType === 'scatterPlot'
+      ? indicators
+          .filter(d => d.ScatterPlot && d.Themes === 'Tobacco control')
+          .map(d => d.Indicator)
+      : graphType === 'map'
+      ? indicators
+          .filter(d => d.Map && d.Themes === 'Tobacco control')
+          .map(d => d.Indicator)
+      : indicators
+          .filter(d => d.BarGraph && d.Themes === 'Tobacco control')
+          .map(d => d.Indicator);
+  const sizeOptionsTobacco = indicators
+    .filter(d => d.Sizing && d.Themes === 'Tobacco control')
+    .map(d => d.Indicator);
+  const optionsNCD =
+    graphType === 'scatterPlot'
+      ? indicators
+          .filter(d => d.ScatterPlot && d.Themes === 'NCDs')
+          .map(d => d.Indicator)
+      : graphType === 'map'
+      ? indicators
+          .filter(d => d.Map && d.Themes === 'NCDs')
+          .map(d => d.Indicator)
+      : indicators
+          .filter(d => d.BarGraph && d.Themes === 'NCDs')
+          .map(d => d.Indicator);
+  const sizeOptionsNCD = indicators
+    .filter(d => d.Sizing && d.Themes === 'NCDs')
+    .map(d => d.Indicator);
   const [settingExpanded, setSettingsExpanded] = useState(true);
   const [filterExpanded, setFilterExpanded] = useState(true);
   useEffect(() => {
@@ -95,13 +131,38 @@ export function Settings(props: Props) {
                   onChange={d => {
                     updateXAxisIndicator(d);
                   }}
-                  defaultValue={DEFAULT_VALUES.firstMetric}
+                  defaultValue={
+                    focusArea === 'Tobacco'
+                      ? DEFAULT_VALUES_TOBACCO.firstMetric
+                      : focusArea === 'NCD'
+                      ? DEFAULT_VALUES_NCD.firstMetric
+                      : DEFAULT_VALUES_ALL.firstMetric
+                  }
                 >
-                  {options.map(d => (
-                    <Select.Option className='undp-select-option' key={d}>
-                      {d}
-                    </Select.Option>
-                  ))}
+                  {focusArea === 'All' ? (
+                    <>
+                      <Select.OptGroup label='Tobacco control'>
+                        {optionsTobacco.map(d => (
+                          <Select.Option className='undp-select-option' key={d}>
+                            {d}
+                          </Select.Option>
+                        ))}
+                      </Select.OptGroup>
+                      <Select.OptGroup label='NCDs'>
+                        {optionsNCD.map(d => (
+                          <Select.Option className='undp-select-option' key={d}>
+                            {d}
+                          </Select.Option>
+                        ))}
+                      </Select.OptGroup>
+                    </>
+                  ) : (
+                    options.map(d => (
+                      <Select.Option className='undp-select-option' key={d}>
+                        {d}
+                      </Select.Option>
+                    ))
+                  )}
                 </Select>
               </div>
               {graphType === 'scatterPlot' ? (
@@ -116,14 +177,45 @@ export function Settings(props: Props) {
                     onChange={d => {
                       updateYAxisIndicator(d);
                     }}
-                    defaultValue={DEFAULT_VALUES.secondMetric}
+                    defaultValue={
+                      focusArea === 'Tobacco'
+                        ? DEFAULT_VALUES_TOBACCO.secondMetric
+                        : focusArea === 'NCD'
+                        ? DEFAULT_VALUES_NCD.secondMetric
+                        : DEFAULT_VALUES_ALL.secondMetric
+                    }
                     listHeight={400}
                   >
-                    {options.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
+                    {focusArea === 'All' ? (
+                      <>
+                        <Select.OptGroup label='Tobacco control'>
+                          {optionsTobacco.map(d => (
+                            <Select.Option
+                              className='undp-select-option'
+                              key={d}
+                            >
+                              {d}
+                            </Select.Option>
+                          ))}
+                        </Select.OptGroup>
+                        <Select.OptGroup label='NCDs'>
+                          {optionsNCD.map(d => (
+                            <Select.Option
+                              className='undp-select-option'
+                              key={d}
+                            >
+                              {d}
+                            </Select.Option>
+                          ))}
+                        </Select.OptGroup>
+                      </>
+                    ) : (
+                      options.map(d => (
+                        <Select.Option className='undp-select-option' key={d}>
+                          {d}
+                        </Select.Option>
+                      ))
+                    )}
                   </Select>
                 </div>
               ) : graphType === 'map' ? (
@@ -140,14 +232,29 @@ export function Settings(props: Props) {
                     onChange={d => {
                       updateYAxisIndicator(d);
                     }}
-                    defaultValue={DEFAULT_VALUES.secondMetric}
+                    defaultValue={
+                      focusArea === 'Tobacco'
+                        ? DEFAULT_VALUES_TOBACCO.secondMetric
+                        : focusArea === 'NCD'
+                        ? DEFAULT_VALUES_NCD.secondMetric
+                        : DEFAULT_VALUES_ALL.secondMetric
+                    }
                     listHeight={400}
                   >
-                    {options.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
+                    <Select.OptGroup label='Tobacco control'>
+                      {optionsTobacco.map(d => (
+                        <Select.Option className='undp-select-option' key={d}>
+                          {d}
+                        </Select.Option>
+                      ))}
+                    </Select.OptGroup>
+                    <Select.OptGroup label='NCDs'>
+                      {optionsNCD.map(d => (
+                        <Select.Option className='undp-select-option' key={d}>
+                          {d}
+                        </Select.Option>
+                      ))}
+                    </Select.OptGroup>
                   </Select>
                 </div>
               ) : null}
@@ -171,11 +278,36 @@ export function Settings(props: Props) {
                     }}
                     listHeight={400}
                   >
-                    {sizeOptions.map(d => (
-                      <Select.Option className='undp-select-option' key={d}>
-                        {d}
-                      </Select.Option>
-                    ))}
+                    {focusArea === 'All' ? (
+                      <>
+                        <Select.OptGroup label='Tobacco control'>
+                          {sizeOptionsTobacco.map(d => (
+                            <Select.Option
+                              className='undp-select-option'
+                              key={d}
+                            >
+                              {d}
+                            </Select.Option>
+                          ))}
+                        </Select.OptGroup>
+                        <Select.OptGroup label='NCDs'>
+                          {sizeOptionsNCD.map(d => (
+                            <Select.Option
+                              className='undp-select-option'
+                              key={d}
+                            >
+                              {d}
+                            </Select.Option>
+                          ))}
+                        </Select.OptGroup>
+                      </>
+                    ) : (
+                      sizeOptions.map(d => (
+                        <Select.Option className='undp-select-option' key={d}>
+                          {d}
+                        </Select.Option>
+                      ))
+                    )}
                   </Select>
                 </div>
               ) : null}
@@ -190,7 +322,13 @@ export function Settings(props: Props) {
                     onChange={d => {
                       updateColorIndicator(d);
                     }}
-                    defaultValue={DEFAULT_VALUES.colorMetric}
+                    defaultValue={
+                      focusArea === 'Tobacco'
+                        ? DEFAULT_VALUES_TOBACCO.colorMetric
+                        : focusArea === 'NCD'
+                        ? DEFAULT_VALUES_NCD.colorMetric
+                        : DEFAULT_VALUES_ALL.colorMetric
+                    }
                   >
                     {colorOptions.map(d => (
                       <Select.Option className='undp-select-option' key={d}>
