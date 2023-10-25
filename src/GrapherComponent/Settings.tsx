@@ -369,6 +369,12 @@ export function Settings(props: Props) {
                   Download Graph
                 </button>
               </div>
+              {graphType === 'map' || graphType === 'scatterPlot' ? (
+                <p className='label' style={{ color: 'var(--gray-600)' }}>
+                  Please note that data may not be comparable across different
+                  types of health investment cases
+                </p>
+              ) : null}
             </div>
           </div>
           {graphType !== 'map' ? (
@@ -383,9 +389,9 @@ export function Settings(props: Props) {
               >
                 <div>
                   {settingExpanded ? (
-                    <ChevronDown fill='#212121' size={18} />
+                    <ChevronDown fill='#212121' size={24} />
                   ) : (
-                    <ChevronLeft fill='#212121' size={18} />
+                    <ChevronLeft fill='#212121' size={24} />
                   )}
                 </div>
                 <h6 className='undp-typography margin-bottom-00'>

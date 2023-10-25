@@ -33,7 +33,11 @@ export interface DataType extends CountryGroupDataType {
   data: IndicatorDataType[];
   WHO_region?: string;
   modelling_year?: string;
+  ncd_modelling_year?: string;
+  tobacco_modelling_year?: string;
   reference_year?: string;
+  ncd_reference_year?: string;
+  tobacco_reference_year?: string;
   total_population_source?: string;
   adult_population_source?: string;
   GDP_source?: string;
