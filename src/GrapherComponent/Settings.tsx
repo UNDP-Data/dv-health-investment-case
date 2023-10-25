@@ -371,8 +371,8 @@ export function Settings(props: Props) {
               </div>
               {graphType === 'map' || graphType === 'scatterPlot' ? (
                 <p className='label' style={{ color: 'var(--gray-600)' }}>
-                  Please note that data may not be comparable across different
-                  types of health investment cases
+                  These data may not be comparable across different types of
+                  health investment cases
                 </p>
               ) : null}
             </div>
