@@ -27,13 +27,26 @@ The Production site deployed using Azure Static Web App and work flow can be fou
 
 ## Steps to Integrating the Visualization in the Data Future Platform or Any Other Page<a name="section-02"></a>
 
-Main visualization `Health Investment Case` will be rendered within the following div on a static page (choose div depending on which focus area you need to embed):
+Main visualization `Health Investment Case` will be rendered within the following div on a static page:
 
 ```
 <div data-bucket-embed class="focusArea~Tobacco"></div>
-<div data-bucket-embed class="focusArea~NCD"></div>
-<div data-bucket-embed class="focusArea~All"></div>
 ```
+
+Cards for the Featured Indicators section will be rendered within the following div on a static page:
+
+```
+<div id="root" data-bucket-embed-top-card class="focusArea~Tobacco"></div>
+```
+
+Top graphs for the focus area pages will be rendered within the following div on a static page:
+
+```
+<div data-bucket-top-graphs-embed class="focusArea~Tobacco"></div>
+
+```
+
+Please note that there are three focus areas available right now: ~Tobacco, ~NCD, ~All (Tobacco + NCD combined)
 
 ---
 
