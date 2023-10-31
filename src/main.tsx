@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App';
-import { AppTopGraph } from './AppTopGraph';
+import { AppTopCards } from './AppTopCards';
+import AppTopGraph from './AppTopGraph';
 
 const getEl = (embedSelector: string) => {
   if (typeof embedSelector === 'string') {
@@ -41,7 +42,19 @@ if (visTopContainer) {
   const rootEmbed = ReactDOM.createRoot(visTopContainer);
   rootEmbed.render(
     <React.StrictMode>
-      <AppTopGraph />
+      <AppTopCards />
+    </React.StrictMode>,
+  );
+}
+
+const containerEmbed = getEl('[data-bucket-top-graphs-embed]');
+if (containerEmbed) {
+  const rootEmbed = ReactDOM.createRoot(containerEmbed);
+  rootEmbed.render(
+    <React.StrictMode>
+      <AppTopGraph
+        focusArea={getFocusArea('[data-bucket-top-graphs-embed]') || ''}
+      />
     </React.StrictMode>,
   );
 }
