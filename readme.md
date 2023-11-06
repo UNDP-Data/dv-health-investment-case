@@ -70,6 +70,8 @@ Apart from the mentioned `div` above the following `script` and `link` needs to 
 ## Related Repos<a name="section-04"></a>
 
 - [**stylesheet-for-viz**](https://github.com/UNDP-Data/stylesheets-for-viz): Repo which defines the css settings for the project
+- [**data-repo**](https://github.com/UNDP-Data/dv-health-investment-case-data-repo): Repo which data
+- [**meta-data-repo**](https://github.com/UNDP-Data/dv-health-investment-case-metadata): Repo which meta data
 
 ## Global CSS for UI and Graphs<a name="section-05"></a>
 
