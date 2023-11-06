@@ -1,6 +1,6 @@
 # Health Investment Case Visualization
 
-#### This project aims to provide interactive visualizations for exploring and analyzing health investment cases. [Click here to see the interface] _link coming soon_.
+#### This project aims to provide interactive visualizations for exploring and analyzing health investment cases. [Click here to see the interface](https://gray-flower-008fd9910.4.azurestaticapps.net).
 
 ## Table of Contents
 
@@ -18,12 +18,11 @@
 - [Contact](#section-11)
 
 ## Link for the visualization<a name="section-01"></a>
-
-_link coming soon_
+[https://gray-flower-008fd9910.4.azurestaticapps.net](https://gray-flower-008fd9910.4.azurestaticapps.net)
 
 ## Deployment<a name="deployment"></a>
 
-The Production site deployed using Azure Static Web App and work flow can be found [here] _link coming soon_.
+The Production site deployed using Azure Static Web App and work flow can be found [here](https://github.com/UNDP-Data/dv-health-investment-case/blob/main/.github/workflows/azure-static-web-apps-gray-flower-008fd9910.yml).
 
 ## Steps to Integrating the Visualization in the Data Future Platform or Any Other Page<a name="section-02"></a>
 
@@ -53,7 +52,7 @@ Please note that there are three focus areas available right now: ~Tobacco, ~NCD
 Apart from the mentioned `div` above the following `script` and `link` needs to be added to the `head` or in the embed code
 
 ```
-<script defer src="<Link to the Visualization Mentioned Above>/static/js/main.js"></script>
+<script defer src="<https://gray-flower-008fd9910.4.azurestaticapps.net/index.js"></script>
 <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/mainStyleSheet.css" />
 <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraphingInterface.css" />
 <link rel="stylesheet" href="https://undp-data.github.io/stylesheets-for-viz/style/StyleForGraph.css" />
