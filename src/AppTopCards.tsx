@@ -63,7 +63,7 @@ export function AppTopCards() {
           graphTitle='Death caused by tobacco every year'
           source='WHO'
           labelFormat='.2'
-          suffix='M'
+          suffix='Mil'
         />
         <ValueCard
           value={1}
@@ -76,7 +76,7 @@ export function AppTopCards() {
         <ValueCardDouble
           value={1.3}
           value2={93}
-          suffix='M'
+          suffix='Mil'
           suffix2='%'
           year={2022}
           year2={2022}
@@ -98,7 +98,7 @@ export function AppTopCards() {
           value={20}
           value2={1.7}
           suffix=''
-          suffix2='B'
+          suffix2='Bil'
           year={2022}
           year2={2022}
           graphTitle='Number of neglected topical diseases'

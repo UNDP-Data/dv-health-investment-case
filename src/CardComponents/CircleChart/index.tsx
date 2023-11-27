@@ -19,6 +19,7 @@ interface Props {
   prefix?: string;
   valueOnTop: number;
   labelFormat?: string;
+  valueBottom?: number;
 }
 
 const StatCardsEl = styled.div`
@@ -58,6 +59,7 @@ export function CircleChart(props: Props) {
     valuePrimary,
     valueSecondary,
     valueOnTop,
+    valueBottom,
     graphTitle,
     note,
     year,
@@ -100,7 +102,7 @@ export function CircleChart(props: Props) {
           {prefix}
           {Math.abs(valueOnTop) < 1
             ? valueOnTop
-            : format(labelFormat || '.2s')(valueOnTop).replace('G', 'B')}{' '}
+            : format(labelFormat || '')(valueOnTop)}{' '}
           {suffix}
         </h2>
         {note ? <p className='undp-typography bold'>{note}</p> : null}
@@ -133,7 +135,9 @@ export function CircleChart(props: Props) {
               y={0 - radiusPrimary - 24}
               style={{ fill: 'var(--black)', fontWeight: '600' }}
             >
-              {format('.3s')(valueSecondary).replace('G', 'B')}
+              {format('.3s')(valueSecondary)
+                .replace('G', 'B')
+                .replace('M', 'Mil')}
             </LabelEl>
           ) : null}
           {/* Secondary circle */}
@@ -149,6 +153,17 @@ export function CircleChart(props: Props) {
             style={{ fill: 'var(--white)' }}
           >
             {labelSecondary}
+          </LabelEl>
+          <LabelEl
+            x={0}
+            y={radiusPrimary - radiusSecondary * 2 - 26}
+            style={{ fill: 'var(--white)', fontWeight: '600' }}
+          >
+            {valueBottom
+              ? format('.3s')(valueBottom)
+                  .replace('G', 'Bil')
+                  .replace('M', 'Mil')
+              : null}
           </LabelEl>
           {isPercentage ? (
             <LabelEl

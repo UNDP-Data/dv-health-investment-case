@@ -137,7 +137,9 @@ export function Tooltip(props: Props) {
                         ',',
                         ' ',
                       )
-                    : format('.3s')(d.value).replace('G', 'B')
+                    : format('.3s')(d.value)
+                        .replace('G', 'Bil')
+                        .replace('M', 'mil')
                   : d.value}
                 {d.suffix && d.value && d.value !== 'NA' ? ` ${d.suffix}` : ''}
               </h6>

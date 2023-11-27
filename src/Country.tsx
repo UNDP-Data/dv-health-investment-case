@@ -85,8 +85,9 @@ function CountryEl(props: Props) {
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
             if (
-              data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
-              -1
+              data.findIndex(
+                (el: unknown) => el.ISO_code === d['Alpha-3 code'],
+              ) === -1
             )
               return d;
             const countryData =
@@ -146,7 +147,8 @@ function CountryEl(props: Props) {
           setCountryList(
             dataFormatted
               .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
-              .map(d => d['Country or Area']),
+              .map(d => d['Country or Area'])
+              .sort((a, b) => a.localeCompare(b)),
           );
           setCountryId('Armenia');
           setIndicatorsList(indicatorMetaData);

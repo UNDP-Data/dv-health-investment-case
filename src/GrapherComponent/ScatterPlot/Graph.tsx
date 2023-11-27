@@ -395,7 +395,9 @@ export function Graph(props: Props) {
                   dy={4}
                   dx={-3}
                 >
-                  {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                  {Math.abs(d) < 1
+                    ? d
+                    : format('~s')(d).replace('G', 'B').replace('M', 'Mil')}
                 </text>
               </g>
             ))}
@@ -454,7 +456,9 @@ export function Graph(props: Props) {
                   fontSize={12}
                   dy={12}
                 >
-                  {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                  {Math.abs(d) < 1
+                    ? d
+                    : format('~s')(d).replace('G', 'B').replace('M', 'Mil')}
                 </text>
               </g>
             ))}

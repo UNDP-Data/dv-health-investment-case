@@ -321,7 +321,9 @@ export function Graph(props: Props) {
                 textAnchor='middle'
                 fontSize={12}
               >
-                {Math.abs(d) < 1 ? d : format('~s')(d).replace('G', 'B')}
+                {Math.abs(d) < 1
+                  ? d
+                  : format('~s')(d).replace('G', 'B').replace('M', 'Mil')}
               </text>
               <line
                 x1={widthScale(d)}
@@ -448,7 +450,9 @@ export function Graph(props: Props) {
                         ',',
                         ' ',
                       )
-                    : format('.3s')(d.xVal).replace('G', 'B')}
+                    : format('.3s')(d.xVal)
+                        .replace('G', 'B')
+                        .replace('M', 'Mil')}
                 </text>
               </g>
             );

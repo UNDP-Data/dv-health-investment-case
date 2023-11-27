@@ -42,7 +42,9 @@ export function DotPlot(props: Props) {
         <h2 className='undp-typography bold margin-bottom-00'>
           {Math.abs(value) < 1
             ? value
-            : format(labelFormat || '.2s')(value).replace('G', 'B')}{' '}
+            : format(labelFormat || '.2s')(value)
+                .replace('G', 'B')
+                .replace('M', 'Mil')}{' '}
           out of 100
           <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
             {' '}

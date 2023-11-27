@@ -650,7 +650,9 @@ export function UnivariateMap(props: Props) {
                       >
                         {Math.abs(d) < 1
                           ? d
-                          : format('~s')(d).replace('G', 'B')}
+                          : format('~s')(d)
+                              .replace('G', 'B')
+                              .replace('M', 'Mil')}
                       </text>
                     </g>
                   ))}

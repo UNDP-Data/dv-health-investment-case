@@ -71,6 +71,7 @@ export function Settings(props: Props) {
       : indicators
           .filter(d => d.BarGraph && d.Themes === 'Tobacco control')
           .map(d => d.Indicator);
+  optionsTobacco.sort();
   const sizeOptionsTobacco = indicators
     .filter(d => d.Sizing && d.Themes === 'Tobacco control')
     .map(d => d.Indicator);
@@ -346,7 +347,7 @@ export function Settings(props: Props) {
                     updateShowSource(true);
                   }}
                 >
-                  Download Data
+                  Data Details
                 </button>
                 <button
                   className='undp-button button-secondary'
@@ -369,12 +370,10 @@ export function Settings(props: Props) {
                   Download Graph
                 </button>
               </div>
-              {graphType === 'map' || graphType === 'scatterPlot' ? (
-                <p className='label' style={{ color: 'var(--gray-600)' }}>
-                  These data may not be comparable across different types of
-                  health investment cases
-                </p>
-              ) : null}
+              <p className='label' style={{ color: 'var(--gray-600)' }}>
+                These data may not be comparable across different types of
+                health investment cases
+              </p>
             </div>
           </div>
           {graphType !== 'map' ? (
@@ -579,6 +578,13 @@ export function Settings(props: Props) {
                   ))}
                 </Select>
               </div>
+              <p
+                className='label'
+                style={{ color: 'var(--gray-600)', paddingTop: '0.5rem' }}
+              >
+                These data may not be comparable across different types of
+                health investment cases
+              </p>
             </div>
           </div>
         </div>

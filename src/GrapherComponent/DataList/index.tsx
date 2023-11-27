@@ -109,14 +109,16 @@ export function DataList(props: Props) {
                                     el => el.indicator === d.DataKey,
                                   )
                                 ].value,
-                              ).replace(',', ' ')
+                              )
                             : format('.3s')(
                                 dataFilteredByCountry[
                                   dataFilteredByCountry.findIndex(
                                     el => el.indicator === d.DataKey,
                                   )
                                 ].value,
-                              ).replace('G', 'B')
+                              )
+                                .replace('G', 'B')
+                                .replace('M', 'Mil')
                           : dataFilteredByCountry[
                               dataFilteredByCountry.findIndex(
                                 el => el.indicator === d.DataKey,

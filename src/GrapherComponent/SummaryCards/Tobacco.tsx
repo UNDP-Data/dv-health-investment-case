@@ -60,6 +60,9 @@ export function TobaccoSummary(props: Props) {
           el => el.indicator === 'tobacco_burden' && 'tobacco_burden_GDP',
         ) !== -1 ? (
           <ValueCardDouble
+            suffix2='%'
+            labelFormat2='.2s'
+            labelFormat='.3s'
             value={
               data.data[
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
@@ -97,6 +100,7 @@ export function TobaccoSummary(props: Props) {
               ].value
             }
             year={data.reference_year}
+            labelFormat=','
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'averted_deaths')
@@ -129,6 +133,13 @@ export function TobaccoSummary(props: Props) {
             valueOnTop={
               data.data[
                 data.data.findIndex(el => el.indicator === 'all_ROI_15years')
+              ].value
+            }
+            valueBottom={
+              data.data[
+                data.data.findIndex(
+                  el => el.indicator === 'total_investment_15years',
+                )
               ].value
             }
             labelPrimary='Benefits'
