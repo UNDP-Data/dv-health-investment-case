@@ -23,7 +23,7 @@ function NCDViz() {
           size={200}
           value={74}
           year={2022}
-          note='Total deaths: 41 million'
+          note='Total deaths: 41 Mil'
           source='WHO NCD Key Facts'
           dotColor='var(--dark-red)'
         />
@@ -43,7 +43,7 @@ function NCDViz() {
           size={340}
           value={[77, 23]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total number: 31.6 Million'
+          note='Total number: 31.6 Mil'
           year={2019}
           source='WHO NCD Key Facts'
         />
@@ -61,7 +61,7 @@ function NCDViz() {
       >
         <ValueCard
           title='Premature NCD deaths before age 70'
-          number='17 Million'
+          number='17 Mil'
           year={2019}
         />
         <ValueCard

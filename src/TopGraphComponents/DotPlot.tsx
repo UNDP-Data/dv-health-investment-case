@@ -43,8 +43,8 @@ export function DotPlot(props: Props) {
           {Math.abs(value) < 1
             ? value
             : format(labelFormat || '.2s')(value)
-                .replace('G', 'B')
-                .replace('M', 'Mil')}{' '}
+                .replace('G', ' Bil')
+                .replace('M', ' Mil')}{' '}
           out of 100
           <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
             {' '}

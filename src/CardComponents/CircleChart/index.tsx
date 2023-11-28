@@ -136,8 +136,8 @@ export function CircleChart(props: Props) {
               style={{ fill: 'var(--black)', fontWeight: '600' }}
             >
               {format('.3s')(valueSecondary)
-                .replace('G', 'B')
-                .replace('M', 'Mil')}
+                .replace('G', ' Bil')
+                .replace('M', ' Mil')}
             </LabelEl>
           ) : null}
           {/* Secondary circle */}
@@ -161,8 +161,8 @@ export function CircleChart(props: Props) {
           >
             {valueBottom
               ? format('.3s')(valueBottom)
-                  .replace('G', 'Bil')
-                  .replace('M', 'Mil')
+                  .replace('G', ' Bil')
+                  .replace('M', ' Mil')
               : null}
           </LabelEl>
           {isPercentage ? (

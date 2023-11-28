@@ -1,6 +1,6 @@
-import TobaccoViz from './Top Graph/Tobacco';
-import NCDViz from './Top Graph/NCD';
-import MentalHealthViz from './Top Graph/MentalHealth';
+import TobaccoViz from './FocusAreaTopViz/Tobacco';
+import NCDViz from './FocusAreaTopViz/NCD';
+import MentalHealthViz from './FocusAreaTopViz/MentalHealth';
 
 interface Props {
   focusArea: string;

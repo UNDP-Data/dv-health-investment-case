@@ -397,7 +397,7 @@ export function Graph(props: Props) {
                 >
                   {Math.abs(d) < 1
                     ? d
-                    : format('~s')(d).replace('G', 'B').replace('M', 'Mil')}
+                    : format('~s')(d).replace('G', ' Bil').replace('M', ' Mil')}
                 </text>
               </g>
             ))}
@@ -458,7 +458,7 @@ export function Graph(props: Props) {
                 >
                   {Math.abs(d) < 1
                     ? d
-                    : format('~s')(d).replace('G', 'B').replace('M', 'Mil')}
+                    : format('~s')(d).replace('G', ' Bil').replace('M', ' Mil')}
                 </text>
               </g>
             ))}

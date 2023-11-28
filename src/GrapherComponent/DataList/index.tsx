@@ -117,8 +117,8 @@ export function DataList(props: Props) {
                                   )
                                 ].value,
                               )
-                                .replace('G', 'B')
-                                .replace('M', 'Mil')
+                                .replace('G', ' Bil')
+                                .replace('M', ' Mil')
                           : dataFilteredByCountry[
                               dataFilteredByCountry.findIndex(
                                 el => el.indicator === d.DataKey,

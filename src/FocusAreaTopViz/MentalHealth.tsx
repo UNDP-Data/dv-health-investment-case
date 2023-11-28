@@ -1,7 +1,7 @@
 import { ValueCard } from '../TopGraphComponents/ValueCard';
-import { DotPlot } from '../TopGraphComponents/DotPlot';
+import { DonutChart } from '../TopGraphComponents/DonutChart';
 
-function TobaccoViz() {
+function MentalHealthViz() {
   return (
     <div
       className='flex-div flex-wrap flex-hor-align-center'
@@ -18,39 +18,15 @@ function TobaccoViz() {
         }}
       >
         <ValueCard
-          title='people in the world use tobacco'
-          number='1.3 Billion'
-          year={2022}
+          title='People in the world living with a mental health condition (1 in 8)'
+          number='970 Mil'
+          year={2019}
         />
         <ValueCard
-          title='deaths are attributed to tobacco each year'
-          number='8 Million'
-          year={2022}
-        />
-        <ValueCard
-          title='countries have ratified the WHO FCTC '
-          number='182'
-          year={2022}
-          source='WHO'
-        />
-      </div>
-      <div
-        className='flex-div'
-        style={{
-          flexDirection: 'column',
-          width: 'calc(33.33% - 2rem)',
-          flexGrow: 1,
-          flexBasis: '20rem',
-          gap: 'var(--spacing-09)',
-        }}
-      >
-        <DotPlot
-          graphTitle='People used tobacco'
-          value={22.3}
-          size={200}
+          title='Increase in major depressive disorders over one year during the COVID-19 pandemic'
+          number='28%'
           year={2020}
           source='WHO'
-          dotColor='var(--dark-red)'
         />
       </div>
       <div
@@ -63,17 +39,39 @@ function TobaccoViz() {
           gap: 'var(--spacing-09)',
         }}
       >
-        <DotPlot
-          graphTitle='Tobacco users live in LMICs'
-          value={80}
-          size={200}
-          year={2022}
+        <DonutChart
+          graphTitle='Proportion of WHO Member States with a stand-alone mental health policy or plan'
+          size={340}
+          value={[75, 25]}
+          colors={['var(--dark-green)', 'var(--gray-400)']}
+          note='WHO Member States'
+          year={2020}
           source='WHO'
-          dotColor='var(--blue-600)'
+        />
+      </div>
+      <div
+        className='flex-div'
+        style={{
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          width: 'calc(33.33% - 2rem)',
+          flexGrow: 1,
+          flexBasis: '20rem',
+          gap: 'var(--spacing-09)',
+        }}
+      >
+        <DonutChart
+          graphTitle='Proportion of WHO Member States with mental health integrated into primary health care'
+          size={340}
+          value={[25, 75]}
+          colors={['var(--dark-red)', 'var(--gray-400)']}
+          note='Total: 49 countries'
+          year={2020}
+          source='WHO'
         />
       </div>
     </div>
   );
 }
 
-export default TobaccoViz;
+export default MentalHealthViz;

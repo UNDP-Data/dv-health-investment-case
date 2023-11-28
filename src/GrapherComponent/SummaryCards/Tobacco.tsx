@@ -68,7 +68,7 @@ export function TobaccoSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
               ].value
             }
-            year={data.reference_year}
+            year={data.tobacco_reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
@@ -84,7 +84,7 @@ export function TobaccoSummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
               ].Indicator
             }
-            year2={data.reference_year}
+            year2={data.tobacco_reference_year}
             source={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')

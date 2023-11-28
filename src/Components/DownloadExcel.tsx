@@ -30,11 +30,15 @@ function ExportExcel(props: Props) {
     const wscols = [{ wch: 20 }, { wch: 5 }, { wch: 15 }];
 
     ws['!cols'] = wscols;
-    XLSX.utils.sheet_add_json(ws, csvData, {
-      header: ['country', 'countryCode', 'value'],
-      skipHeader: true,
-      origin: -1, // ok
-    });
+    XLSX.utils.sheet_add_json(
+      ws,
+      csvData.filter((d: any) => d.value !== undefined),
+      {
+        header: ['country', 'countryCode', 'value'],
+        skipHeader: true,
+        origin: -1, // ok
+      },
+    );
     const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
     const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
     const dataForExcel = new Blob([excelBuffer], { type: fileType });
