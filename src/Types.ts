@@ -59,7 +59,7 @@ export interface IndicatorOptionsDataType {
 }
 
 export interface IndicatorMetaDataType {
-  Themes: string;
+  FocusArea: string;
   Indicator: string;
   IndicatorDescription: string;
   DataKey: string;

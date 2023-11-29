@@ -62,33 +62,32 @@ export function Settings(props: Props) {
   const optionsTobacco =
     graphType === 'scatterPlot'
       ? indicators
-          .filter(d => d.ScatterPlot && d.Themes === 'Tobacco control')
+          .filter(d => d.ScatterPlot && d.FocusArea === 'Tobacco control')
           .map(d => d.Indicator)
       : graphType === 'map'
       ? indicators
-          .filter(d => d.Map && d.Themes === 'Tobacco control')
+          .filter(d => d.Map && d.FocusArea === 'Tobacco control')
           .map(d => d.Indicator)
       : indicators
-          .filter(d => d.BarGraph && d.Themes === 'Tobacco control')
+          .filter(d => d.BarGraph && d.FocusArea === 'Tobacco control')
           .map(d => d.Indicator);
-  optionsTobacco.sort();
   const sizeOptionsTobacco = indicators
-    .filter(d => d.Sizing && d.Themes === 'Tobacco control')
+    .filter(d => d.Sizing && d.FocusArea === 'Tobacco control')
     .map(d => d.Indicator);
   const optionsNCD =
     graphType === 'scatterPlot'
       ? indicators
-          .filter(d => d.ScatterPlot && d.Themes === 'NCDs')
+          .filter(d => d.ScatterPlot && d.FocusArea === 'NCDs')
           .map(d => d.Indicator)
       : graphType === 'map'
       ? indicators
-          .filter(d => d.Map && d.Themes === 'NCDs')
+          .filter(d => d.Map && d.FocusArea === 'NCDs')
           .map(d => d.Indicator)
       : indicators
-          .filter(d => d.BarGraph && d.Themes === 'NCDs')
+          .filter(d => d.BarGraph && d.FocusArea === 'NCDs')
           .map(d => d.Indicator);
   const sizeOptionsNCD = indicators
-    .filter(d => d.Sizing && d.Themes === 'NCDs')
+    .filter(d => d.Sizing && d.FocusArea === 'NCDs')
     .map(d => d.Indicator);
   const [settingExpanded, setSettingsExpanded] = useState(true);
   const [filterExpanded, setFilterExpanded] = useState(true);

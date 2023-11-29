@@ -292,7 +292,8 @@ function WorldEl(props: Props) {
           setCountryList(
             dataFormatted
               .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
-              .map(d => d['Country or Area']),
+              .map(d => d['Country or Area'])
+              .sort((a, b) => a.localeCompare(b)),
           );
           setRegionList(
             uniqBy(dataFormatted, d => d.WHO_region)
