@@ -86,7 +86,7 @@ export const KEY_WITH_PERCENT_VALUE_TOBACCO = [
 ];
 
 export const KEYS_FROM_DATA_NCD: KeyListTypeNCD[] = [
-  'reference_year',
+  'ncd_reference_year',
   'GDP_USD',
   'NCD_deaths',
   'NCD_deaths_per_1000',
@@ -173,7 +173,7 @@ export const KEYS_FROM_DATA_ALL: KeyListTypeAll[] = [
   'cigarette_smoking_prevalence_change',
   'all_ROI_15years',
   // NCD
-  'reference_year',
+  'ncd_reference_year',
   'GDP_USD',
   'NCD_deaths',
   'NCD_deaths_per_1000',

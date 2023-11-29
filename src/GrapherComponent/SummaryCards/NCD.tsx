@@ -64,7 +64,7 @@ export function NCDSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'econ_burden')
               ].value
             }
-            year={data.reference_year}
+            year={data.ncd_reference_year}
             graphTitle={
               indicators[indicators.findIndex(d => d.DataKey === 'econ_burden')]
                 .Indicator
@@ -83,7 +83,7 @@ export function NCDSummary(props: Props) {
                 )
               ].Indicator
             }
-            year2={data.reference_year}
+            year2={data.ncd_reference_year}
             source={
               indicators[
                 indicators.findIndex(
@@ -104,7 +104,7 @@ export function NCDSummary(props: Props) {
                 )
               ].value
             }
-            year={data.reference_year}
+            year={data.ncd_reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -136,7 +136,7 @@ export function NCDSummary(props: Props) {
             }
             year={
               data.data[
-                data.data.findIndex(el => el.indicator === 'reference_year')
+                data.data.findIndex(el => el.indicator === 'ncd_reference_year')
               ].value
             }
             valueSecondary={

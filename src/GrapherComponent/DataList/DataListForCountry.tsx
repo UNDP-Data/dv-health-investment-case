@@ -1,7 +1,8 @@
+/* eslint-disable no-irregular-whitespace */
 import { useState } from 'react';
 import sortBy from 'lodash.sortby';
-import { format } from 'd3-format';
 import { Input } from 'antd';
+import { format } from 'd3-format';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 
 interface Props {
@@ -21,6 +22,52 @@ export function DataListForCountry(props: Props) {
   const dataFilteredByCountry = data.filter(
     d => d['Country or Area'] === country,
   )[0].data;
+
+  function customFormat(num: number, dataKey: string): string {
+    const specificKeys = [
+      'averted_deaths',
+      'tobacco_attributable_deaths',
+      'annual_deaths_averted',
+      'NCD_deaths_per_1000',
+      '15y_deaths_averted_total',
+      '15y_hly_total',
+      '15y_hly_tobacco',
+      '15y_deaths_averted_total',
+      '15y_strokes_averted_total',
+      '15y_IHD_averted_total',
+      '15y_ROI_alcohol',
+      '15y_ROI_salt',
+      '15y_ROI_physicalActivity',
+      '15y_ROI_clinical',
+      '15y_ROI_tobacco',
+      'all_ROI_15years',
+    ];
+    const yearIndicator = 'ncd_reference_year';
+
+    const roundedNum = Math.round(num);
+    const formatNum = (value: number, suffix: string) =>
+      `${format(value <= 20 ? '.1f' : '.0f')(value)}${suffix}`;
+
+    if (dataKey === yearIndicator) {
+      return format('.0f')(num); // Format as whole number without comma
+    }
+
+    if (specificKeys.includes(dataKey)) {
+      return format(',')(roundedNum);
+    }
+
+    if (num >= 1000000000) {
+      return formatNum(num / 1000000000, ' Bil');
+    }
+    if (num >= 1000000) {
+      return formatNum(num / 1000000, ' Mil');
+    }
+    if (num >= 1000) {
+      return formatNum(num / 1000, ' K');
+    }
+    return formatNum(num, '');
+  }
+
   return (
     <div style={{ width: '100%' }}>
       <div
@@ -87,37 +134,24 @@ export function DataListForCountry(props: Props) {
                   'NA'
                 ) : (
                   <h5 className='undp-typography margin-bottom-00 bold'>
-                    {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
+                    {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
                     {dataFilteredByCountry.findIndex(
                       el => el.indicator === d.DataKey,
                     ) !== -1
-                      ? dataFilteredByCountry[
-                          dataFilteredByCountry.findIndex(
-                            el => el.indicator === d.DataKey,
-                          )
-                        ].value < 1000000
-                        ? format(',')(
-                            dataFilteredByCountry[
-                              dataFilteredByCountry.findIndex(
-                                el => el.indicator === d.DataKey,
-                              )
-                            ].value,
-                          )
-                        : format('.3s')(
-                            dataFilteredByCountry[
-                              dataFilteredByCountry.findIndex(
-                                el => el.indicator === d.DataKey,
-                              )
-                            ].value,
-                          )
-                            .replace('G', ' Bil')
-                            .replace('M', ' Mil')
+                      ? customFormat(
+                          dataFilteredByCountry[
+                            dataFilteredByCountry.findIndex(
+                              el => el.indicator === d.DataKey,
+                            )
+                          ].value,
+                          d.DataKey,
+                        )
                       : dataFilteredByCountry[
                           dataFilteredByCountry.findIndex(
                             el => el.indicator === d.DataKey,
                           )
                         ].value}
-                    {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
+                    {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
                   </h5>
                 )}
               </div>

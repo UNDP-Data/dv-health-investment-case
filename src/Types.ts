@@ -177,7 +177,7 @@ export type KeyListTypeTobacco =
   | 'all_ROI_15years';
 
 export type KeyListTypeNCD =
-  | 'reference_year'
+  | 'ncd_reference_year'
   | 'GDP_USD'
   | 'NCD_deaths'
   | 'NCD_deaths_per_1000'
@@ -252,7 +252,7 @@ export type KeyListTypeAll =
   | 'cigarette_smoking_prevalence_change'
   | 'all_ROI_15years'
   // NCD
-  | 'reference_year'
+  | 'ncd_reference_year'
   | 'GDP_USD'
   | 'NCD_deaths'
   | 'NCD_deaths_per_1000'
