@@ -64,72 +64,81 @@ export function DataListForCountry(props: Props) {
         </div>
         {focusAreas.map((f, j) => (
           <div key={j}>
-            <div
-              style={{
-                backgroundColor: 'var(--gray-600)',
-                color: 'var(--white)',
-                width: '100%',
-                padding: 'var(--spacing-05)',
-              }}
-            >
-              <h6 className='undp-typography margin-bottom-00'>{f}</h6>
-            </div>
-            {sortBy(
-              filteredIndicatorsBySearch,
-              d => d.Indicator && d.FocusArea === f,
-            ).map((d, i) =>
-              dataFilteredByCountry.findIndex(
-                el => el.indicator === d.DataKey,
-              ) !== -1 ? (
+            {dataFilteredByCountry.filter(
+              d =>
+                indicators
+                  .filter(el => el.FocusArea === f)
+                  .findIndex(el => el.DataKey === d.indicator) !== -1,
+            ).length !== 0 ? (
+              <div>
                 <div
-                  key={i}
-                  className='undp-table-row padding-top-05'
-                  style={{ backgroundColor: 'var(--white)' }}
+                  style={{
+                    backgroundColor: 'var(--gray-600)',
+                    color: 'var(--white)',
+                    width: 'calc(100% - 2rem)',
+                    padding: 'var(--spacing-05)',
+                  }}
                 >
-                  <div
-                    style={{
-                      width: '70%',
-                      fontSize: '1.1rem',
-                      paddingLeft: '1rem',
-                    }}
-                    className='undp-table-row-cell'
-                  >
-                    <div className='undp-typography'>{d.Indicator}</div>
-                  </div>
-                  <div
-                    style={{ width: '30%', paddingRight: '1rem' }}
-                    className='undp-table-row-cell align-right'
-                  >
-                    {dataFilteredByCountry.findIndex(
-                      el => el.indicator === d.DataKey,
-                    ) === -1 ? (
-                      'NA'
-                    ) : (
-                      <h5 className='undp-typography margin-bottom-00 bold'>
-                        {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
+                  <h6 className='undp-typography margin-bottom-00'>{f}</h6>
+                </div>
+                {sortBy(
+                  filteredIndicatorsBySearch.filter(d => d.FocusArea === f),
+                  d => d.Indicator,
+                ).map((d, i) =>
+                  dataFilteredByCountry.findIndex(
+                    el => el.indicator === d.DataKey,
+                  ) !== -1 ? (
+                    <div
+                      key={i}
+                      className='undp-table-row padding-top-05'
+                      style={{ backgroundColor: 'var(--white)' }}
+                    >
+                      <div
+                        style={{
+                          width: '70%',
+                          fontSize: '1.1rem',
+                          paddingLeft: '1rem',
+                        }}
+                        className='undp-table-row-cell'
+                      >
+                        <div className='undp-typography'>{d.Indicator}</div>
+                      </div>
+                      <div
+                        style={{ width: '30%', paddingRight: '1rem' }}
+                        className='undp-table-row-cell align-right'
+                      >
                         {dataFilteredByCountry.findIndex(
                           el => el.indicator === d.DataKey,
-                        ) !== -1
-                          ? customFormat(
-                              dataFilteredByCountry[
-                                dataFilteredByCountry.findIndex(
-                                  el => el.indicator === d.DataKey,
+                        ) === -1 ? (
+                          'NA'
+                        ) : (
+                          <h5 className='undp-typography margin-bottom-00 bold'>
+                            {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
+                            {dataFilteredByCountry.findIndex(
+                              el => el.indicator === d.DataKey,
+                            ) !== -1
+                              ? customFormat(
+                                  dataFilteredByCountry[
+                                    dataFilteredByCountry.findIndex(
+                                      el => el.indicator === d.DataKey,
+                                    )
+                                  ].value,
+                                  d.DataKey,
                                 )
-                              ].value,
-                              d.DataKey,
-                            )
-                          : dataFilteredByCountry[
-                              dataFilteredByCountry.findIndex(
-                                el => el.indicator === d.DataKey,
-                              )
-                            ].value}
-                        {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
-                      </h5>
-                    )}
-                  </div>
-                </div>
-              ) : null,
-            )}
+                              : dataFilteredByCountry[
+                                  dataFilteredByCountry.findIndex(
+                                    el => el.indicator === d.DataKey,
+                                  )
+                                ].value}
+                            {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
+                          </h5>
+                        )}
+                      </div>
+                    </div>
+                  ) : null,
+                )}
+              </div>
+            ) : null}
           </div>
         ))}
       </div>
