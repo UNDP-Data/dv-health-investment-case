@@ -32,10 +32,8 @@ export interface IndicatorDataType {
 export interface DataType extends CountryGroupDataType {
   data: IndicatorDataType[];
   WHO_region?: string;
-  modelling_year?: string;
   ncd_modelling_year?: string;
   tobacco_modelling_year?: string;
-  reference_year?: string;
   ncd_reference_year?: string;
   tobacco_reference_year?: string;
   total_population_source?: string;
@@ -137,26 +135,18 @@ export interface CtxDataType {
 }
 
 export type KeyListTypeTobacco =
-  | 'total_population'
-  | 'adult_population'
-  | 'GDP_USD'
-  | 'GDP_per_capita'
-  | 'Country_total_health_expenditure'
-  | 'Government_total_health_expenditure'
-  | 'Country_NCD_spending'
-  | 'Government_NCD_spending'
-  | 'USD_exchange_rate'
+  | 'tobacco_reference_year'
+  | 'country_total_health_expenditure'
+  | 'government_total_health_expenditure'
+  | 'country_NCD_spending'
+  | 'government_NCD_spending'
   | 'adult_tobacco_use_prevalence_percent'
   | 'adult_cigarette_smoking_prevalence_percent'
-  | 'adult_tobacco_smoking_prevalence_percent'
-  | 'adult_tobacco_use_prevalence_number'
-  | 'adult_cigarette_smoking_prevalence_number'
-  | 'adult_tobacco_smoking_prevalence_number'
+  | 'tobacco_attributable_deaths'
+  | 'percent_of_tobacco_attributable_deaths_that_are_premature'
   | 'tobacco_burden'
   | 'tobacco_burden_GDP'
   | 'costs_per_adult_smoker'
-  | 'tobacco_attributable_deaths'
-  | 'percent_of_tobacco_attributable_deaths_that_are_premature'
   | 'econ_productivity_losses'
   | 'econ_productivity_losses_per_capita'
   | 'healthcare_expenditures'
@@ -213,6 +203,7 @@ export type KeyListTypeNCD =
 
 export type KeyListTypeAll =
   // Tobacco
+  | 'tobacco_reference_year'
   | 'total_population'
   | 'adult_population'
   | 'GDP_USD'

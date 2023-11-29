@@ -85,9 +85,8 @@ function CountryEl(props: Props) {
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
             if (
-              data.findIndex(
-                (el: unknown) => el.ISO_code === d['Alpha-3 code'],
-              ) === -1
+              data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
+              -1
             )
               return d;
             const countryData =

@@ -99,7 +99,7 @@ export function TobaccoSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'averted_deaths')
               ].value
             }
-            year={data.reference_year}
+            year={data.tobacco_reference_year}
             labelFormat=','
             graphTitle={
               indicators[

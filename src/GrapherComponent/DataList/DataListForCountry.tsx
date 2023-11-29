@@ -45,7 +45,7 @@ export function DataListForCountry(props: Props) {
       '15y_ROI_tobacco',
       'all_ROI_15years',
     ];
-    const yearIndicator = 'ncd_reference_year';
+    const yearIndicator = ['ncd_reference_year', 'tobacco_reference_year'];
 
     const formatNum = (
       value: number,
@@ -53,7 +53,7 @@ export function DataListForCountry(props: Props) {
       forceOneDecimal = false,
     ) => {
       const formatSpecifier = forceOneDecimal
-        ? '.1f'
+        ? '.2f'
         : value <= 20
         ? '.1f'
         : '.0f';
@@ -63,7 +63,7 @@ export function DataListForCountry(props: Props) {
       return `${formattedValue}${suffix}`;
     };
 
-    if (dataKey === yearIndicator) {
+    if (yearIndicator.includes(dataKey)) {
       return format('.0f')(num); // Format as whole number without comma
     }
 

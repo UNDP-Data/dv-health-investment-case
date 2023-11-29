@@ -34,21 +34,8 @@ export const INCOME_GROUPS = [
 export const HDI_LEVELS = ['Low', 'Medium', 'High', 'Very High'];
 
 export const KEYS_FROM_DATA_TOBACCO: KeyListTypeTobacco[] = [
-  'total_population',
-  'adult_population',
-  'GDP_USD',
-  'GDP_per_capita',
-  'Country_total_health_expenditure',
-  'Government_total_health_expenditure',
-  'Country_NCD_spending',
-  'Government_NCD_spending',
-  'USD_exchange_rate',
   'adult_tobacco_use_prevalence_percent',
   'adult_cigarette_smoking_prevalence_percent',
-  'adult_tobacco_smoking_prevalence_percent',
-  'adult_tobacco_use_prevalence_number',
-  'adult_cigarette_smoking_prevalence_number',
-  'adult_tobacco_smoking_prevalence_number',
   'tobacco_burden',
   'tobacco_burden_GDP',
   'costs_per_adult_smoker',
@@ -134,6 +121,7 @@ export const KEY_WITH_PERCENT_VALUE_NCD = [
 
 export const KEYS_FROM_DATA_ALL: KeyListTypeAll[] = [
   // Tobacco
+  'tobacco_reference_year',
   'total_population',
   'adult_population',
   'GDP_USD',

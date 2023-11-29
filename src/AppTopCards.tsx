@@ -54,13 +54,14 @@ export function AppTopCards() {
           size={200}
           value={74}
           year={2022}
-          note='Total deaths: 41 million'
+          note='Total deaths: 41 Mil'
           source='WHO NCD Key Facts'
           dotColors='var(--dark-red)'
         />
         <ValueCard
           value={8}
           graphTitle='Death caused by tobacco every year'
+          year={2022}
           source='WHO'
           labelFormat='.2'
           suffix=' Mil'
@@ -77,7 +78,7 @@ export function AppTopCards() {
           value={1.3}
           value2={93}
           suffix=' Mil'
-          suffix2='%'
+          suffix2=' %'
           year={2022}
           year2={2022}
           labelFormat='.2'
@@ -98,7 +99,7 @@ export function AppTopCards() {
           value={20}
           value2={1.7}
           suffix=''
-          suffix2='Bil'
+          suffix2=' Bil'
           year={2022}
           year2={2022}
           graphTitle='Number of neglected topical diseases'
@@ -112,7 +113,7 @@ export function AppTopCards() {
           size={200}
           value={12}
           year={2022}
-          note='Total number: 930 million'
+          note='Total number: 930 Mil'
           source='WHO Primary Health Care Key Facts, UN World population prospect 2022'
           dotColors='var(--dark-red)'
         />
@@ -121,7 +122,7 @@ export function AppTopCards() {
           size={200}
           value={25}
           year={2022}
-          note='Total number: 2 billion'
+          note='Total number: 2 Bil'
           source='WHO Access to medicines Key Facts, UN World population prospect 2022'
           dotColors='var(--dark-red)'
         />
@@ -130,7 +131,7 @@ export function AppTopCards() {
           size={340}
           value={[29, 71]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total number: 2.3 billion'
+          note='Total number: 2.3 Bil'
           year={2022}
           source='Global Nutrition Report'
         />
