@@ -3,8 +3,7 @@ import { useRef, useState } from 'react';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 import { ValueCard } from '../../CardComponents/ValueCard';
 import { ValueCardDouble } from '../../CardComponents/ValueCardDouble';
-import { CircleChart } from '../../CardComponents/CircleChart';
-// import { DotPlot } from '../../CardComponents/DotPlot';
+import { CircleChartTobacco } from '../../CardComponents/CircleChart/Tobacco';
 
 interface Props {
   data: DataType;
@@ -114,12 +113,16 @@ export function TobaccoSummary(props: Props) {
           />
         ) : null}
         {data.data.findIndex(
-          el => el.indicator === 'all_ROI_15years' && 'econ_benefits',
+          el => el.indicator === 'econ_losses_15years' && 'econ_benefits',
         ) !== -1 ? (
-          <CircleChart
+          <CircleChartTobacco
+            graphTitle='Tobacco-related economic losses over 15 years if no intervention vs total economic benefits from interventions, in USD'
+            year={data.tobacco_reference_year}
             valuePrimary={
               data.data[
-                data.data.findIndex(el => el.indicator === 'all_ROI_15years')
+                data.data.findIndex(
+                  el => el.indicator === 'econ_losses_15years',
+                )
               ].value
             }
             valueSecondary={
@@ -127,27 +130,14 @@ export function TobaccoSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'econ_benefits')
               ].value
             }
-            graphTitle='Return-on-investment over 15 years if all interventions are implemented'
-            year={2022}
-            isPercentage={false}
-            valueOnTop={
-              data.data[
-                data.data.findIndex(el => el.indicator === 'all_ROI_15years')
-              ].value
-            }
-            valueBottom={
+            valueTertiary={
               data.data[
                 data.data.findIndex(
                   el => el.indicator === 'total_investment_15years',
                 )
               ].value
             }
-            labelPrimary='Benefits'
-            labelSecondary='Investment'
-            colorPrimary='var(--blue-600)'
-            colorSecondary='var(--blue-200)'
             size={200}
-            suffix=' : 1'
           />
         ) : null}
       </WrapperEl>

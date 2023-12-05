@@ -7,7 +7,7 @@ interface Props {
   valueSecondary: number;
   graphTitle?: string;
   graphDescription?: string;
-  year: number;
+  year?: string | number;
   note?: string;
   source?: string;
   labelPrimary: string;
@@ -84,7 +84,7 @@ export function CircleChart(props: Props) {
   const radiusSecondary = Math.sqrt(areaSecondry / Math.PI);
   return (
     <StatCardsEl>
-      {graphTitle ? (
+      {graphTitle && year ? (
         <p className='undp-typography margin-bottom-00'>
           {graphTitle} ({year})
         </p>
