@@ -155,7 +155,8 @@ export function CircleChartTobacco(props: Props) {
             cx={0}
             cy={tertiaryCircleYPosition}
             r={radiusTertiary}
-            fill={colorTertiary}
+            fill='transparent'
+            stroke={colorTertiary}
           />
           <LabelEl
             x={0}
