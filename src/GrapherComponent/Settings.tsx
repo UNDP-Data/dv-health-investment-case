@@ -47,7 +47,11 @@ export function Settings(props: Props) {
     updateDataListCountry,
   } = useContext(Context) as CtxDataType;
   const options =
-    graphType === 'scatterPlot'
+    focusArea === 'All'
+      ? graphType === 'map'
+        ? indicators.filter(d => d.Map).map(d => d.Indicator)
+        : indicators.filter(d => d.BarGraph).map(d => d.Indicator)
+      : graphType === 'scatterPlot'
       ? indicators.filter(d => d.ScatterPlot).map(d => d.Indicator)
       : graphType === 'map'
       ? indicators.filter(d => d.Map).map(d => d.Indicator)

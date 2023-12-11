@@ -1,6 +1,5 @@
 /* eslint-disable no-irregular-whitespace */
 import { useState } from 'react';
-import sortBy from 'lodash.sortby';
 import { Input } from 'antd';
 import uniqBy from 'lodash.uniqby';
 import { DataType, IndicatorMetaDataType } from '../../Types';
@@ -81,62 +80,61 @@ export function DataListForCountry(props: Props) {
                 >
                   <h6 className='undp-typography margin-bottom-00'>{f}</h6>
                 </div>
-                {sortBy(
-                  filteredIndicatorsBySearch.filter(d => d.FocusArea === f),
-                  d => d.Indicator,
-                ).map((d, i) =>
-                  dataFilteredByCountry.findIndex(
-                    el => el.indicator === d.DataKey,
-                  ) !== -1 ? (
-                    <div
-                      key={i}
-                      className='undp-table-row padding-top-05'
-                      style={{ backgroundColor: 'var(--white)' }}
-                    >
+                {filteredIndicatorsBySearch
+                  .filter(d => d.FocusArea === f)
+                  .map((d, i) =>
+                    dataFilteredByCountry.findIndex(
+                      el => el.indicator === d.DataKey,
+                    ) !== -1 ? (
                       <div
-                        style={{
-                          width: '70%',
-                          fontSize: '1.1rem',
-                          paddingLeft: '1rem',
-                        }}
-                        className='undp-table-row-cell'
+                        key={i}
+                        className='undp-table-row padding-top-05'
+                        style={{ backgroundColor: 'var(--white)' }}
                       >
-                        <div className='undp-typography'>{d.Indicator}</div>
-                      </div>
-                      <div
-                        style={{ width: '30%', paddingRight: '1rem' }}
-                        className='undp-table-row-cell align-right'
-                      >
-                        {dataFilteredByCountry.findIndex(
-                          el => el.indicator === d.DataKey,
-                        ) === -1 ? (
-                          'NA'
-                        ) : (
-                          <h5 className='undp-typography margin-bottom-00 bold'>
-                            {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
-                            {dataFilteredByCountry.findIndex(
-                              el => el.indicator === d.DataKey,
-                            ) !== -1
-                              ? customFormat(
-                                  dataFilteredByCountry[
+                        <div
+                          style={{
+                            width: '70%',
+                            fontSize: '1.1rem',
+                            paddingLeft: '1rem',
+                          }}
+                          className='undp-table-row-cell'
+                        >
+                          <div className='undp-typography'>{d.Indicator}</div>
+                        </div>
+                        <div
+                          style={{ width: '30%', paddingRight: '1rem' }}
+                          className='undp-table-row-cell align-right'
+                        >
+                          {dataFilteredByCountry.findIndex(
+                            el => el.indicator === d.DataKey,
+                          ) === -1 ? (
+                            'NA'
+                          ) : (
+                            <h5 className='undp-typography margin-bottom-00 bold'>
+                              {d.LabelPrefix ? `${d.LabelPrefix} ` : ''}
+                              {dataFilteredByCountry.findIndex(
+                                el => el.indicator === d.DataKey,
+                              ) !== -1
+                                ? customFormat(
+                                    dataFilteredByCountry[
+                                      dataFilteredByCountry.findIndex(
+                                        el => el.indicator === d.DataKey,
+                                      )
+                                    ].value,
+                                    d.DataKey,
+                                  )
+                                : dataFilteredByCountry[
                                     dataFilteredByCountry.findIndex(
                                       el => el.indicator === d.DataKey,
                                     )
-                                  ].value,
-                                  d.DataKey,
-                                )
-                              : dataFilteredByCountry[
-                                  dataFilteredByCountry.findIndex(
-                                    el => el.indicator === d.DataKey,
-                                  )
-                                ].value}
-                            {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
-                          </h5>
-                        )}
+                                  ].value}
+                              {d.LabelSuffix ? ` ${d.LabelSuffix}` : ''}
+                            </h5>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ) : null,
-                )}
+                    ) : null,
+                  )}
               </div>
             ) : null}
           </div>

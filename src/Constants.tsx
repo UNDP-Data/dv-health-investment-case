@@ -9,7 +9,7 @@ export const TRUNCATE_MAX_TEXT_LENGTH = 125;
 export const DEFAULT_VALUES_TOBACCO = {
   firstMetric:
     'Percentage of annual tobacco-attributable deaths that are premature',
-  secondMetric: 'Annual economic produtivity losses per capita, in USD',
+  secondMetric: 'Total spending on health in country',
   colorMetric: 'Continents',
 };
 export const DEFAULT_VALUES_NCD = {
@@ -20,7 +20,7 @@ export const DEFAULT_VALUES_NCD = {
 export const DEFAULT_VALUES_ALL = {
   firstMetric:
     'Percentage of annual tobacco-attributable deaths that are premature',
-  secondMetric: 'Annual economic produtivity losses per capita, in USD',
+  secondMetric: 'Total spending on health in country',
   colorMetric: 'Continents',
 };
 

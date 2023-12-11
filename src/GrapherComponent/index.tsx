@@ -98,27 +98,29 @@ export function GrapherComponent(props: Props) {
               </IconEl>
               Data List
             </button>
-            <button
-              type='button'
-              className={`tabs-for-graphing-interface${
-                graphType === 'scatterPlot' ? ' selected' : ''
-              }`}
-              onClick={() => {
-                updateGraphType('scatterPlot');
-              }}
-            >
-              <IconEl>
-                <ScatterPlotIcon
-                  size={48}
-                  fill={
-                    graphType === 'scatterPlot'
-                      ? 'var(--blue-600)'
-                      : 'var(--gray-500)'
-                  }
-                />
-              </IconEl>
-              Correlation
-            </button>
+            {focusArea !== 'All' ? (
+              <button
+                type='button'
+                className={`tabs-for-graphing-interface${
+                  graphType === 'scatterPlot' ? ' selected' : ''
+                }`}
+                onClick={() => {
+                  updateGraphType('scatterPlot');
+                }}
+              >
+                <IconEl>
+                  <ScatterPlotIcon
+                    size={48}
+                    fill={
+                      graphType === 'scatterPlot'
+                        ? 'var(--blue-600)'
+                        : 'var(--gray-500)'
+                    }
+                  />
+                </IconEl>
+                Correlation
+              </button>
+            ) : null}
             <button
               type='button'
               className={`tabs-for-graphing-interface${
