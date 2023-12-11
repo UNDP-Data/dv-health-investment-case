@@ -50,29 +50,48 @@ export function AppTopCards() {
         ref={WrapperRef}
       >
         <DotPlot
-          graphTitle='Global deaths are attributed to non-communicable diseases (NCDs)'
+          graphTitle='Global deaths attributed to non-communicable diseases (NCDs)'
           size={200}
           value={74}
-          year={2022}
-          note='Total deaths: 41 Mil'
-          source='WHO NCD Key Facts'
+          year={2023}
+          note='Total deaths: 41 million'
+          source='WHO Noncommunicable Diseases Key Facts'
           dotColors='var(--dark-red)'
         />
         <ValueCard
-          value={8}
-          graphTitle='Death caused by tobacco every year'
-          year={2022}
-          source='WHO'
+          value={8.7}
+          graphTitle='Death caused by tobacco use each year'
+          year={2023}
           labelFormat='.2'
+          source='WHO Report on the Global Tobacco Epidemic'
           suffix=' Mil'
         />
+        <DotPlot
+          graphTitle='People in the world incurring catastrophic out-of-pocket health spending'
+          size={200}
+          value={12}
+          year={2023}
+          note='Total: 1.04 billion people'
+          source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report'
+          dotColors='var(--dark-red)'
+        />
         <ValueCard
-          value={1}
-          graphTitle='People in the world have a mental disorder'
-          source='WHO mental health Key Facts'
-          suffix=' in 8 people'
-          year={2022}
+          value={2}
+          graphTitle='People in the world who do not have access to essential medicines'
+          year={2023}
+          source='OHCHR Access to Vaccines and Medicines'
           labelFormat='.1'
+          note='1 out of 4 people'
+          suffix=' Bil'
+        />
+        <ValueCard
+          value={970}
+          graphTitle='People in the world living with a mental health condition'
+          year={2022}
+          source='WHO Mental Health Key Facts'
+          labelFormat=''
+          note='1 out of 8 people'
+          suffix=' Mil'
         />
         <ValueCardDouble
           value={1.3}
@@ -83,17 +102,18 @@ export function AppTopCards() {
           year2={2022}
           labelFormat='.2'
           labelFormat2='.2'
-          graphTitle='People die from road traffic crashes'
-          graphTitle2='Deaths in Low- and Middle-income Countries'
-          source='WHO road traffic injuries Key Facts'
+          graphTitle='People die from road traffic crashes each year'
+          graphTitle2='Percent of total road fatalities that occur in LMICs'
+          source='WHO Road Traffic Injuries Key Facts'
         />
         <DonutChart
-          graphTitle='Global population live in unhealthy air (where the WHO air quality guidelines are not met)'
+          graphTitle='Percent of global population breathing unhealthy air'
           size={340}
+          year={2022}
           value={[99, 1]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          year={2022}
-          source='WHO air pollution Key Facts'
+          source='WHO Air Pollution Key Facts'
+          note='of global population'
         />
         <ValueCardDouble
           value={20}
@@ -102,38 +122,19 @@ export function AppTopCards() {
           suffix2=' Bil'
           year={2022}
           year2={2022}
-          graphTitle='Number of neglected topical diseases'
-          graphTitle2='People affected by one of these diseases'
+          graphTitle='Number of neglected tropical diseases (NTDs)'
+          graphTitle2='People affected by an NTD'
           source='WHO NTDs Key Facts'
           labelFormat='.2'
           labelFormat2='.2'
         />
-        <DotPlot
-          graphTitle='People in the world risk of falling into poverty due to out-of-pocket payments'
-          size={200}
-          value={12}
-          year={2022}
-          note='Total number: 930 Mil'
-          source='WHO Primary Health Care Key Facts, UN World population prospect 2022'
-          dotColors='var(--dark-red)'
-        />
-        <DotPlot
-          graphTitle='People in the world do not have access to basic medicines'
-          size={200}
-          value={25}
-          year={2022}
-          note='Total number: 2 Bil'
-          source='WHO Access to medicines Key Facts, UN World population prospect 2022'
-          dotColors='var(--dark-red)'
-        />
         <DonutChart
-          graphTitle='People are moderately or severely food insecure'
+          graphTitle='Percent of global population that is moderately or severely food insecure'
           size={340}
           value={[29, 71]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
           note='Total number: 2.3 Bil'
-          year={2022}
-          source='Global Nutrition Report'
+          source='Global Nutrition Report (2022)'
         />
       </WrapperEl>
     </div>

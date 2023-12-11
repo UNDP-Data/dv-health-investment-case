@@ -3,7 +3,7 @@ import { DonutChartGraph } from './DonutChartGraph';
 
 interface Props {
   value: number[];
-  year: number;
+  year?: number;
   colors: string[];
   note?: string;
   size: number;
@@ -50,7 +50,10 @@ export function DonutChart(props: Props) {
     <StatCardsEl>
       {graphTitle ? (
         <p className='undp-typography margin-bottom-05'>
-          {graphTitle} ({year})
+          {graphTitle}
+          {year ? (
+            <span className='undp-typography margin-bottom-05'> ({year})</span>
+          ) : null}
         </p>
       ) : null}
       {graphDescription ? (

@@ -10,6 +10,7 @@ interface Props {
   prefix?: string;
   labelFormat?: string;
   source: string;
+  note?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -43,7 +44,7 @@ const StatEl = styled.h3`
   color: var(--gray-200) !important;
   letter-spacing: 0.05rem !important;
   margin-top: 0 !important;
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.5rem !important;
   font-family: var(--fontFamilyHeadings) !important;
 `;
 
@@ -53,6 +54,15 @@ const YearEl = styled.span`
   text-shadow: none !important;
   -webkit-text-stroke: 0px var(--black) !important;
   color: var(--gray-500) !important;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+`;
+const NoteEl = styled.span`
+  font-size: 1.6rem !important;
+  line-height: 1.09 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke: 0px var(--black) !important;
+  color: var(--black) !important;
   margin-top: 0 !important;
   margin-bottom: 1rem !important;
 `;
@@ -66,6 +76,7 @@ export function ValueCard(props: Props) {
     source,
     prefix,
     labelFormat,
+    note,
     graphDescription,
   } = props;
 
@@ -109,6 +120,7 @@ export function ValueCard(props: Props) {
             {suffix || ''}
           </StatEl>
         )}
+        {note && note !== '' ? <NoteEl>{note}</NoteEl> : null}
       </div>
       {source && source !== '' ? (
         <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
