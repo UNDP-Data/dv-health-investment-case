@@ -52,10 +52,10 @@ export const customFormat = (num: number, dataKey: string) => {
   const shouldForceOneDecimal = isROIMetric && num < 1;
 
   if (num >= 1000000000) {
-    return formatNum(num / 1000000000, ' Bil', shouldForceOneDecimal);
+    return formatNum(num / 1000000000, ' bil', shouldForceOneDecimal);
   }
   if (num >= 1000000) {
-    return formatNum(num / 1000000, ' Mil', shouldForceOneDecimal);
+    return formatNum(num / 1000000, ' mil', shouldForceOneDecimal);
   }
   if (num >= 1000) {
     return formatNum(num / 1000, ' K', shouldForceOneDecimal);

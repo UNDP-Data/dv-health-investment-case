@@ -64,7 +64,7 @@ export function AppTopCards() {
           year={2023}
           labelFormat='.2'
           source='WHO Report on the Global Tobacco Epidemic'
-          suffix=' Mil'
+          suffix=' mil'
         />
         <DotPlot
           graphTitle='People in the world incurring catastrophic out-of-pocket health spending'
@@ -82,7 +82,7 @@ export function AppTopCards() {
           source='OHCHR Access to Vaccines and Medicines'
           labelFormat='.1'
           note='1 out of 4 people'
-          suffix=' Bil'
+          suffix=' bil'
         />
         <ValueCard
           value={970}
@@ -91,12 +91,12 @@ export function AppTopCards() {
           source='WHO Mental Health Key Facts'
           labelFormat=''
           note='1 out of 8 people'
-          suffix=' Mil'
+          suffix=' mil'
         />
         <ValueCardDouble
           value={1.3}
           value2={93}
-          suffix=' Mil'
+          suffix=' mil'
           suffix2=' %'
           year={2022}
           year2={2022}
@@ -119,7 +119,7 @@ export function AppTopCards() {
           value={20}
           value2={1.7}
           suffix=''
-          suffix2=' Bil'
+          suffix2=' bil'
           year={2022}
           year2={2022}
           graphTitle='Number of neglected tropical diseases (NTDs)'
@@ -133,7 +133,7 @@ export function AppTopCards() {
           size={340}
           value={[29, 71]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total number: 2.3 Bil'
+          note='Total number: 2.3 bil'
           source='Global Nutrition Report (2022)'
         />
       </WrapperEl>

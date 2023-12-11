@@ -8,7 +8,7 @@ interface Props {
   note?: string;
   size: number;
   graphTitle?: string;
-  source: string;
+  source?: string;
   graphDescription?: string;
 }
 
@@ -46,9 +46,13 @@ export function DonutChart(props: Props) {
   return (
     <StatCardsEl>
       {graphTitle ? (
-        <p className='undp-typography margin-bottom-05'>{graphTitle}</p>
+        <p className='undp-typography margin-bottom-05'>
+          {graphTitle}
+          {year ? (
+            <span className='undp-typography margin-bottom-05'> ({year})</span>
+          ) : null}
+        </p>
       ) : null}
-      {year ? <p className='undp-typography margin-bottom-05'>{year}</p> : null}
       {graphDescription ? (
         <p
           className='undp-typography small-font margin-bottom-00'
@@ -74,7 +78,9 @@ export function DonutChart(props: Props) {
           noteDonut={note}
         />
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      {source ? (
+        <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      ) : null}
     </StatCardsEl>
   );
 }

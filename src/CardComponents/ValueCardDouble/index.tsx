@@ -108,8 +108,8 @@ export function ValueCardDouble(props: Props) {
             {Math.abs(value) < 1
               ? value
               : format(labelFormat || '.3s')(value)
-                  .replace('G', ' Bil')
-                  .replace('M', ' Mil')}
+                  .replace('G', ' bil')
+                  .replace('M', ' mil')}
             {suffix || ''} <YearEl>({year})</YearEl>
           </StatEl>
         ) : null}
@@ -137,8 +137,8 @@ export function ValueCardDouble(props: Props) {
             {Math.abs(value2) < 1
               ? value2
               : format(labelFormat2 || '.3s')(value2)
-                  .replace('G', ' Bil')
-                  .replace('M', ' Mil')}
+                  .replace('G', ' bil')
+                  .replace('M', ' mil')}
             {suffix2 || ''} <YearEl>({year2})</YearEl>
           </StatEl>
         ) : null}

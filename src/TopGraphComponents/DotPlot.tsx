@@ -8,7 +8,7 @@ interface Props {
   dotColor?: string;
   note?: string;
   source?: string;
-  year: number;
+  year?: number;
   labelFormat?: string;
 }
 
@@ -43,8 +43,8 @@ export function DotPlot(props: Props) {
           {Math.abs(value) < 1
             ? value
             : format(labelFormat || '.2s')(value)
-                .replace('G', ' Bil')
-                .replace('M', ' Mil')}{' '}
+                .replace('G', ' bil')
+                .replace('M', ' mil')}{' '}
           out of 100
           <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
             {' '}

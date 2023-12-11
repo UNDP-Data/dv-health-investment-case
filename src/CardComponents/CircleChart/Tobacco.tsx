@@ -70,7 +70,7 @@ export function CircleChartTobacco(props: Props) {
   const radiusTertiary = Math.sqrt(areaTertiary / Math.PI);
 
   function formatValue(value: number) {
-    return format('.3s')(value).replace('G', ' Bil').replace('M', ' Mil');
+    return format('.3s')(value).replace('G', ' bil').replace('M', ' mil');
   }
 
   const formattedPrimaryValue = formatValue(valuePrimary);

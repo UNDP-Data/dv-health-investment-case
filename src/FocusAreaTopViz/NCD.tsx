@@ -1,6 +1,5 @@
 import { ValueCard } from '../TopGraphComponents/ValueCard';
 import { DotPlot } from '../TopGraphComponents/DotPlot';
-import { DonutChart } from '../TopGraphComponents/DonutChart';
 
 function NCDViz() {
   return (
@@ -22,8 +21,8 @@ function NCDViz() {
           graphTitle='Global deaths are attributed to non-communicable diseases (NCDs)'
           size={200}
           value={74}
-          year={2022}
-          note='Total deaths: 41 Mil'
+          year={2019}
+          note='Total deaths: 41 million'
           source='WHO NCD Key Facts'
           dotColor='var(--dark-red)'
         />
@@ -38,14 +37,10 @@ function NCDViz() {
           gap: 'var(--spacing-09)',
         }}
       >
-        <DonutChart
-          graphTitle='Proportion of NCD deaths in LMICs'
-          size={340}
-          value={[77, 23]}
-          colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total number: 31.6 Mil'
+        <ValueCard
+          title='Premature NCD deaths before age 70'
+          number='17 million'
           year={2019}
-          source='WHO NCD Key Facts'
         />
       </div>
       <div
@@ -60,13 +55,8 @@ function NCDViz() {
         }}
       >
         <ValueCard
-          title='Premature NCD deaths before age 70'
-          number='17 Mil'
-          year={2019}
-        />
-        <ValueCard
-          title='of these premature deaths occur in LMICs'
-          number='86%'
+          title='Premature deaths from NCDs occurring in LMICs'
+          number='86 %'
           year={2019}
           source='WHO NCD Key Facts'
         />

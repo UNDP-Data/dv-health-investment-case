@@ -323,7 +323,7 @@ export function Graph(props: Props) {
               >
                 {Math.abs(d) < 1
                   ? d
-                  : format('~s')(d).replace('G', ' Bil').replace('M', ' Mil')}
+                  : format('~s')(d).replace('G', ' bil').replace('M', ' mil')}
               </text>
               <line
                 x1={widthScale(d)}
@@ -451,8 +451,8 @@ export function Graph(props: Props) {
                         ' ',
                       )
                     : format('.3s')(d.xVal)
-                        .replace('G', ' Bil')
-                        .replace('M', ' Mil')}
+                        .replace('G', ' bil')
+                        .replace('M', ' mil')}
                 </text>
               </g>
             );

@@ -105,8 +105,8 @@ export function ValueCard(props: Props) {
             {Math.abs(value) < 1
               ? value
               : format(labelFormat || '.3s')(value)
-                  .replace('G', ' Bil')
-                  .replace('M', ' Mil')}
+                  .replace('G', ' bil')
+                  .replace('M', ' mil')}
             {suffix || ''} <YearEl>({year})</YearEl>
           </StatEl>
         ) : (
@@ -115,8 +115,8 @@ export function ValueCard(props: Props) {
             {Math.abs(value) < 1
               ? value
               : format(labelFormat || '.3s')(value)
-                  .replace('G', ' Bil')
-                  .replace('M', ' Mil')}
+                  .replace('G', ' bil')
+                  .replace('M', ' mil')}
             {suffix || ''}
           </StatEl>
         )}
