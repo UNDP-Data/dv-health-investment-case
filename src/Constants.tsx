@@ -20,7 +20,7 @@ export const DEFAULT_VALUES_NCD = {
 export const DEFAULT_VALUES_ALL = {
   firstMetric:
     'Percentage of annual tobacco-attributable deaths that are premature',
-  secondMetric: 'Total spending on health in country',
+  secondMetric: '',
   colorMetric: 'Continents',
 };
 

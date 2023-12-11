@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
+import sortBy from 'lodash.sortby';
 import { CtxDataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
 import {
@@ -49,13 +50,28 @@ export function Settings(props: Props) {
   const options =
     focusArea === 'All'
       ? graphType === 'map'
-        ? indicators.filter(d => d.Map).map(d => d.Indicator)
-        : indicators.filter(d => d.BarGraph).map(d => d.Indicator)
+        ? sortBy(
+            indicators.filter(d => d.Map),
+            d => d.Indicator,
+          ).map(d => d.Indicator)
+        : sortBy(
+            indicators.filter(d => d.BarGraph),
+            d => d.Indicator,
+          ).map(d => d.Indicator)
       : graphType === 'scatterPlot'
-      ? indicators.filter(d => d.ScatterPlot).map(d => d.Indicator)
+      ? sortBy(
+          indicators.filter(d => d.ScatterPlot),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
       : graphType === 'map'
-      ? indicators.filter(d => d.Map).map(d => d.Indicator)
-      : indicators.filter(d => d.BarGraph).map(d => d.Indicator);
+      ? sortBy(
+          indicators.filter(d => d.Map),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
+      : sortBy(
+          indicators.filter(d => d.BarGraph),
+          d => d.Indicator,
+        ).map(d => d.Indicator);
   const sizeOptions = indicators.filter(d => d.Sizing).map(d => d.Indicator);
   const colorOptions = indicators
     .filter(d => d.IsCategorical)
@@ -65,31 +81,41 @@ export function Settings(props: Props) {
   colorOptions.unshift('Continents');
   const optionsTobacco =
     graphType === 'scatterPlot'
-      ? indicators
-          .filter(d => d.ScatterPlot && d.FocusArea === 'Tobacco control')
-          .map(d => d.Indicator)
+      ? sortBy(
+          indicators.filter(
+            d => d.ScatterPlot && d.FocusArea === 'Tobacco control',
+          ),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
       : graphType === 'map'
-      ? indicators
-          .filter(d => d.Map && d.FocusArea === 'Tobacco control')
-          .map(d => d.Indicator)
-      : indicators
-          .filter(d => d.BarGraph && d.FocusArea === 'Tobacco control')
-          .map(d => d.Indicator);
+      ? sortBy(
+          indicators.filter(d => d.Map && d.FocusArea === 'Tobacco control'),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
+      : sortBy(
+          indicators.filter(
+            d => d.BarGraph && d.FocusArea === 'Tobacco control',
+          ),
+          d => d.Indicator,
+        ).map(d => d.Indicator);
   const sizeOptionsTobacco = indicators
     .filter(d => d.Sizing && d.FocusArea === 'Tobacco control')
     .map(d => d.Indicator);
   const optionsNCD =
     graphType === 'scatterPlot'
-      ? indicators
-          .filter(d => d.ScatterPlot && d.FocusArea === 'NCDs')
-          .map(d => d.Indicator)
+      ? sortBy(
+          indicators.filter(d => d.ScatterPlot && d.FocusArea === 'NCDs'),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
       : graphType === 'map'
-      ? indicators
-          .filter(d => d.Map && d.FocusArea === 'NCDs')
-          .map(d => d.Indicator)
-      : indicators
-          .filter(d => d.BarGraph && d.FocusArea === 'NCDs')
-          .map(d => d.Indicator);
+      ? sortBy(
+          indicators.filter(d => d.Map && d.FocusArea === 'NCDs'),
+          d => d.Indicator,
+        ).map(d => d.Indicator)
+      : sortBy(
+          indicators.filter(d => d.BarGraph && d.FocusArea === 'NCDs'),
+          d => d.Indicator,
+        ).map(d => d.Indicator);
   const sizeOptionsNCD = indicators
     .filter(d => d.Sizing && d.FocusArea === 'NCDs')
     .map(d => d.Indicator);
@@ -222,7 +248,7 @@ export function Settings(props: Props) {
                     )}
                   </Select>
                 </div>
-              ) : graphType === 'map' ? (
+              ) : graphType === 'map' && focusArea !== 'All' ? (
                 <div className='settings-option-div'>
                   <p className='label'>Secondary Indicator (optional)</p>
                   <Select

@@ -3,6 +3,7 @@
 import { useState, useEffect, useReducer } from 'react';
 import { json, csv } from 'd3-request';
 import uniqBy from 'lodash.uniqby';
+import sortBy from 'lodash.sortby';
 import { queue } from 'd3-queue';
 import styled from 'styled-components';
 import {
@@ -269,6 +270,7 @@ function WorldEl(props: Props) {
                     ? +countryData[key] * 100
                     : +countryData[key],
               }))
+
               .filter(el => el.value !== -999999);
             return {
               ...d,
@@ -290,10 +292,12 @@ function WorldEl(props: Props) {
           });
           setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));
           setCountryList(
-            dataFormatted
-              .filter(d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0)
-              .map(d => d['Country or Area'])
-              .sort((a, b) => a.localeCompare(b)),
+            sortBy(
+              dataFormatted.filter(
+                d => d['Alpha-3 code'] !== 'ATA' && d.data.length > 0,
+              ),
+              d => d['Country or Area'],
+            ).map(d => d['Country or Area']),
           );
           setRegionList(
             uniqBy(dataFormatted, d => d.WHO_region)
