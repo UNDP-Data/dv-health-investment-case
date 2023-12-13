@@ -12,6 +12,8 @@ export const customFormat = (num: number, dataKey: string) => {
     '15y_deaths_averted_total',
     '15y_strokes_averted_total',
     '15y_IHD_averted_total',
+    'NCD_deaths',
+    'deaths_averted_per_USD_10000_invested_in_interventions',
   ];
 
   const roiKeys = [

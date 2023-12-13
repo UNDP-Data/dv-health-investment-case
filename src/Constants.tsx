@@ -31,8 +31,6 @@ export const INCOME_GROUPS = [
   'High income',
 ];
 
-export const HDI_LEVELS = ['Low', 'Medium', 'High', 'Very High'];
-
 export const KEYS_FROM_DATA_TOBACCO: KeyListTypeTobacco[] = [
   'adult_tobacco_use_prevalence_percent',
   'adult_cigarette_smoking_prevalence_percent',
@@ -50,14 +48,14 @@ export const KEYS_FROM_DATA_TOBACCO: KeyListTypeTobacco[] = [
   'total_investment_15years',
   'averted_deaths',
   'annual_deaths_averted',
-  'Deaths_averted_per_USD_10000_invested_in_interventions',
+  'deaths_averted_per_USD_10000_invested_in_interventions',
   'percent_reduction_premature_mortality_2030',
   'econ_benefits',
   'econ_benefits_per_capita',
   'avoided_econ_productivity_losses',
   'annual_avoided_econ_productivity_losses',
   'econ_productivity_losses_15years_decrease',
-  'cigarette_smoking_prevalence_change',
+  'cigarette_smoking_prevalence_decrease',
   'all_ROI_15years',
 ];
 
@@ -68,7 +66,7 @@ export const KEY_WITH_PERCENT_VALUE_TOBACCO = [
   'percent_of_tobacco_attributable_deaths_that_are_premature',
   'percent_reduction_premature_mortality_2030',
   'econ_productivity_losses_15years_decrease',
-  'cigarette_smoking_prevalence_change',
+  'cigarette_smoking_prevalence_decrease',
   'tobacco_burden_GDP',
 ];
 
@@ -126,10 +124,10 @@ export const KEYS_FROM_DATA_ALL: KeyListTypeAll[] = [
   'adult_population',
   'GDP_USD',
   'GDP_per_capita',
-  'Country_total_health_expenditure',
-  'Government_total_health_expenditure',
-  'Country_NCD_spending',
-  'Government_NCD_spending',
+  'country_total_health_expenditure',
+  'government_total_health_expenditure',
+  'country_NCD_spending',
+  'government_NCD_spending',
   'USD_exchange_rate',
   'adult_tobacco_use_prevalence_percent',
   'adult_cigarette_smoking_prevalence_percent',
@@ -151,14 +149,14 @@ export const KEYS_FROM_DATA_ALL: KeyListTypeAll[] = [
   'total_investment_15years',
   'averted_deaths',
   'annual_deaths_averted',
-  'Deaths_averted_per_USD_10000_invested_in_interventions',
+  'deaths_averted_per_USD_10000_invested_in_interventions',
   'percent_reduction_premature_mortality_2030',
   'econ_benefits',
   'econ_benefits_per_capita',
   'avoided_econ_productivity_losses',
   'annual_avoided_econ_productivity_losses',
   'econ_productivity_losses_15years_decrease',
-  'cigarette_smoking_prevalence_change',
+  'cigarette_smoking_prevalence_decrease',
   'all_ROI_15years',
   // NCD
   'ncd_reference_year',
@@ -204,7 +202,7 @@ export const KEY_WITH_PERCENT_VALUE_ALL = [
   'percent_of_tobacco_attributable_deaths_that_are_premature',
   'percent_reduction_premature_mortality_2030',
   'econ_productivity_losses_15years_decrease',
-  'cigarette_smoking_prevalence_change',
+  'cigarette_smoking_prevalence_decrease',
   'tobacco_burden_GDP',
   // NCD
   'NCD_deaths_percent',

@@ -76,7 +76,6 @@ export function Settings(props: Props) {
   const colorOptions = indicators
     .filter(d => d.IsCategorical)
     .map(d => d.Indicator);
-  colorOptions.unshift('Human development index (HDI)');
   colorOptions.unshift('Income Groups');
   colorOptions.unshift('Continents');
   const optionsTobacco =

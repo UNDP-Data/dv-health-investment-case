@@ -131,9 +131,9 @@ function CountryEl(props: Props) {
               total_population_source: countryData.total_population_source,
               adult_population_source: countryData.adult_population_source,
               GDP_source: countryData.GDP_source,
-              Country_total_health_expenditure_year:
-                countryData.Country_total_health_expenditure_year,
-              Government_total_health_expenditure_year:
+              country_total_health_expenditure_year:
+                countryData.country_total_health_expenditure_year,
+              government_total_health_expenditure_year:
                 countryData.Government_total_health_expenditure_year,
               USD_exchange_rate_source: countryData.USD_exchange_rate_source,
               year_of_prevalence_data: countryData.year_of_prevalence_data,

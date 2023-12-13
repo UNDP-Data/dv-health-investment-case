@@ -39,7 +39,7 @@ export interface DataType extends CountryGroupDataType {
   total_population_source?: string;
   adult_population_source?: string;
   GDP_source?: string;
-  Country_total_health_expenditure_year?: string;
+  country_total_health_expenditure_year?: string;
   Government_total_health_expenditure_year?: string;
   USD_exchange_rate_source?: string;
   year_of_prevalence_data?: string;
@@ -156,14 +156,14 @@ export type KeyListTypeTobacco =
   | 'total_investment_15years'
   | 'averted_deaths'
   | 'annual_deaths_averted'
-  | 'Deaths_averted_per_USD_10000_invested_in_interventions'
+  | 'deaths_averted_per_USD_10000_invested_in_interventions'
   | 'percent_reduction_premature_mortality_2030'
   | 'econ_benefits'
   | 'econ_benefits_per_capita'
   | 'avoided_econ_productivity_losses'
   | 'annual_avoided_econ_productivity_losses'
   | 'econ_productivity_losses_15years_decrease'
-  | 'cigarette_smoking_prevalence_change'
+  | 'cigarette_smoking_prevalence_decrease'
   | 'all_ROI_15years';
 
 export type KeyListTypeNCD =
@@ -208,10 +208,10 @@ export type KeyListTypeAll =
   | 'adult_population'
   | 'GDP_USD'
   | 'GDP_per_capita'
-  | 'Country_total_health_expenditure'
-  | 'Government_total_health_expenditure'
-  | 'Country_NCD_spending'
-  | 'Government_NCD_spending'
+  | 'country_total_health_expenditure'
+  | 'government_total_health_expenditure'
+  | 'country_NCD_spending'
+  | 'government_NCD_spending'
   | 'USD_exchange_rate'
   | 'adult_tobacco_use_prevalence_percent'
   | 'adult_cigarette_smoking_prevalence_percent'
@@ -233,14 +233,14 @@ export type KeyListTypeAll =
   | 'total_investment_15years'
   | 'averted_deaths'
   | 'annual_deaths_averted'
-  | 'Deaths_averted_per_USD_10000_invested_in_interventions'
+  | 'deaths_averted_per_USD_10000_invested_in_interventions'
   | 'percent_reduction_premature_mortality_2030'
   | 'econ_benefits'
   | 'econ_benefits_per_capita'
   | 'avoided_econ_productivity_losses'
   | 'annual_avoided_econ_productivity_losses'
   | 'econ_productivity_losses_15years_decrease'
-  | 'cigarette_smoking_prevalence_change'
+  | 'cigarette_smoking_prevalence_decrease'
   | 'all_ROI_15years'
   // NCD
   | 'ncd_reference_year'

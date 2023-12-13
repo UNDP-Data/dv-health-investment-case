@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { format } from 'd3-format';
 import maxBy from 'lodash.maxby';
 import orderBy from 'lodash.orderby';
-import { scaleOrdinal, scaleLinear, scaleThreshold, scaleBand } from 'd3-scale';
+import { scaleOrdinal, scaleLinear, scaleBand } from 'd3-scale';
 import minBy from 'lodash.minby';
 import UNDPColorModule from 'undp-viz-colors';
 import {
@@ -13,12 +13,7 @@ import {
   IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
-import {
-  CONTINENTS,
-  HDI_LEVELS,
-  INCOME_GROUPS,
-  MAX_TEXT_LENGTH,
-} from '../../Constants';
+import { CONTINENTS, INCOME_GROUPS, MAX_TEXT_LENGTH } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
@@ -188,21 +183,13 @@ export function Graph(props: Props) {
       ? CONTINENTS
       : colorIndicator === 'Income Groups'
       ? INCOME_GROUPS
-      : colorIndicator === 'Human development index (HDI)'
-      ? [0.55, 0.7, 0.8]
       : colorIndicatorMetaData?.Categories
       ? colorIndicatorMetaData?.Categories
       : [0, 0];
-  const colorScale =
-    colorIndicator === 'Human development index (HDI)'
-      ? scaleThreshold<string | number, string>()
-          .domain(colorDomain)
-          .range(UNDPColorModule.divergentColors.colorsx04)
-          .unknown(UNDPColorModule.graphGray)
-      : scaleOrdinal<string | number, string>()
-          .domain(colorDomain)
-          .range(colorList)
-          .unknown(UNDPColorModule.graphGray);
+  const colorScale = scaleOrdinal<string | number, string>()
+    .domain(colorDomain)
+    .range(colorList)
+    .unknown(UNDPColorModule.graphGray);
   return (
     <>
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
@@ -212,88 +199,42 @@ export function Graph(props: Props) {
               ? colorIndicatorMetaData?.Indicator
               : colorIndicator}
           </text>
-          {colorIndicator === 'Human development index (HDI)'
-            ? UNDPColorModule.divergentColors.colorsx04.map((d, i) => (
-                <g
-                  transform='translate(0,20)'
-                  key={i}
-                  onMouseOver={() => {
-                    setSelectedColor(d);
-                  }}
-                  onMouseLeave={() => {
-                    setSelectedColor(undefined);
-                  }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <rect
-                    x={
-                      (i * (graphWidth - 50)) /
-                        UNDPColorModule.divergentColors.colorsx04.length +
-                      1
-                    }
-                    y={1}
-                    width={
-                      (graphWidth - 50) /
-                        UNDPColorModule.divergentColors.colorsx04.length -
-                      2
-                    }
-                    height={8}
-                    fill={d}
-                    stroke={selectedColor === d ? '#212121' : d}
-                  />
-                  <text
-                    x={
-                      (i * (graphWidth - 50)) /
-                        UNDPColorModule.divergentColors.colorsx04.length +
-                      (graphWidth - 50) /
-                        2 /
-                        UNDPColorModule.divergentColors.colorsx04.length
-                    }
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#212121'
-                  >
-                    {HDI_LEVELS[i]}
-                  </text>
-                </g>
-              ))
-            : colorDomain.map((d, i) => (
-                <g
-                  transform='translate(0,20)'
-                  key={i}
-                  onMouseOver={() => {
-                    setSelectedColor(colorList[i]);
-                  }}
-                  onMouseLeave={() => {
-                    setSelectedColor(undefined);
-                  }}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <rect
-                    x={(i * (graphWidth - 50)) / colorDomain.length + 1}
-                    y={1}
-                    width={(graphWidth - 50) / colorDomain.length - 2}
-                    height={8}
-                    fill={colorList[i]}
-                    stroke={
-                      selectedColor === colorList[i] ? '#212121' : colorList[i]
-                    }
-                  />
-                  <text
-                    x={
-                      (i * (graphWidth - 50)) / colorDomain.length +
-                      (graphWidth - 50) / 2 / colorDomain.length
-                    }
-                    y={25}
-                    textAnchor='middle'
-                    fontSize={12}
-                    fill='#212121'
-                  >
-                    {d}
-                  </text>
-                </g>
-              ))}
+          {colorDomain.map((d, i) => (
+            <g
+              transform='translate(0,20)'
+              key={i}
+              onMouseOver={() => {
+                setSelectedColor(colorList[i]);
+              }}
+              onMouseLeave={() => {
+                setSelectedColor(undefined);
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <rect
+                x={(i * (graphWidth - 50)) / colorDomain.length + 1}
+                y={1}
+                width={(graphWidth - 50) / colorDomain.length - 2}
+                height={8}
+                fill={colorList[i]}
+                stroke={
+                  selectedColor === colorList[i] ? '#212121' : colorList[i]
+                }
+              />
+              <text
+                x={
+                  (i * (graphWidth - 50)) / colorDomain.length +
+                  (graphWidth - 50) / 2 / colorDomain.length
+                }
+                y={25}
+                textAnchor='middle'
+                fontSize={12}
+                fill='#212121'
+              >
+                {d}
+              </text>
+            </g>
+          ))}
           <g transform='translate(0,20)'>
             <rect
               x={graphWidth - 40}

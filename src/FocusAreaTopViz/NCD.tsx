@@ -1,5 +1,4 @@
 import { ValueCard } from '../TopGraphComponents/ValueCard';
-import { DotPlot } from '../TopGraphComponents/DotPlot';
 
 function NCDViz() {
   return (
@@ -17,14 +16,10 @@ function NCDViz() {
           gap: 'var(--spacing-09)',
         }}
       >
-        <DotPlot
-          graphTitle='Global deaths are attributed to non-communicable diseases (NCDs)'
-          size={200}
-          value={74}
+        <ValueCard
+          title='Global deaths attributed to NCDs each year'
+          number='41 million'
           year={2019}
-          note='Total deaths: 41 million'
-          source='WHO NCD Key Facts'
-          dotColor='var(--dark-red)'
         />
       </div>
       <div
@@ -38,7 +33,7 @@ function NCDViz() {
         }}
       >
         <ValueCard
-          title='Premature NCD deaths before age 70'
+          title='Premature NCD deaths before age 70 each year'
           number='17 million'
           year={2019}
         />
