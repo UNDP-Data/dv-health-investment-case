@@ -62,7 +62,6 @@ export function AppTopCards() {
           value={8.7}
           graphTitle='Death caused by tobacco use each year'
           year={2023}
-          labelFormat='.2'
           source='WHO Report on the Global Tobacco Epidemic'
           suffix=' mil'
         />
@@ -80,7 +79,7 @@ export function AppTopCards() {
           graphTitle='People in the world who do not have access to essential medicines'
           year={2023}
           source='OHCHR Access to Vaccines and Medicines'
-          labelFormat='.1'
+          dataKey=''
           note='1 out of 4 people'
           suffix=' bil'
         />
@@ -89,7 +88,7 @@ export function AppTopCards() {
           graphTitle='People in the world living with a mental health condition'
           year={2022}
           source='WHO Mental Health Key Facts'
-          labelFormat=''
+          dataKey=''
           note='1 out of 8 people'
           suffix=' mil'
         />
@@ -100,8 +99,8 @@ export function AppTopCards() {
           suffix2=' %'
           year={2022}
           year2={2022}
-          labelFormat='.2'
-          labelFormat2='.2'
+          dataKey2=''
+          dataKey=''
           graphTitle='People die from road traffic crashes each year'
           graphTitle2='Percent of total road fatalities that occur in LMICs'
           source='WHO Road Traffic Injuries Key Facts'
@@ -125,8 +124,8 @@ export function AppTopCards() {
           graphTitle='Number of neglected tropical diseases (NTDs)'
           graphTitle2='People affected by an NTD'
           source='WHO NTDs Key Facts'
-          labelFormat='.2'
-          labelFormat2='.2'
+          dataKey=''
+          dataKey2=''
         />
         <DonutChart
           graphTitle='Percent of global population that is moderately or severely food insecure'

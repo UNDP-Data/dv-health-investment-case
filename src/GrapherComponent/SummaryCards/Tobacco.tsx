@@ -60,8 +60,6 @@ export function TobaccoSummary(props: Props) {
         ) !== -1 ? (
           <ValueCardDouble
             suffix2='%'
-            labelFormat2='.2s'
-            labelFormat='.3s'
             value={
               data.data[
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
@@ -99,7 +97,7 @@ export function TobaccoSummary(props: Props) {
               ].value
             }
             year={data.tobacco_reference_year}
-            labelFormat=','
+            dataKey='averted_deaths'
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'averted_deaths')

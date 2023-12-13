@@ -1,17 +1,17 @@
-import { format } from 'd3-format';
 import styled from 'styled-components';
+import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   valuePrimary: number;
+  dataKeyPrimary: string;
   valueSecondary: number;
-  valueTertiary: number;
+  dataKeySecondary: string;
   graphTitle?: string;
   graphDescription?: string;
   year?: string | number;
   source?: string;
   colorPrimary?: string;
   colorSecondary?: string;
-  colorTertiary?: string;
   size: number;
 }
 
@@ -46,18 +46,18 @@ const SourceEl = styled.div`
   color: var(--gray-500);
 `;
 
-export function CircleChartTobacco(props: Props) {
+export function CircleChartNCD(props: Props) {
   const {
     valuePrimary,
+    dataKeyPrimary,
     valueSecondary,
-    valueTertiary,
+    dataKeySecondary,
     graphTitle,
     year,
     source,
     graphDescription,
     colorPrimary = 'var(--blue-600)',
     colorSecondary = 'var(--blue-300)',
-    colorTertiary = 'var(--white)',
     size,
   } = props;
 
@@ -66,24 +66,14 @@ export function CircleChartTobacco(props: Props) {
   const areaPrimary = fixedRadius ** 2 * Math.PI;
   const areaSecondary = (valueSecondary / valuePrimary) * areaPrimary;
   const radiusSecondary = Math.sqrt(areaSecondary / Math.PI);
-  const areaTertiary = (valueTertiary / valuePrimary) * areaPrimary;
-  const radiusTertiary = Math.sqrt(areaTertiary / Math.PI);
 
-  function formatValue(value: number) {
-    return format('.3s')(value).replace('G', ' bil').replace('M', ' mil');
-  }
-
-  const formattedPrimaryValue = formatValue(valuePrimary);
-  const formattedSecondaryValue = valueSecondary
-    ? formatValue(valueSecondary)
-    : null;
-
-  const formattedTertiaryValue = valueTertiary
-    ? formatValue(valueTertiary)
-    : null;
+  const formattedPrimaryValue = customFormat(valuePrimary, dataKeyPrimary);
+  const formattedSecondaryValue = customFormat(
+    valueSecondary,
+    dataKeySecondary,
+  );
 
   const secondaryCircleYPosition = fixedRadius - radiusSecondary;
-  const tertiaryCircleYPosition = fixedRadius - radiusTertiary;
 
   return (
     <StatCardsEl>
@@ -92,6 +82,11 @@ export function CircleChartTobacco(props: Props) {
           {graphTitle}
           {year ? <span className='undp-typography'> ({year})</span> : null}
         </p>
+      ) : null}
+      {valueSecondary ? (
+        <h2 className='undp-typography margin-bottom-00'>
+          ${formattedSecondaryValue}
+        </h2>
       ) : null}
       {graphDescription && (
         <p
@@ -129,7 +124,7 @@ export function CircleChartTobacco(props: Props) {
               y={0 - fixedRadius - 10}
               style={{ fill: 'var(--black)', fontWeight: '400' }}
             >
-              Losses if no intervention
+              GDP
             </LabelEl>
           </g>
           {/* Secondary circle */}
@@ -151,36 +146,7 @@ export function CircleChartTobacco(props: Props) {
             y={secondaryCircleYPosition - radiusSecondary - 10}
             style={{ fill: 'var(--white)', fontWeight: '400' }}
           >
-            Economic Benefits
-          </LabelEl>
-          {/* Tertiary circle */}
-          <circle
-            cx={0}
-            cy={tertiaryCircleYPosition}
-            r={radiusTertiary}
-            fill='transparent'
-            stroke={colorTertiary}
-          />
-          <LabelEl
-            x={0}
-            y={tertiaryCircleYPosition - radiusTertiary - 34}
-            style={{ fill: 'var(--white)', fontWeight: '600' }}
-          >
-            {formattedTertiaryValue}
-          </LabelEl>
-          <LabelEl
-            x={0}
-            y={tertiaryCircleYPosition - radiusTertiary - 22}
-            style={{ fill: 'var(--white)', fontWeight: '400' }}
-          >
-            Intervention
-          </LabelEl>
-          <LabelEl
-            x={0}
-            y={tertiaryCircleYPosition - radiusTertiary - 10}
-            style={{ fill: 'var(--white)', fontWeight: '400' }}
-          >
-            costs
+            Benefits
           </LabelEl>
         </g>
       </svg>

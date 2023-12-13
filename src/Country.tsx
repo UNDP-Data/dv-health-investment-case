@@ -130,6 +130,7 @@ function CountryEl(props: Props) {
               ncd_reference_year: countryData.ncd_reference_year,
               total_population_source: countryData.total_population_source,
               adult_population_source: countryData.adult_population_source,
+              GDP_USD: countryData.GDP_USD,
               GDP_source: countryData.GDP_source,
               country_total_health_expenditure_year:
                 countryData.country_total_health_expenditure_year,

@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { DataType, IndicatorMetaDataType } from '../../Types';
 import { ValueCard } from '../../CardComponents/ValueCard';
 import { ValueCardDouble } from '../../CardComponents/ValueCardDouble';
-import { CircleChart } from '../../CardComponents/CircleChart';
+import { CircleChartNCD } from '../../CardComponents/CircleChart/NCD';
 
 interface Props {
   data: DataType;
@@ -65,6 +65,8 @@ export function NCDSummary(props: Props) {
               ].value
             }
             year={data.ncd_reference_year}
+            dataKey='econ_burden'
+            dataKey2='econ_burden_perc_of_GDP'
             graphTitle={
               indicators[indicators.findIndex(d => d.DataKey === 'econ_burden')]
                 .Indicator
@@ -84,6 +86,8 @@ export function NCDSummary(props: Props) {
               ].Indicator
             }
             year2={data.ncd_reference_year}
+            prefix='$'
+            suffix2='%'
             source={
               indicators[
                 indicators.findIndex(
@@ -104,6 +108,7 @@ export function NCDSummary(props: Props) {
                 )
               ].value
             }
+            dataKey='15y_deaths_averted_total'
             year={data.ncd_reference_year}
             graphTitle={
               indicators[
@@ -123,22 +128,15 @@ export function NCDSummary(props: Props) {
         ) : null}
         {data.data.findIndex(
           el =>
-            el.indicator === '15y_econ_benefits_perc_of_GDP' &&
-            '15y_econ_benefits_total',
-        ) !== -1 ? (
-          <CircleChart
-            valuePrimary={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === '15y_econ_benefits_perc_of_GDP',
-                )
-              ].value
-            }
-            year={
-              data.data[
-                data.data.findIndex(el => el.indicator === 'ncd_reference_year')
-              ].value
-            }
+            el.indicator === 'productivity_losses' &&
+            '15y_econ_benefits_per_capita',
+        ) !== -1 && data.GDP_USD ? (
+          <CircleChartNCD
+            graphTitle='Total economic benefits over 15 years from implementing all interventions, in USD'
+            valuePrimary={data.GDP_USD}
+            year={data.ncd_reference_year}
+            dataKeyPrimary='GDP'
+            dataKeySecondary='15y_econ_benefits_total'
             valueSecondary={
               data.data[
                 data.data.findIndex(
@@ -146,21 +144,7 @@ export function NCDSummary(props: Props) {
                 )
               ].value
             }
-            graphTitle='Total economic benefits over 15 years from implementing all interventions, in USD'
-            isPercentage
-            valueOnTop={
-              data.data[
-                data.data.findIndex(
-                  el => el.indicator === '15y_econ_benefits_total',
-                )
-              ].value
-            }
-            labelPrimary='GDP'
-            labelSecondary='Benefit'
-            colorPrimary='var(--blue-600)'
-            colorSecondary='var(--blue-200)'
             size={200}
-            prefix='$'
           />
         ) : null}
       </WrapperEl>

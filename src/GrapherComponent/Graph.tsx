@@ -19,7 +19,6 @@ export function Graph(props: Props) {
   const { graphType, yAxisIndicator, verticalBarLayout } = useContext(
     Context,
   ) as CtxDataType;
-  console.log(yAxisIndicator);
   return (
     <div
       id='graph-node'

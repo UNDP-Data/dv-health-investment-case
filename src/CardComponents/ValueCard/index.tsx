@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { format } from 'd3-format';
+import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   year?: string | number;
@@ -11,6 +12,7 @@ interface Props {
   labelFormat?: string;
   source: string;
   note?: string;
+  dataKey?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -78,6 +80,7 @@ export function ValueCard(props: Props) {
     labelFormat,
     note,
     graphDescription,
+    dataKey,
   } = props;
 
   return (
@@ -101,12 +104,7 @@ export function ValueCard(props: Props) {
       >
         {year ? (
           <StatEl>
-            {prefix || ''}{' '}
-            {Math.abs(value) < 1
-              ? value
-              : format(labelFormat || '.3s')(value)
-                  .replace('G', ' bil')
-                  .replace('M', ' mil')}
+            {prefix || ''} {customFormat(value, dataKey)}
             {suffix || ''} <YearEl>({year})</YearEl>
           </StatEl>
         ) : (

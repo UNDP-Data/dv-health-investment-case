@@ -38,6 +38,7 @@ export interface DataType extends CountryGroupDataType {
   tobacco_reference_year?: string;
   total_population_source?: string;
   adult_population_source?: string;
+  GDP_USD?: number;
   GDP_source?: string;
   country_total_health_expenditure_year?: string;
   Government_total_health_expenditure_year?: string;

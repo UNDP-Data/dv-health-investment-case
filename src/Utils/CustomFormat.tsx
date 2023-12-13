@@ -1,6 +1,6 @@
 import { format } from 'd3-format';
 
-export const customFormat = (num: number, dataKey: string) => {
+export const customFormat = (num: number, dataKey = '') => {
   const specificKeys = [
     'averted_deaths',
     'tobacco_attributable_deaths',
@@ -9,7 +9,6 @@ export const customFormat = (num: number, dataKey: string) => {
     '15y_deaths_averted_total',
     '15y_hly_total',
     '15y_hly_tobacco',
-    '15y_deaths_averted_total',
     '15y_strokes_averted_total',
     '15y_IHD_averted_total',
     'NCD_deaths',
@@ -24,6 +23,7 @@ export const customFormat = (num: number, dataKey: string) => {
     '15y_ROI_tobacco',
     'all_ROI_15years',
   ];
+
   const yearIndicator = ['ncd_reference_year', 'tobacco_reference_year'];
 
   const formatNum = (
@@ -43,7 +43,7 @@ export const customFormat = (num: number, dataKey: string) => {
   };
 
   if (yearIndicator.includes(dataKey)) {
-    return format('.0f')(num); // Format as whole number without comma
+    return format('.0f')(num); // Format as a whole number without a comma
   }
 
   if (specificKeys.includes(dataKey)) {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { format } from 'd3-format';
+import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   year?: string | number;
@@ -8,7 +8,6 @@ interface Props {
   graphDescription?: string;
   suffix?: string;
   prefix?: string;
-  labelFormat?: string;
   source: string;
   year2?: string | number;
   value2: number;
@@ -16,7 +15,8 @@ interface Props {
   graphDescription2?: string;
   suffix2?: string;
   prefix2?: string;
-  labelFormat2?: string;
+  dataKey?: string;
+  dataKey2?: string;
 }
 
 const StatCardsEl = styled.div`
@@ -72,14 +72,14 @@ export function ValueCardDouble(props: Props) {
     suffix,
     source,
     prefix,
-    labelFormat,
     graphDescription,
     year2,
     value2,
     graphTitle2,
     suffix2,
     prefix2,
-    labelFormat2,
+    dataKey,
+    dataKey2,
     graphDescription2,
   } = props;
 
@@ -104,12 +104,8 @@ export function ValueCardDouble(props: Props) {
       >
         {year ? (
           <StatEl>
-            {prefix || ''}{' '}
-            {Math.abs(value) < 1
-              ? value
-              : format(labelFormat || '.3s')(value)
-                  .replace('G', ' bil')
-                  .replace('M', ' mil')}
+            {prefix || ''}
+            {customFormat(value, dataKey)}
             {suffix || ''} <YearEl>({year})</YearEl>
           </StatEl>
         ) : null}
@@ -133,12 +129,7 @@ export function ValueCardDouble(props: Props) {
       >
         {year2 ? (
           <StatEl>
-            {prefix2 || ''}{' '}
-            {Math.abs(value2) < 1
-              ? value2
-              : format(labelFormat2 || '.3s')(value2)
-                  .replace('G', ' bil')
-                  .replace('M', ' mil')}
+            {prefix2 || ''} {customFormat(value2, dataKey2)}
             {suffix2 || ''} <YearEl>({year2})</YearEl>
           </StatEl>
         ) : null}
