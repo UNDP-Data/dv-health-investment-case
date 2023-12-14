@@ -15,27 +15,19 @@ export const customFormat = (num: number, dataKey = '') => {
     'deaths_averted_per_USD_10000_invested_in_interventions',
   ];
 
-  const roiKeys = [
-    '15y_ROI_alcohol',
-    '15y_ROI_salt',
-    '15y_ROI_physicalActivity',
-    '15y_ROI_clinical',
-    '15y_ROI_tobacco',
-    'all_ROI_15years',
-  ];
+  // const roiKeys = [
+  //   '15y_ROI_alcohol',
+  //   '15y_ROI_salt',
+  //   '15y_ROI_physicalActivity',
+  //   '15y_ROI_clinical',
+  //   '15y_ROI_tobacco',
+  //   'all_ROI_15years',
+  // ];
 
   const yearIndicator = ['ncd_reference_year', 'tobacco_reference_year'];
 
-  const formatNum = (
-    value: number,
-    suffix: string,
-    forceOneDecimal = false,
-  ) => {
-    const formatSpecifier = forceOneDecimal
-      ? '.2f'
-      : value <= 20
-      ? '.1f'
-      : '.0f';
+  const formatNum = (value: number, suffix: string) => {
+    const formatSpecifier = value <= 20 ? '.1f' : '.0f';
     let formattedValue = format(formatSpecifier)(value);
     // Remove trailing zeros and unnecessary decimal points
     formattedValue = formattedValue.replace(/(\.\d*[1-9])0+$|\.0+$/, '$1');
@@ -50,17 +42,14 @@ export const customFormat = (num: number, dataKey = '') => {
     return format(',')(Math.round(num));
   }
 
-  const isROIMetric = roiKeys.includes(dataKey);
-  const shouldForceOneDecimal = isROIMetric && num < 1;
-
   if (num >= 1000000000) {
-    return formatNum(num / 1000000000, ' bil', shouldForceOneDecimal);
+    return formatNum(num / 1000000000, ' bil');
   }
   if (num >= 1000000) {
-    return formatNum(num / 1000000, ' mil', shouldForceOneDecimal);
+    return formatNum(num / 1000000, ' mil');
   }
   if (num >= 1000) {
-    return formatNum(num / 1000, ' K', shouldForceOneDecimal);
+    return formatNum(num / 1000, ' K');
   }
-  return formatNum(num, '', shouldForceOneDecimal);
+  return formatNum(num, '');
 };
