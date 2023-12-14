@@ -132,7 +132,7 @@ export function AppTopCards() {
           size={340}
           value={[29, 71]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total number: 2.3 bil'
+          note='Total number: 2.3 billion'
           source='Global Nutrition Report (2022)'
         />
       </WrapperEl>

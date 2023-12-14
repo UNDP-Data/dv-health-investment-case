@@ -139,7 +139,8 @@ export function CircleChartNCD(props: Props) {
             y={secondaryCircleYPosition - radiusSecondary - 22}
             style={{ fill: 'var(--white)', fontWeight: '600' }}
           >
-            {formattedSecondaryValue}
+            {formattedSecondaryValue} (
+            {customFormat((valueSecondary / valuePrimary) * 100, '')}%)
           </LabelEl>
           <LabelEl
             x={0}

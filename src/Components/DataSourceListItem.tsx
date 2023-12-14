@@ -14,7 +14,9 @@ const dataTable = (data: DataType[], indicator: IndicatorMetaDataType) => {
     const country = d['Country or Area'];
     const countryCode = d['Alpha-3 code'];
     const value =
-      d.data[d.data.findIndex(el => el.indicator === indicator.DataKey)]?.value;
+      d.data[
+        d.data.findIndex(el => el.indicator === indicator.DataKey)
+      ]?.value.toFixed(2);
     // Check if value exists before adding to the table
     if (value !== undefined && value !== null) {
       table.push({
