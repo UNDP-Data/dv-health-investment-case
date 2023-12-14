@@ -287,7 +287,8 @@ export function Settings(props: Props) {
                   </Select>
                 </div>
               ) : null}
-              {graphType === 'map' || graphType === 'scatterPlot' ? (
+              {(graphType === 'map' && focusArea !== 'All') ||
+              graphType === 'scatterPlot' ? (
                 <div className='settings-option-div'>
                   <p className='label'>
                     {graphType === 'map'

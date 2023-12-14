@@ -15,11 +15,14 @@ const dataTable = (data: DataType[], indicator: IndicatorMetaDataType) => {
     const countryCode = d['Alpha-3 code'];
     const value =
       d.data[d.data.findIndex(el => el.indicator === indicator.DataKey)]?.value;
-    table.push({
-      country,
-      countryCode,
-      value,
-    });
+    // Check if value exists before adding to the table
+    if (value !== undefined && value !== null) {
+      table.push({
+        country,
+        countryCode,
+        value,
+      });
+    }
   });
   return table;
 };
@@ -28,13 +31,26 @@ const dataTableForExcel = (
   data: DataType[],
   indicator: IndicatorMetaDataType,
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const table: any = data.map(d => ({
-    country: d['Country or Area'],
-    countryCode: d['Alpha-3 code'],
-    value:
-      d.data[d.data.findIndex(el => el.indicator === indicator.DataKey)]?.value,
-  }));
+  const table: any = data
+    .map(d => {
+      const country = d['Country or Area'];
+      const countryCode = d['Alpha-3 code'];
+      const value =
+        d.data[d.data.findIndex(el => el.indicator === indicator.DataKey)]
+          ?.value;
+
+      // Return null if value does not exist
+      if (value === undefined || value === null) {
+        return null;
+      }
+
+      return {
+        country,
+        countryCode,
+        value,
+      };
+    })
+    .filter(row => row !== null); // Filter out the null values
   return table;
 };
 
