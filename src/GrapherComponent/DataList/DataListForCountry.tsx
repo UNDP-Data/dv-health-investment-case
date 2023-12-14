@@ -73,12 +73,17 @@ export function DataListForCountry(props: Props) {
                 <div
                   style={{
                     backgroundColor: 'var(--gray-600)',
-                    color: 'var(--white)',
+                    color: 'var(--white)!important',
                     width: 'calc(100% - 2rem)',
                     padding: 'var(--spacing-05)',
                   }}
                 >
-                  <h6 className='undp-typography margin-bottom-00'>{f}</h6>
+                  <h6
+                    style={{ color: 'var(--white)' }}
+                    className='undp-typography margin-bottom-00'
+                  >
+                    {f}
+                  </h6>
                 </div>
                 {filteredIndicatorsBySearch
                   .filter(d => d.FocusArea === f)
