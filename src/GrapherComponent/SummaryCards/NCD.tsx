@@ -127,9 +127,7 @@ export function NCDSummary(props: Props) {
           />
         ) : null}
         {data.data.findIndex(
-          el =>
-            el.indicator === 'productivity_losses' &&
-            '15y_econ_benefits_per_capita',
+          el => el.indicator === '15y_econ_benefits_total' && data.GDP_USD,
         ) !== -1 && data.GDP_USD ? (
           <CircleChartNCD
             graphTitle='Total economic benefits over 15 years from implementing all interventions, in USD'
