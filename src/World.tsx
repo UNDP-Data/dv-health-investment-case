@@ -276,18 +276,8 @@ function WorldEl(props: Props) {
               ...d,
               data: indicatorData,
               WHO_region: countryData.WHO_region,
-              modelling_year: countryData.modelling_year,
-              reference_year: countryData.reference_year,
-              total_population_source: countryData.total_population_source,
-              adult_population_source: countryData.adult_population_source,
-              GDP_source: countryData.GDP_source,
-              country_total_health_expenditure_year:
-                countryData.country_total_health_expenditure_year,
-              government_total_health_expenditure_year:
-                countryData.Government_total_health_expenditure_year,
-              USD_exchange_rate_source: countryData.USD_exchange_rate_source,
-              year_of_prevalence_data: countryData.year_of_prevalence_data,
-              prevelance_data_source: countryData.prevelance_data_source,
+              tobacco_reference_year: countryData.tobacco_reference_year,
+              NCD_reference_year: countryData.NCD_reference_year,
             };
           });
           setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));

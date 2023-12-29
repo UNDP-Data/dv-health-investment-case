@@ -9,9 +9,6 @@ interface Props {
   graphDescription?: string;
   year?: string | number;
   source?: string;
-  colorPrimary?: string;
-  colorSecondary?: string;
-  colorTertiary?: string;
   size: number;
 }
 
@@ -37,8 +34,8 @@ const LabelEl = styled.text`
   dominant-baseline: middle;
   text-anchor: middle;
   text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.05rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.04rem;
 `;
 
 const SourceEl = styled.div`
@@ -55,18 +52,37 @@ export function CircleChartTobacco(props: Props) {
     year,
     source,
     graphDescription,
-    colorPrimary = 'var(--blue-600)',
-    colorSecondary = 'var(--blue-300)',
-    colorTertiary = 'var(--white)',
     size,
   } = props;
 
+  // Calculate the maximum value and assign colors and sizes accordingly
+  const values = [
+    {
+      value: valuePrimary,
+      color: 'var(--blue-600)',
+      label: 'Losses if no intervention',
+    }, // Default color for primary
+    { value: valueSecondary, color: '#02A38A', label: 'Economic benefits' }, // Default color for secondary
+    {
+      value: valueTertiary,
+      color: '#5DD4F0',
+      label: 'Intervention costs',
+    }, // Default color for tertiary
+  ];
+
+  // Sort values to find the primary, secondary, and tertiary
+  values.sort((a, b) => b.value - a.value);
+
+  // Assign dynamic colors and sizes based on sorted values
+  const [maxValue, midValue, minValue] = values;
+
+  // Adjusting areas and radii
   const labelHeight = 32;
   const fixedRadius = size / 2;
   const areaPrimary = fixedRadius ** 2 * Math.PI;
-  const areaSecondary = (valueSecondary / valuePrimary) * areaPrimary;
+  const areaSecondary = (midValue.value / maxValue.value) * areaPrimary;
   const radiusSecondary = Math.sqrt(areaSecondary / Math.PI);
-  const areaTertiary = (valueTertiary / valuePrimary) * areaPrimary;
+  const areaTertiary = (minValue.value / maxValue.value) * areaPrimary;
   const radiusTertiary = Math.sqrt(areaTertiary / Math.PI);
 
   function formatValue(value: number) {
@@ -115,7 +131,7 @@ export function CircleChartTobacco(props: Props) {
           })`}
         >
           {/* Primary circle */}
-          <circle cx={0} cy={0} r={fixedRadius} fill={colorPrimary} />
+          <circle cx={0} cy={0} r={fixedRadius} fill={maxValue.color} />
           <g>
             <LabelEl
               x={0}
@@ -129,7 +145,7 @@ export function CircleChartTobacco(props: Props) {
               y={0 - fixedRadius - 10}
               style={{ fill: 'var(--black)', fontWeight: '400' }}
             >
-              Losses if no intervention
+              {maxValue.label}
             </LabelEl>
           </g>
           {/* Secondary circle */}
@@ -137,7 +153,7 @@ export function CircleChartTobacco(props: Props) {
             cx={0}
             cy={secondaryCircleYPosition}
             r={radiusSecondary}
-            fill={colorSecondary}
+            fill={midValue.color}
           />
           <LabelEl
             x={0}
@@ -151,36 +167,28 @@ export function CircleChartTobacco(props: Props) {
             y={secondaryCircleYPosition - radiusSecondary - 10}
             style={{ fill: 'var(--white)', fontWeight: '400' }}
           >
-            Economic Benefits
+            {midValue.label}
           </LabelEl>
           {/* Tertiary circle */}
           <circle
             cx={0}
             cy={tertiaryCircleYPosition}
             r={radiusTertiary}
-            fill='transparent'
-            stroke={colorTertiary}
+            fill={minValue.color}
           />
           <LabelEl
             x={0}
-            y={tertiaryCircleYPosition - radiusTertiary - 34}
+            y={tertiaryCircleYPosition - radiusTertiary - 22}
             style={{ fill: 'var(--white)', fontWeight: '600' }}
           >
             {formattedTertiaryValue}
           </LabelEl>
           <LabelEl
             x={0}
-            y={tertiaryCircleYPosition - radiusTertiary - 22}
-            style={{ fill: 'var(--white)', fontWeight: '400' }}
-          >
-            Intervention
-          </LabelEl>
-          <LabelEl
-            x={0}
             y={tertiaryCircleYPosition - radiusTertiary - 10}
             style={{ fill: 'var(--white)', fontWeight: '400' }}
           >
-            costs
+            {minValue.label}
           </LabelEl>
         </g>
       </svg>

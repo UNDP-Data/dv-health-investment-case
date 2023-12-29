@@ -124,21 +124,9 @@ function CountryEl(props: Props) {
               ...d,
               data: indicatorData,
               WHO_region: countryData.WHO_region,
-              tobacco_modelling_year: countryData.tobacco_modelling_year,
-              ncd_modelling_year: countryData.ncd_modelling_year,
               tobacco_reference_year: countryData.tobacco_reference_year,
-              ncd_reference_year: countryData.ncd_reference_year,
-              total_population_source: countryData.total_population_source,
-              adult_population_source: countryData.adult_population_source,
+              NCD_reference_year: countryData.NCD_reference_year,
               GDP_USD: countryData.GDP_USD,
-              GDP_source: countryData.GDP_source,
-              country_total_health_expenditure_year:
-                countryData.country_total_health_expenditure_year,
-              government_total_health_expenditure_year:
-                countryData.Government_total_health_expenditure_year,
-              USD_exchange_rate_source: countryData.USD_exchange_rate_source,
-              year_of_prevalence_data: countryData.year_of_prevalence_data,
-              prevelance_data_source: countryData.prevelance_data_source,
             };
           });
           setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));

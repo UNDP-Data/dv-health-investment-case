@@ -1,31 +1,7 @@
 import { format } from 'd3-format';
+import { KEY_WITH_PEOPLE_VALUE, KEY_WITH_YEAR_VALUE } from '../Constants';
 
 export const customFormat = (num: number, dataKey = '') => {
-  const specificKeys = [
-    'averted_deaths',
-    'tobacco_attributable_deaths',
-    'annual_deaths_averted',
-    'NCD_deaths_per_1000',
-    '15y_deaths_averted_total',
-    '15y_hly_total',
-    '15y_hly_tobacco',
-    '15y_strokes_averted_total',
-    '15y_IHD_averted_total',
-    'NCD_deaths',
-    'deaths_averted_per_USD_10000_invested_in_interventions',
-  ];
-
-  // const roiKeys = [
-  //   '15y_ROI_alcohol',
-  //   '15y_ROI_salt',
-  //   '15y_ROI_physicalActivity',
-  //   '15y_ROI_clinical',
-  //   '15y_ROI_tobacco',
-  //   'all_ROI_15years',
-  // ];
-
-  const yearIndicator = ['ncd_reference_year', 'tobacco_reference_year'];
-
   const formatNum = (value: number, suffix: string) => {
     const formatSpecifier = value <= 20 ? '.1f' : '.0f';
     let formattedValue = format(formatSpecifier)(value);
@@ -34,11 +10,11 @@ export const customFormat = (num: number, dataKey = '') => {
     return `${formattedValue}${suffix}`;
   };
 
-  if (yearIndicator.includes(dataKey)) {
+  if (KEY_WITH_YEAR_VALUE.includes(dataKey)) {
     return format('.0f')(num); // Format as a whole number without a comma
   }
 
-  if (specificKeys.includes(dataKey)) {
+  if (KEY_WITH_PEOPLE_VALUE.includes(dataKey)) {
     return format(',')(Math.round(num));
   }
 

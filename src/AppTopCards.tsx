@@ -58,12 +58,14 @@ export function AppTopCards() {
           source='WHO Noncommunicable Diseases Key Facts'
           dotColors='var(--dark-red)'
         />
-        <ValueCard
-          value={8.7}
-          graphTitle='Death caused by tobacco use each year'
-          year={2023}
-          source='WHO Report on the Global Tobacco Epidemic'
-          suffix=' mil'
+        <DonutChart
+          graphTitle='Percent of global population deaths caused by tobacco use each year'
+          size={340}
+          year={2022}
+          value={[13, 87]}
+          colors={['var(--dark-red)', 'var(--gray-400)']}
+          note='Total number: 8.7 million'
+          source='WHO Report on the Global Tobacco Epidemic, UN World Population Prospects (2022)'
         />
         <DotPlot
           graphTitle='People in the world incurring catastrophic out-of-pocket health spending'
