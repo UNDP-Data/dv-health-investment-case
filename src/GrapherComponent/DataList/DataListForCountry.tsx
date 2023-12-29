@@ -46,7 +46,7 @@ export function DataListForCountry(props: Props) {
       <div>
         <div
           className='undp-table-head undp-table-head-sticky'
-          style={{ top: '101px' }}
+          style={{ top: '95px' }}
         >
           <div
             style={{ width: '70%', paddingLeft: '1rem' }}
