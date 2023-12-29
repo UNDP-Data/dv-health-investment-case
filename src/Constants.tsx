@@ -204,6 +204,7 @@ export const KEY_WITH_PEOPLE_VALUE = [
   // Tobacco
   'tobacco_attributable_deaths',
   'annual_deaths_averted',
+  'averted_deaths',
   // NCD
   'NCD_deaths',
   'NCD_deaths_per_1000',
