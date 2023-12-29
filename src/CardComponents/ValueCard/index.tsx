@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { format } from 'd3-format';
 import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
@@ -9,7 +8,6 @@ interface Props {
   graphDescription?: string;
   suffix?: string;
   prefix?: string;
-  labelFormat?: string;
   source: string;
   note?: string;
   dataKey?: string;
@@ -77,7 +75,6 @@ export function ValueCard(props: Props) {
     suffix,
     source,
     prefix,
-    labelFormat,
     note,
     graphDescription,
     dataKey,
@@ -109,12 +106,7 @@ export function ValueCard(props: Props) {
           </StatEl>
         ) : (
           <StatEl>
-            {prefix || ''}{' '}
-            {Math.abs(value) < 1
-              ? value
-              : format(labelFormat || '.3s')(value)
-                  .replace('G', ' bil')
-                  .replace('M', ' mil')}
+            {prefix || ''} {customFormat(value, dataKey)}
             {suffix || ''}
           </StatEl>
         )}
