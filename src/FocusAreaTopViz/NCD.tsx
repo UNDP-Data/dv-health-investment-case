@@ -19,7 +19,7 @@ function NCDViz() {
         <ValueCard
           title='Global deaths attributed to NCDs each year'
           number='41 million'
-          year={2019}
+          source='WHO NCD Key Facts (2023)'
         />
       </div>
       <div
@@ -35,7 +35,7 @@ function NCDViz() {
         <ValueCard
           title='Premature NCD deaths before age 70 each year'
           number='17 million'
-          year={2019}
+          source='WHO NCD Key Facts (2023)'
         />
       </div>
       <div
@@ -52,8 +52,7 @@ function NCDViz() {
         <ValueCard
           title='Premature deaths from NCDs occurring in LMICs'
           number='86 %'
-          year={2019}
-          source='WHO NCD Key Facts'
+          source='Source: WHO NCD Key Facts (2023)'
         />
       </div>
     </div>
