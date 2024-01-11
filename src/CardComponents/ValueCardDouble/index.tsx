@@ -102,13 +102,11 @@ export function ValueCardDouble(props: Props) {
           justifyContent: 'center',
         }}
       >
-        {year ? (
-          <StatEl>
-            {prefix || ''}
-            {customFormat(value, dataKey)}
-            {suffix || ''} <YearEl>({year})</YearEl>
-          </StatEl>
-        ) : null}
+        <StatEl>
+          {prefix || ''}
+          {customFormat(value, dataKey)}
+          {suffix || ''} {year ? <YearEl>({year})</YearEl> : null}
+        </StatEl>
       </div>
       <p className='undp-typography margin-bottom-00'>{graphTitle2}</p>
       {graphDescription2 ? (
@@ -127,12 +125,10 @@ export function ValueCardDouble(props: Props) {
           justifyContent: 'center',
         }}
       >
-        {year2 ? (
-          <StatEl>
-            {prefix2 || ''} {customFormat(value2, dataKey2)}
-            {suffix2 || ''} <YearEl>({year2})</YearEl>
-          </StatEl>
-        ) : null}
+        <StatEl>
+          {prefix2 || ''} {customFormat(value2, dataKey2)}
+          {suffix2 || ''} {year2 ? <YearEl>({year2})</YearEl> : null}
+        </StatEl>
       </div>
       {source && source !== '' ? (
         <SourceEl className='margin-top-05'>Source: {source}</SourceEl>

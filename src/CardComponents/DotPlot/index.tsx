@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 interface Props {
   value: number;
-  year: number;
+  valueText?: string;
+  year?: number;
   note?: string;
   size: number;
   graphTitle?: string;
@@ -37,6 +38,7 @@ const SourceEl = styled.div`
 export function DotPlot(props: Props) {
   const {
     value,
+    valueText,
     size,
     graphTitle,
     note,
@@ -56,9 +58,7 @@ export function DotPlot(props: Props) {
   return (
     <StatCardsEl>
       {graphTitle ? (
-        <p className='undp-typography margin-bottom-00'>
-          {graphTitle} ({year})
-        </p>
+        <p className='undp-typography margin-bottom-00'>{graphTitle}</p>
       ) : null}
       {graphDescription ? (
         <p
@@ -70,7 +70,7 @@ export function DotPlot(props: Props) {
       ) : null}
       <div>
         <h2 className='undp-typography bold margin-bottom-00 margin-top-05'>
-          {value} out of 100{' '}
+          {valueText || `${value} out of 100`}
         </h2>
         {note ? <p className='undp-typography bold'>{note}</p> : null}
       </div>
@@ -101,7 +101,9 @@ export function DotPlot(props: Props) {
           ))}
         </g>
       </svg>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      <SourceEl className='margin-top-05'>
+        Source: {source} {year ? `(${year})` : null}
+      </SourceEl>
     </StatCardsEl>
   );
 }

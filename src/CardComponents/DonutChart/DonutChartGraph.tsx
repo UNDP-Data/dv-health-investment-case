@@ -38,7 +38,7 @@ export function DonutChartGraph(props: Props) {
         ))}
         <text
           x={0}
-          y={0}
+          y={noteDonut ? 0 : 15}
           textAnchor='middle'
           fontSize='2.813rem'
           fontWeight='bold'
