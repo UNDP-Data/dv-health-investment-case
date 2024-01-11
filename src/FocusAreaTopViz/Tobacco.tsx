@@ -47,7 +47,6 @@ function TobaccoViz() {
           graphTitle='People use tobacco globally'
           value={22.3}
           size={200}
-          year={2020}
           dotColor='var(--dark-red)'
           source='WHO 2023'
         />
@@ -66,7 +65,6 @@ function TobaccoViz() {
           graphTitle='Tobacco users live in LMICs'
           value={80}
           size={200}
-          year={2023}
           source='WHO 2023'
           dotColor='var(--blue-600)'
         />

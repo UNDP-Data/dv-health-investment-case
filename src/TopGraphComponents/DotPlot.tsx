@@ -48,7 +48,7 @@ export function DotPlot(props: Props) {
           out of 100
           <span style={{ color: 'var(--gray-500)', fontSize: '1.5rem' }}>
             {' '}
-            ({year})
+            {year ? `(${year})` : null}
           </span>
         </h2>
         {note ? <p className='undp-typography bold'>{note}</p> : null}
