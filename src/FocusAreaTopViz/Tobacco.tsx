@@ -20,16 +20,17 @@ function TobaccoViz() {
         <ValueCard
           title='People in the world use tobacco'
           number='1.3 billion'
+          source='WHO 2023'
         />
         <ValueCard
           title='Deaths are attributed to tobacco each year'
           number='8.7 million'
-          source='WHO 2022'
+          source='WHO 2023'
         />
         <ValueCard
           title='Countries have ratified the WHO FCTC'
           number='183'
-          source='WHO 2023'
+          source='WHO FCTC 2023'
         />
       </div>
       <div
@@ -48,7 +49,7 @@ function TobaccoViz() {
           size={200}
           year={2020}
           dotColor='var(--dark-red)'
-          source='WHO 2022'
+          source='WHO 2023'
         />
       </div>
       <div
@@ -65,8 +66,8 @@ function TobaccoViz() {
           graphTitle='Tobacco users live in LMICs'
           value={80}
           size={200}
-          year={2022}
-          source='WHO 2022'
+          year={2023}
+          source='WHO 2023'
           dotColor='var(--blue-600)'
         />
       </div>
