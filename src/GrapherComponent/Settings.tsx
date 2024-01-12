@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Select, Radio, Checkbox } from 'antd';
 import domtoimage from 'dom-to-image';
 import sortBy from 'lodash.sortby';
+import { Database, FileDown } from 'lucide-react';
 import { CtxDataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
 import {
@@ -368,19 +369,26 @@ export function Settings(props: Props) {
                   </Select>
                 </div>
               ) : null}
-              <div className='flex-div flex-wrap'>
+              <div className='flex-div flex-wrap margin-top-02 margin-bottom-02 gap-04'>
                 <button
-                  className='undp-button button-primary'
+                  className='undp-button button-tertiary'
                   type='button'
+                  style={{ color: 'var(--blue-600)', padding: 0 }}
                   onClick={() => {
                     updateShowSource(true);
                   }}
                 >
+                  <Database
+                    stroke='var(--blue-600)'
+                    style={{ marginRight: '0.25rem' }}
+                    strokeWidth={2}
+                  />
                   Data Details
                 </button>
                 <button
-                  className='undp-button button-secondary'
+                  className='undp-button button-tertiary'
                   type='button'
+                  style={{ color: 'var(--blue-600)', padding: 0 }}
                   onClick={() => {
                     const node = document.getElementById(
                       'graph-node',
@@ -396,6 +404,11 @@ export function Settings(props: Props) {
                       });
                   }}
                 >
+                  <FileDown
+                    strokeWidth={2}
+                    stroke='var(--blue-600)'
+                    style={{ marginRight: '0.25rem' }}
+                  />
                   Download Graph
                 </button>
               </div>
