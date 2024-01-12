@@ -1,5 +1,5 @@
-import { format } from 'd3-format';
 import styled from 'styled-components';
+import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   valuePrimary: number;
@@ -85,17 +85,13 @@ export function CircleChartTobacco(props: Props) {
   const areaTertiary = (minValue.value / maxValue.value) * areaPrimary;
   const radiusTertiary = Math.sqrt(areaTertiary / Math.PI);
 
-  function formatValue(value: number) {
-    return format('.3s')(value).replace('G', ' bil').replace('M', ' mil');
-  }
-
-  const formattedPrimaryValue = formatValue(valuePrimary);
+  const formattedPrimaryValue = customFormat(valuePrimary);
   const formattedSecondaryValue = valueSecondary
-    ? formatValue(valueSecondary)
+    ? customFormat(valueSecondary)
     : null;
 
   const formattedTertiaryValue = valueTertiary
-    ? formatValue(valueTertiary)
+    ? customFormat(valueTertiary)
     : null;
 
   const secondaryCircleYPosition = fixedRadius - radiusSecondary;
