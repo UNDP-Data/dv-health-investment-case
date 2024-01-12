@@ -1,14 +1,8 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
+import { BarChart3, List, Map, ScatterChart } from 'lucide-react';
 import { Modal } from 'antd';
 import { CtxDataType, DataType, IndicatorMetaDataType } from '../Types';
-import {
-  ScatterPlotIcon,
-  BarGraphIcon,
-  MapIcon,
-  Logo,
-  DualAxesChartIcon,
-} from '../Icons';
 import Context from '../Context/Context';
 import { Settings } from './Settings';
 import { Graph } from './Graph';
@@ -23,11 +17,13 @@ interface Props {
   focusArea: string;
 }
 
-const IconEl = styled.div`
-  display: inline;
-  @media (max-width: 980px) {
-    display: none;
-  }
+const TabText = styled.div`
+  width: 100%;
+  font-family: var(--fontFamily);
+  font-size: 0.875rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export function GrapherComponent(props: Props) {
@@ -36,23 +32,7 @@ export function GrapherComponent(props: Props) {
     useContext(Context) as CtxDataType;
   const queryParams = new URLSearchParams(window.location.search);
   return (
-    <div className='margin-top-06 margin-bottom-06'>
-      <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
-        <div className='flex-div flex-vert-align-center'>
-          <Logo height={75} />
-          <div>
-            <h3
-              className='undp-typography margin-bottom-00'
-              style={{ color: 'var(--blue-600)' }}
-            >
-              Health Investment Case
-            </h3>
-            <h6 className='undp-typography margin-bottom-00'>
-              Exploring national health investment cases
-            </h6>
-          </div>
-        </div>
-      </div>
+    <div className='margin-top-02 margin-bottom-06'>
       <div className='dashboard-container'>
         {queryParams.get('showSettings') === 'false' ? null : (
           <div className='tabs-for-graphing-interface-container'>
@@ -64,18 +44,21 @@ export function GrapherComponent(props: Props) {
               onClick={() => {
                 updateGraphType('barGraph');
               }}
+              style={{
+                flexWrap: 'wrap',
+              }}
+              title='Ranks'
             >
-              <IconEl>
-                <BarGraphIcon
-                  size={48}
-                  fill={
-                    graphType === 'barGraph'
-                      ? 'var(--blue-600)'
-                      : 'var(--gray-500)'
-                  }
-                />
-              </IconEl>
-              Ranks
+              <BarChart3
+                size={40}
+                strokeWidth={1.25}
+                color={
+                  graphType === 'barGraph'
+                    ? 'var(--blue-600)'
+                    : 'var(--gray-500)'
+                }
+              />
+              <TabText>Ranks</TabText>
             </button>
             <button
               type='button'
@@ -85,18 +68,21 @@ export function GrapherComponent(props: Props) {
               onClick={() => {
                 updateGraphType('dataList');
               }}
+              style={{
+                flexWrap: 'wrap',
+              }}
+              title='Data List'
             >
-              <IconEl>
-                <DualAxesChartIcon
-                  size={48}
-                  fill={
-                    graphType === 'dataList'
-                      ? 'var(--blue-600)'
-                      : 'var(--gray-500)'
-                  }
-                />
-              </IconEl>
-              Data List
+              <List
+                size={40}
+                strokeWidth={1.25}
+                stroke={
+                  graphType === 'dataList'
+                    ? 'var(--blue-600)'
+                    : 'var(--gray-500)'
+                }
+              />
+              <TabText>Data List</TabText>
             </button>
             {focusArea !== 'All' ? (
               <button
@@ -107,18 +93,21 @@ export function GrapherComponent(props: Props) {
                 onClick={() => {
                   updateGraphType('scatterPlot');
                 }}
+                style={{
+                  flexWrap: 'wrap',
+                }}
+                title='Correlation'
               >
-                <IconEl>
-                  <ScatterPlotIcon
-                    size={48}
-                    fill={
-                      graphType === 'scatterPlot'
-                        ? 'var(--blue-600)'
-                        : 'var(--gray-500)'
-                    }
-                  />
-                </IconEl>
-                Correlation
+                <ScatterChart
+                  size={40}
+                  strokeWidth={1.25}
+                  stroke={
+                    graphType === 'scatterPlot'
+                      ? 'var(--blue-600)'
+                      : 'var(--gray-500)'
+                  }
+                />
+                <TabText>Correlation</TabText>
               </button>
             ) : null}
             <button
@@ -129,16 +118,19 @@ export function GrapherComponent(props: Props) {
               onClick={() => {
                 updateGraphType('map');
               }}
+              style={{
+                flexWrap: 'wrap',
+              }}
+              title='Maps'
             >
-              <IconEl>
-                <MapIcon
-                  size={48}
-                  fill={
-                    graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'
-                  }
-                />
-              </IconEl>
-              Maps
+              <Map
+                size={40}
+                strokeWidth={1.25}
+                stroke={
+                  graphType === 'map' ? 'var(--blue-600)' : 'var(--gray-500)'
+                }
+              />
+              <TabText>Maps</TabText>
             </button>
           </div>
         )}
@@ -181,32 +173,18 @@ export function GrapherComponentForCountry(props: CountryProps) {
   const { data, indicators, countrySelected } = props;
   return (
     <div className='margin-top-06 margin-bottom-06'>
-      <div className='flex-div flex-space-between flex-vert-align-center margin-bottom-05 flex-wrap'>
-        <div className='flex-div flex-vert-align-center'>
-          <Logo height={75} />
-          <div>
-            <h3
-              className='undp-typography margin-bottom-00'
-              style={{ color: 'var(--blue-600)' }}
-            >
-              Health Investment Case
-            </h3>
-            <h6 className='undp-typography margin-bottom-00'>
-              Exploring national health investment cases for {countrySelected}
-            </h6>
-          </div>
-        </div>
-      </div>
       <div className='dashboard-container'>
         <div className='tabs-for-graphing-interface-container'>
           <button
             type='button'
             className='tabs-for-graphing-interface selected'
+            style={{
+              flexWrap: 'wrap',
+            }}
+            title='Data List'
           >
-            <IconEl>
-              <DualAxesChartIcon size={48} fill='var(--blue-600)' />
-            </IconEl>
-            Data List
+            <List size={40} strokeWidth={1.25} stroke='var(--blue-600)' />
+            <TabText>Data List</TabText>
           </button>
         </div>
         <div className='graph-container'>
