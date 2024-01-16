@@ -20,12 +20,12 @@ function MentalHealthViz() {
         <ValueCard
           title='People in the world living with a mental health condition (1 in 8)'
           number='970 mil'
-          year={2022}
+          source='WHO (2022)'
         />
         <ValueCard
           title='Increase in major depressive disorders over one year during the COVID-19 pandemic'
           number='28%'
-          year={2022}
+          source='WHO (2022)'
         />
       </div>
       <div
@@ -44,7 +44,7 @@ function MentalHealthViz() {
           value={[75, 25]}
           colors={['var(--dark-green)', 'var(--gray-400)']}
           note='WHO Member States'
-          year={2020}
+          source='WHO (2021)'
         />
       </div>
       <div
@@ -64,7 +64,7 @@ function MentalHealthViz() {
           value={[25, 75]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
           note='49 countries'
-          year={2020}
+          source='WHO (2021)'
         />
       </div>
     </div>
