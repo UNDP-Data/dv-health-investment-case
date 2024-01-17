@@ -81,7 +81,7 @@ export function AppTopCards() {
           graphTitle='People in the world who do not have access to essential health services'
           dataKey=''
           note='1 out of 2 people'
-          suffix=' billion'
+          suffix=' billion'
           source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023) '
         />
         <ValueCard
@@ -90,12 +90,12 @@ export function AppTopCards() {
           source='WHO Mental Health Key Facts (2022)'
           dataKey=''
           note='1 out of 8 people'
-          suffix=' million'
+          suffix=' million'
         />
         <ValueCardDouble
           value={1.3}
           value2={93}
-          suffix=' million'
+          suffix=' million'
           suffix2=' %'
           dataKey2=''
           dataKey=''
@@ -114,7 +114,7 @@ export function AppTopCards() {
           value={20}
           value2={1.7}
           suffix=''
-          suffix2=' billion'
+          suffix2=' billion'
           graphTitle='Number of neglected tropical diseases (NTDs)'
           graphTitle2='People affected by an NTD'
           source='WHO NTDs Key Facts (2022)'
