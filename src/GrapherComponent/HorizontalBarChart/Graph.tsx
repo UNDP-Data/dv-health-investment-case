@@ -15,6 +15,7 @@ import {
 import Context from '../../Context/Context';
 import { CONTINENTS, INCOME_GROUPS } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
+import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   data: DataType[];
@@ -40,7 +41,7 @@ export function Graph(props: Props) {
     undefined,
   );
   const margin = {
-    top: 150,
+    top: 180,
     bottom: 10,
     left: 225,
     right: 40,
@@ -195,7 +196,10 @@ export function Graph(props: Props) {
         <text x={25} y={50} fontSize={18} fill='#212121'>
           {xIndicatorMetaData.Indicator}
         </text>
-        <g transform={`translate(${margin.left},70)`}>
+        <text x={25} y={68} fontSize={14} fill='#AAA'>
+          {xIndicatorMetaData.FocusArea} Investment Case
+        </text>
+        <g transform={`translate(${margin.left},100)`}>
           <text x={0} y={10} fontSize={14} fill='#212121'>
             {colorIndicatorMetaData?.Indicator
               ? colorIndicatorMetaData?.Indicator
@@ -391,14 +395,7 @@ export function Graph(props: Props) {
                   dy={14}
                   fontSize={12}
                 >
-                  {d.xVal < 1000000
-                    ? format(',')(parseFloat(d.xVal.toFixed(2))).replace(
-                        ',',
-                        ' ',
-                      )
-                    : format('.3s')(d.xVal)
-                        .replace('G', ' bil')
-                        .replace('M', ' mil')}
+                  {customFormat(d.xVal)}
                 </text>
               </g>
             );
