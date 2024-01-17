@@ -77,12 +77,12 @@ export function AppTopCards() {
           dotColors='var(--dark-red)'
         />
         <ValueCard
-          value={2}
-          graphTitle='People in the world who do not have access to essential medicines'
-          source='OHCHR Access to Vaccines and Medicines (2023)'
+          value={4.5}
+          graphTitle='People in the world who do not have access to essential health services'
           dataKey=''
-          note='1 out of 4 people'
+          note='1 out of 2 people'
           suffix=' billion'
+          source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023) '
         />
         <ValueCard
           value={970}
