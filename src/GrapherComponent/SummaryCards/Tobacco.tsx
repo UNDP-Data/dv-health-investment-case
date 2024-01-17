@@ -65,7 +65,6 @@ export function TobaccoSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'tobacco_burden')
               ].value
             }
-            year={data.tobacco_reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden')
@@ -81,7 +80,6 @@ export function TobaccoSummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
               ].Indicator
             }
-            year2={data.tobacco_reference_year}
             source={
               indicators[
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
@@ -96,7 +94,6 @@ export function TobaccoSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'averted_deaths')
               ].value
             }
-            year={data.tobacco_reference_year}
             dataKey='averted_deaths'
             graphTitle={
               indicators[
@@ -115,7 +112,6 @@ export function TobaccoSummary(props: Props) {
         ) !== -1 ? (
           <CircleChartTobacco
             graphTitle='Tobacco-related economic losses over 15 years if no intervention vs total economic benefits from interventions, in USD'
-            year={data.tobacco_reference_year}
             valuePrimary={
               data.data[
                 data.data.findIndex(
@@ -139,6 +135,16 @@ export function TobaccoSummary(props: Props) {
           />
         ) : null}
       </WrapperEl>
+      <div
+        className='undp-typography italics'
+        style={{
+          fontSize: '1rem',
+          color: 'var(--gray-500)',
+        }}
+      >
+        Year that the modelling of the tobacco control investment case refers
+        to: {data.tobacco_reference_year}
+      </div>
     </div>
   );
 }

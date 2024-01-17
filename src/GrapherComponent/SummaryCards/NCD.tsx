@@ -64,7 +64,6 @@ export function NCDSummary(props: Props) {
                 data.data.findIndex(el => el.indicator === 'econ_burden')
               ].value
             }
-            year={data.NCD_reference_year}
             dataKey='econ_burden'
             dataKey2='econ_burden_perc_of_GDP'
             graphTitle={
@@ -85,7 +84,6 @@ export function NCDSummary(props: Props) {
                 )
               ].Indicator
             }
-            year2={data.NCD_reference_year}
             prefix='$'
             suffix2='%'
             source={
@@ -109,7 +107,6 @@ export function NCDSummary(props: Props) {
               ].value
             }
             dataKey='15y_deaths_averted_total'
-            year={data.NCD_reference_year}
             graphTitle={
               indicators[
                 indicators.findIndex(
@@ -132,7 +129,6 @@ export function NCDSummary(props: Props) {
           <CircleChartNCD
             graphTitle='Total economic benefits over 15 years from implementing all interventions, in USD'
             valuePrimary={data.GDP_USD}
-            year={data.NCD_reference_year}
             dataKeyPrimary='GDP'
             dataKeySecondary='15y_econ_benefits_total'
             valueSecondary={
@@ -146,6 +142,16 @@ export function NCDSummary(props: Props) {
           />
         ) : null}
       </WrapperEl>
+      <div
+        className='undp-typography italics'
+        style={{
+          fontSize: '1rem',
+          color: 'var(--gray-500)',
+        }}
+      >
+        Year that the modelling of the NCD investment case refers to:{' '}
+        {data.NCD_reference_year}
+      </div>
     </div>
   );
 }
