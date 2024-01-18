@@ -42,7 +42,7 @@ export function Graph(props: Props) {
     undefined,
   );
   const margin = {
-    top: 180,
+    top: 100,
     bottom: 10,
     left: 225,
     right: 40,
@@ -193,16 +193,24 @@ export function Graph(props: Props) {
 
   return (
     <div className='undp-scrollbar'>
-      <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
-        <text x={25} y={50} fontSize={18} fill='#212121'>
+      <div style={{ padding: '2rem 0 0 2rem' }}>
+        <p
+          className='undp-typography'
+          style={{ fontSize: '1.1rem', marginBottom: '0', lineHeight: '1.1' }}
+        >
           {xIndicatorMetaData.Indicator}
-        </text>
+        </p>
         {focusArea === 'All' ? (
-          <text x={25} y={68} fontSize={14} fill='#AAA'>
+          <p
+            className='undp-typography'
+            style={{ fontSize: '0.9rem', color: '#AAA' }}
+          >
             {xIndicatorMetaData.FocusArea} Investment Case
-          </text>
+          </p>
         ) : null}
-        <g transform={`translate(${margin.left},100)`}>
+      </div>
+      <svg width='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
+        <g transform={`translate(${margin.left},10)`}>
           <text x={0} y={10} fontSize={14} fill='#212121'>
             {colorIndicatorMetaData?.Indicator
               ? colorIndicatorMetaData?.Indicator

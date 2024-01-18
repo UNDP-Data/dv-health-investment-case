@@ -22,6 +22,7 @@ import { Tooltip } from '../../Components/Tooltip';
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
+  focusArea: string;
 }
 
 const G = styled.g`
@@ -29,7 +30,7 @@ const G = styled.g`
 `;
 
 export function UnivariateMap(props: Props) {
-  const { data, indicators } = props;
+  const { data, indicators, focusArea } = props;
   const {
     xAxisIndicator,
     sizeIndicator,
@@ -137,6 +138,22 @@ export function UnivariateMap(props: Props) {
   }, [svgHeight, svgWidth]);
   return (
     <>
+      <div style={{ padding: '2rem 0 0 2rem' }}>
+        <p
+          className='undp-typography'
+          style={{ fontSize: '1.1rem', marginBottom: '0', lineHeight: '1.1' }}
+        >
+          {xIndicatorMetaData.Indicator}
+        </p>
+        {focusArea === 'All' ? (
+          <p
+            className='undp-typography'
+            style={{ fontSize: '0.9rem', color: '#AAA', marginBottom: '0' }}
+          >
+            {xIndicatorMetaData.FocusArea} Investment Case
+          </p>
+        ) : null}
+      </div>
       <svg
         width='100%'
         height='100%'

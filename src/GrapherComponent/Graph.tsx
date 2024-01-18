@@ -33,7 +33,11 @@ export function Graph(props: Props) {
           <ScatterPlot data={data} indicators={indicators} />
         ) : null
       ) : graphType === 'map' ? (
-        <UnivariateMap data={data} indicators={indicators} />
+        <UnivariateMap
+          data={data}
+          indicators={indicators}
+          focusArea={focusArea}
+        />
       ) : graphType === 'barGraph' ? (
         verticalBarLayout ? (
           <HorizontalBarChart
