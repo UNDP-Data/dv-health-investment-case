@@ -6,6 +6,7 @@ import { Graph } from './Graph';
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
+  focusArea: string;
 }
 
 const GraphDiv = styled.div`
@@ -18,7 +19,7 @@ const GraphDiv = styled.div`
 `;
 
 export function BarChart(props: Props) {
-  const { data, indicators } = props;
+  const { data, indicators, focusArea } = props;
 
   const [svgWidth, setSvgWidth] = useState(0);
   const [svgHeight, setSvgHeight] = useState(0);
@@ -37,6 +38,7 @@ export function BarChart(props: Props) {
           indicators={indicators}
           svgWidth={svgWidth}
           svgHeight={svgHeight}
+          focusArea={focusArea}
         />
       ) : null}
     </GraphDiv>

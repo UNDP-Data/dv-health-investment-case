@@ -46,7 +46,7 @@ export function Graph(props: Props) {
             focusArea={focusArea}
           />
         ) : (
-          <BarChart data={data} indicators={indicators} />
+          <BarChart data={data} indicators={indicators} focusArea={focusArea} />
         )
       ) : (
         <DataList data={data} indicators={indicators} countries={countries} />

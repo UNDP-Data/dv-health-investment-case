@@ -13,7 +13,7 @@ import {
   IndicatorMetaDataType,
 } from '../../Types';
 import Context from '../../Context/Context';
-import { CONTINENTS, INCOME_GROUPS, MAX_TEXT_LENGTH } from '../../Constants';
+import { CONTINENTS, INCOME_GROUPS } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
 
 interface Props {
@@ -21,10 +21,11 @@ interface Props {
   indicators: IndicatorMetaDataType[];
   svgWidth: number;
   svgHeight: number;
+  focusArea: string;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, svgHeight, svgWidth } = props;
+  const { data, indicators, svgHeight, svgWidth, focusArea } = props;
   const {
     xAxisIndicator,
     colorIndicator,
@@ -40,8 +41,8 @@ export function Graph(props: Props) {
     undefined,
   );
   const margin = {
-    top: 90,
-    bottom: 50,
+    top: 50,
+    bottom: 100,
     left: 90,
     right: 20,
   };
@@ -128,7 +129,8 @@ export function Graph(props: Props) {
   const xScale = scaleBand()
     .domain(dataFormatted.map(d => d.countryCode))
     .range([0, graphWidth])
-    .paddingInner(0.25);
+    .paddingInner(0.1)
+    .paddingOuter(0.2);
 
   let colorList: string[] =
     colorIndicator === 'Income Groups'
@@ -192,6 +194,22 @@ export function Graph(props: Props) {
     .unknown(UNDPColorModule.graphGray);
   return (
     <>
+      <div style={{ padding: '2rem 0 0 2rem' }}>
+        <p
+          className='undp-typography'
+          style={{ fontSize: '1.1rem', marginBottom: '0', lineHeight: '1.1' }}
+        >
+          {xIndicatorMetaData.Indicator}
+        </p>
+        {focusArea === 'All' ? (
+          <p
+            className='undp-typography'
+            style={{ fontSize: '0.9rem', color: '#AAA' }}
+          >
+            {xIndicatorMetaData.FocusArea} Investment Case
+          </p>
+        ) : null}
+      </div>
       <svg width='100%' height='100%' viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
         <g transform='translate(90,20)'>
           <text x={0} y={10} fontSize={14} fill='#212121'>
@@ -249,7 +267,7 @@ export function Graph(props: Props) {
               y={25}
               textAnchor='middle'
               fontSize={12}
-              fill={UNDPColorModule.graphGray}
+              fill='#212121'
             >
               NA
             </text>
@@ -301,19 +319,6 @@ export function Graph(props: Props) {
               dx={-2}
             >
               {0}
-            </text>
-            <text
-              transform={`translate(-50, ${graphHeight / 2}) rotate(-90)`}
-              fill='#212121'
-              textAnchor='middle'
-              fontSize={12}
-            >
-              {xIndicatorMetaData.Indicator.length > MAX_TEXT_LENGTH
-                ? `${xIndicatorMetaData.Indicator.substring(
-                    0,
-                    MAX_TEXT_LENGTH,
-                  )}...`
-                : xIndicatorMetaData.Indicator}
             </text>
           </g>
 
