@@ -3,7 +3,6 @@ import { CtxDataType, DataType, IndicatorMetaDataType } from '../Types';
 import Context from '../Context/Context';
 import { HorizontalBarChart } from './HorizontalBarChart';
 import { ScatterPlot } from './ScatterPlot';
-import { BivariateMap } from './BivariateMap';
 import { UnivariateMap } from './UnivariateMap';
 import { BarChart } from './BarChart';
 import { DataList } from './DataList';
@@ -33,11 +32,7 @@ export function Graph(props: Props) {
           <ScatterPlot data={data} indicators={indicators} />
         ) : null
       ) : graphType === 'map' ? (
-        yAxisIndicator ? (
-          <BivariateMap data={data} indicators={indicators} />
-        ) : (
-          <UnivariateMap data={data} indicators={indicators} />
-        )
+        <UnivariateMap data={data} indicators={indicators} />
       ) : graphType === 'barGraph' ? (
         verticalBarLayout ? (
           <HorizontalBarChart data={data} indicators={indicators} />
