@@ -11,10 +11,11 @@ interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
   countries: string[];
+  focusArea: string;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, countries } = props;
+  const { data, indicators, countries, focusArea } = props;
   const { graphType, yAxisIndicator, verticalBarLayout } = useContext(
     Context,
   ) as CtxDataType;
@@ -35,7 +36,11 @@ export function Graph(props: Props) {
         <UnivariateMap data={data} indicators={indicators} />
       ) : graphType === 'barGraph' ? (
         verticalBarLayout ? (
-          <HorizontalBarChart data={data} indicators={indicators} />
+          <HorizontalBarChart
+            data={data}
+            indicators={indicators}
+            focusArea={focusArea}
+          />
         ) : (
           <BarChart data={data} indicators={indicators} />
         )

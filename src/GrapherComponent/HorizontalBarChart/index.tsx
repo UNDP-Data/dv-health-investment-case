@@ -5,10 +5,11 @@ import { Graph } from './Graph';
 interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
+  focusArea: string;
 }
 
 export function HorizontalBarChart(props: Props) {
-  const { data, indicators } = props;
+  const { data, indicators, focusArea } = props;
 
   const [svgWidth, setSvgWidth] = useState(0);
   const graphDiv = useRef<HTMLDivElement>(null);
@@ -20,7 +21,12 @@ export function HorizontalBarChart(props: Props) {
   return (
     <div ref={graphDiv} style={{ flexGrow: 1 }}>
       {svgWidth ? (
-        <Graph data={data} indicators={indicators} svgWidth={svgWidth} />
+        <Graph
+          data={data}
+          indicators={indicators}
+          svgWidth={svgWidth}
+          focusArea={focusArea}
+        />
       ) : null}
     </div>
   );

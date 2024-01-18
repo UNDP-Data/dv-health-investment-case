@@ -143,7 +143,12 @@ export function GrapherComponent(props: Props) {
               focusArea={focusArea}
             />
           )}
-          <Graph data={data} indicators={indicators} countries={countries} />
+          <Graph
+            data={data}
+            indicators={indicators}
+            countries={countries}
+            focusArea={focusArea}
+          />
         </div>
       </div>
       <Modal

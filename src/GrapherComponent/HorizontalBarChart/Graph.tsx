@@ -21,10 +21,11 @@ interface Props {
   data: DataType[];
   indicators: IndicatorMetaDataType[];
   svgWidth: number;
+  focusArea: string;
 }
 
 export function Graph(props: Props) {
-  const { data, indicators, svgWidth } = props;
+  const { data, indicators, svgWidth, focusArea } = props;
   const {
     xAxisIndicator,
     colorIndicator,
@@ -196,9 +197,11 @@ export function Graph(props: Props) {
         <text x={25} y={50} fontSize={18} fill='#212121'>
           {xIndicatorMetaData.Indicator}
         </text>
-        <text x={25} y={68} fontSize={14} fill='#AAA'>
-          {xIndicatorMetaData.FocusArea} Investment Case
-        </text>
+        {focusArea === 'All' ? (
+          <text x={25} y={68} fontSize={14} fill='#AAA'>
+            {xIndicatorMetaData.FocusArea} Investment Case
+          </text>
+        ) : null}
         <g transform={`translate(${margin.left},100)`}>
           <text x={0} y={10} fontSize={14} fill='#212121'>
             {colorIndicatorMetaData?.Indicator
