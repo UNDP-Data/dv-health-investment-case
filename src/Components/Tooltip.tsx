@@ -132,12 +132,11 @@ export function Tooltip(props: Props) {
               <h6 className='undp-typography margin-bottom-00 bold'>
                 {d.prefix && d.value && d.value !== 'NA' ? `${d.prefix} ` : ''}
                 {typeof d.value === 'number'
-                  ? d.value < 1000000
-                    ? format(',')(parseFloat(d.value.toFixed(2))).replace(
-                        ',',
-                        ' ',
-                      )
-                    : format('.3s')(d.value)
+                  ? Math.abs(d.value) < 1
+                    ? d.value
+                    : format(',.1f')(d.value)
+                        .replace(/\.0+$/, '') // Remove trailing zeros after decimal point
+                        .replace(/\.(?=[^0-9]|$)/, '') // Remove decimal point if there are no decimal digits after it
                         .replace('G', ' bil')
                         .replace('M', ' mil')
                   : d.value}

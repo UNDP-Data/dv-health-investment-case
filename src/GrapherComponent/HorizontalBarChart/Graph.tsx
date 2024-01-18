@@ -15,7 +15,6 @@ import {
 import Context from '../../Context/Context';
 import { CONTINENTS, INCOME_GROUPS } from '../../Constants';
 import { Tooltip } from '../../Components/Tooltip';
-import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   data: DataType[];
@@ -406,7 +405,13 @@ export function Graph(props: Props) {
                   dy={14}
                   fontSize={12}
                 >
-                  {customFormat(d.xVal)}
+                  {Math.abs(d.xVal) < 1
+                    ? d.xVal
+                    : format(',.1f')(d.xVal)
+                        .replace(/\.0+$/, '') // Remove trailing zeros after decimal point
+                        .replace(/\.(?=[^0-9]|$)/, '') // Remove decimal point if there are no decimal digits after it
+                        .replace('G', ' bil')
+                        .replace('M', ' mil')}
                 </text>
               </g>
             );

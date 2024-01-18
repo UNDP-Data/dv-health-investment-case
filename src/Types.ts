@@ -75,10 +75,10 @@ export interface IndicatorMetaDataWithYear extends IndicatorMetaDataType {
   years: number[];
 }
 export interface HoverRowDataType {
+  suffix?: string | number | undefined;
   title?: string;
   value?: string | number;
   prefix?: string;
-  suffix?: string;
   type: 'x-axis' | 'y-axis' | 'color' | 'size';
   year?: number;
   color?: string;
