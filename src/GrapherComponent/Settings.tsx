@@ -508,7 +508,7 @@ export function Settings(props: Props) {
               style={{ display: filterExpanded ? 'flex' : 'none' }}
             >
               <div className='settings-option-div'>
-                <p className='label'>WHO Region</p>
+                <p className='label'>UNDP Region</p>
                 <Select
                   mode='multiple'
                   allowClear

@@ -275,7 +275,7 @@ function WorldEl(props: Props) {
             return {
               ...d,
               data: indicatorData,
-              WHO_region: countryData.WHO_region,
+              UNDP_region: countryData.UNDP_region,
               tobacco_reference_year: countryData.tobacco_reference_year,
               NCD_reference_year: countryData.NCD_reference_year,
             };
@@ -290,8 +290,8 @@ function WorldEl(props: Props) {
             ).map(d => d['Country or Area']),
           );
           setRegionList(
-            uniqBy(dataFormatted, d => d.WHO_region)
-              .map(d => d.WHO_region)
+            uniqBy(dataFormatted, d => d.UNDP_region)
+              .map(d => d.UNDP_region)
               .filter(d => d && d !== '') as string[],
           );
           setIndicatorsList(indicatorMetaData);

@@ -31,7 +31,7 @@ export interface IndicatorDataType {
 
 export interface DataType extends CountryGroupDataType {
   data: IndicatorDataType[];
-  WHO_region?: string;
+  UNDP_region?: string;
   NCD_reference_year?: string;
   tobacco_reference_year?: string;
   GDP_USD?: number;

@@ -123,7 +123,7 @@ function CountryEl(props: Props) {
             return {
               ...d,
               data: indicatorData,
-              WHO_region: countryData.WHO_region,
+              UNDP_region: countryData.UNDP_region,
               tobacco_reference_year: countryData.tobacco_reference_year,
               NCD_reference_year: countryData.NCD_reference_year,
               GDP_USD: countryData.GDP_USD,

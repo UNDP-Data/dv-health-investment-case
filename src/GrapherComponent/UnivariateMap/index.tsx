@@ -162,7 +162,7 @@ export function UnivariateMap(props: Props) {
 
             const regionOpacity =
               selectedRegions.length === 0 ||
-              selectedRegions.indexOf(d['Group 2']) !== -1;
+              selectedRegions.indexOf(d.UNDP_region || '') !== -1;
             const incomeGroupOpacity =
               selectedIncomeGroups.length === 0 ||
               selectedIncomeGroups.indexOf(d['Income group']) !== -1;
@@ -450,7 +450,7 @@ export function UnivariateMap(props: Props) {
 
                 const regionOpacity =
                   selectedRegions.length === 0 ||
-                  selectedRegions.indexOf(d.WHO_region || '') !== -1;
+                  selectedRegions.indexOf(d.UNDP_region || '') !== -1;
                 const incomeGroupOpacity =
                   selectedIncomeGroups.length === 0 ||
                   selectedIncomeGroups.indexOf(d['Income group']) !== -1;

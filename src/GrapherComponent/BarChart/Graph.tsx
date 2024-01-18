@@ -84,7 +84,7 @@ export function Graph(props: Props) {
         );
         const region = !!(
           selectedRegions.length === 0 ||
-          selectedRegions.indexOf(d.WHO_region || '') !== -1
+          selectedRegions.indexOf(d.UNDP_region || '') !== -1
         );
         const country = !!(
           selectedCountries.length === 0 ||
