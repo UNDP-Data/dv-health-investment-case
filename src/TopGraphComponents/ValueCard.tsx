@@ -14,7 +14,7 @@ const StatEl = styled.h3`
   line-height: 0.9 !important;
   text-shadow: none !important;
   -webkit-text-stroke: 2px var(--black) !important;
-  color: var(--gray-200) !important;
+  color: var(--gray-300) !important;
   letter-spacing: 0.05rem !important;
   margin-top: 0 !important;
   margin-bottom: 1rem !important;
@@ -49,7 +49,7 @@ export function ValueCard(props: Props) {
           lineHeight: '1.3',
         }}
       >
-        <StatEl className='undp-typography bold margin-bottom-03'>
+        <StatEl className='bold margin-bottom-03'>
           {number}
           {year ? <YearEl> ({year})</YearEl> : null}
         </StatEl>
