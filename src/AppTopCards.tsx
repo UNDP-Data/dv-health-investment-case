@@ -64,7 +64,7 @@ export function AppTopCards() {
           size={340}
           value={[13, 87]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          note='Total deaths: 8.7 million'
+          note='Total deaths: 8.7 million'
           source='WHO Report on the Global Tobacco Epidemic (2023), UN World Population Prospects (2022)'
         />
         <DotPlot

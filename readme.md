@@ -35,17 +35,17 @@ Main visualization `Health Investment Case` will be rendered within the followin
 Cards for the Featured Indicators section will be rendered within the following div on a static page:
 
 ```
-<div id="root" data-bucket-embed-top-card class="focusArea~Tobacco"></div>
+<div id="root" data-bucket-embed-top-card class="focusArea~Tobacco_control"></div>
 ```
 
 Top graphs for the focus area pages will be rendered within the following div on a static page:
 
 ```
-<div data-bucket-top-graphs-embed class="focusArea~Tobacco"></div>
+<div data-bucket-top-graphs-embed class="focusArea~Tobacco_control"></div>
 
 ```
 
-Please note that there are three focus areas available right now: ~Tobacco, ~NCD, ~All (Tobacco + NCD combined)
+Please note that there are three focus areas available right now: ~Tobacco_control, ~NCD, ~All (Tobacco control + NCD combined)
 
 ---
 
