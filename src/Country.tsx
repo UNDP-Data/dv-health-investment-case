@@ -39,12 +39,12 @@ function CountryEl(props: Props) {
       .defer(
         csv,
         // `./Data/${focusArea}.csv`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/updated-data/All.csv`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/main/All.csv`,
       )
       .defer(
         json,
         // `./Data/${focusArea}MetaData.json`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/merge-metadata/AllMetaData.json`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/main/AllMetaData.json`,
       )
       .defer(
         json,
