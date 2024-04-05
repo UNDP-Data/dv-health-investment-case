@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { customFormat } from '../../Utils/CustomFormat';
+import { IndicatorMetaDataType } from '../../Types';
 
 interface Props {
   year?: string | number;
@@ -17,6 +18,7 @@ interface Props {
   prefix2?: string;
   dataKey?: string;
   dataKey2?: string;
+  indicators: IndicatorMetaDataType[];
 }
 
 const StatCardsEl = styled.div`
@@ -80,6 +82,7 @@ export function ValueCardDouble(props: Props) {
     prefix2,
     dataKey,
     dataKey2,
+    indicators,
     graphDescription2,
   } = props;
 
@@ -104,7 +107,17 @@ export function ValueCardDouble(props: Props) {
       >
         <StatEl>
           {prefix || ''}
-          {customFormat(value, dataKey)}
+          {customFormat(
+            value,
+            indicators.findIndex(d => d.DataKey === dataKey) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey)]
+                  .IsYear,
+            indicators.findIndex(d => d.DataKey === dataKey) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey)]
+                  .IsPeopleValue,
+          )}
           {suffix || ''} {year ? <YearEl>({year})</YearEl> : null}
         </StatEl>
       </div>
@@ -126,7 +139,18 @@ export function ValueCardDouble(props: Props) {
         }}
       >
         <StatEl>
-          {prefix2 || ''} {customFormat(value2, dataKey2)}
+          {prefix2 || ''}{' '}
+          {customFormat(
+            value2,
+            indicators.findIndex(d => d.DataKey === dataKey2) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey2)]
+                  .IsYear,
+            indicators.findIndex(d => d.DataKey === dataKey) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey2)]
+                  .IsPeopleValue,
+          )}
           {suffix2 || ''} {year2 ? <YearEl>({year2})</YearEl> : null}
         </StatEl>
       </div>

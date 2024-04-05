@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { customFormat } from '../../Utils/CustomFormat';
+import { IndicatorMetaDataType } from '../../Types';
 
 interface Props {
   year?: string | number;
@@ -11,6 +12,7 @@ interface Props {
   source: string;
   note?: string;
   dataKey?: string;
+  indicators: IndicatorMetaDataType[];
 }
 
 const StatCardsEl = styled.div`
@@ -78,6 +80,7 @@ export function ValueCard(props: Props) {
     note,
     graphDescription,
     dataKey,
+    indicators,
   } = props;
 
   return (
@@ -99,17 +102,21 @@ export function ValueCard(props: Props) {
           justifyContent: 'center',
         }}
       >
-        {year ? (
-          <StatEl>
-            {prefix || ''} {customFormat(value, dataKey)}
-            {suffix || ''} <YearEl>({year})</YearEl>
-          </StatEl>
-        ) : (
-          <StatEl>
-            {prefix || ''} {customFormat(value, dataKey)}
-            {suffix || ''}
-          </StatEl>
-        )}
+        <StatEl>
+          {prefix || ''}
+          {customFormat(
+            value,
+            indicators.findIndex(d => d.DataKey === dataKey) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey)]
+                  .IsYear,
+            indicators.findIndex(d => d.DataKey === dataKey) === -1
+              ? false
+              : indicators[indicators.findIndex(d => d.DataKey === dataKey)]
+                  .IsPeopleValue,
+          )}
+          {suffix || ''} {year ? <YearEl>({year})</YearEl> : null}
+        </StatEl>
         {note && note !== '' ? <NoteEl>{note}</NoteEl> : null}
       </div>
       {source && source !== '' ? (

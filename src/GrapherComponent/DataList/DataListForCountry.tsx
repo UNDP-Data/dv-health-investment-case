@@ -131,7 +131,8 @@ export function DataListForCountry(props: Props) {
                                         el => el.indicator === d.DataKey,
                                       )
                                     ].value,
-                                    d.DataKey,
+                                    d.IsYear,
+                                    d.IsPeopleValue,
                                   )
                                 : dataFilteredByCountry[
                                     dataFilteredByCountry.findIndex(

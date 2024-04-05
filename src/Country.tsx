@@ -10,14 +10,6 @@ import {
   IndicatorMetaDataType,
 } from './Types';
 import { GrapherComponentForCountry } from './GrapherComponent';
-import {
-  KEYS_FROM_DATA_TOBACCO,
-  KEY_WITH_PERCENT_VALUE_TOBACCO,
-  KEYS_FROM_DATA_NCD,
-  KEY_WITH_PERCENT_VALUE_NCD,
-  KEYS_FROM_DATA_ALL,
-  KEY_WITH_PERCENT_VALUE_ALL,
-} from './Constants';
 import { CountrySummary } from './GrapherComponent/SummaryCards';
 
 interface Props {
@@ -47,12 +39,12 @@ function CountryEl(props: Props) {
       .defer(
         csv,
         // `./Data/${focusArea}.csv`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/main/${focusArea}.csv`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/updated-data/All.csv`,
       )
       .defer(
         json,
         // `./Data/${focusArea}MetaData.json`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/main/${focusArea}MetaData.json`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/merge-metadata/AllMetaData.json`,
       )
       .defer(
         json,
@@ -85,30 +77,36 @@ function CountryEl(props: Props) {
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
             if (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
               -1
             )
               return d;
             const countryData =
               data[
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code'])
               ];
             const selectedKeys =
-              focusArea === 'Tobacco'
-                ? KEYS_FROM_DATA_TOBACCO
-                : focusArea === 'NCD'
-                ? KEYS_FROM_DATA_NCD
-                : focusArea === 'All'
-                ? KEYS_FROM_DATA_ALL
-                : [];
+              focusArea === 'All'
+                ? indicatorMetaData.map(el => el.DataKey)
+                : indicatorMetaData
+                    .filter(
+                      el => el.FocusArea === focusArea.replaceAll('_', ' '),
+                    )
+                    .map(el => el.DataKey);
             const selectedKeysPercent =
-              focusArea === 'Tobacco'
-                ? KEY_WITH_PERCENT_VALUE_TOBACCO
-                : focusArea === 'NCD'
-                ? KEY_WITH_PERCENT_VALUE_NCD
-                : focusArea === 'All'
-                ? KEY_WITH_PERCENT_VALUE_ALL
-                : [];
+              focusArea === 'All'
+                ? indicatorMetaData
+                    .filter(el => el.IsPercent)
+                    .map(el => el.DataKey)
+                : indicatorMetaData
+                    .filter(
+                      el =>
+                        el.FocusArea === focusArea.replaceAll('_', ' ') &&
+                        el.IsPercent,
+                    )
+                    .map(el => el.DataKey);
             const indicatorData: IndicatorDataType[] = selectedKeys
               .map(key => ({
                 indicator: key,
@@ -137,7 +135,13 @@ function CountryEl(props: Props) {
               .sort((a, b) => a.localeCompare(b)),
           );
           setCountryId('Armenia');
-          setIndicatorsList(indicatorMetaData);
+          setIndicatorsList(
+            focusArea === 'All'
+              ? indicatorMetaData
+              : indicatorMetaData.filter(
+                  d => d.FocusArea === focusArea.replaceAll('_', ' '),
+                ),
+          );
         },
       );
   }, []);

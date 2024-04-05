@@ -162,7 +162,7 @@ export function Settings(props: Props) {
                     updateXAxisIndicator(d);
                   }}
                   defaultValue={
-                    focusArea === 'Tobacco'
+                    focusArea === 'Tobacco_control'
                       ? DEFAULT_VALUES_TOBACCO.firstMetric
                       : focusArea === 'NCD'
                       ? DEFAULT_VALUES_NCD.firstMetric
@@ -208,7 +208,7 @@ export function Settings(props: Props) {
                       updateYAxisIndicator(d);
                     }}
                     defaultValue={
-                      focusArea === 'Tobacco'
+                      focusArea === 'Tobacco_control'
                         ? DEFAULT_VALUES_TOBACCO.secondMetric
                         : focusArea === 'NCD'
                         ? DEFAULT_VALUES_NCD.secondMetric
@@ -246,45 +246,6 @@ export function Settings(props: Props) {
                         </Select.Option>
                       ))
                     )}
-                  </Select>
-                </div>
-              ) : graphType === 'map' && focusArea !== 'All' ? (
-                <div className='settings-option-div'>
-                  <p className='label'>Secondary Indicator (optional)</p>
-                  <Select
-                    showSearch
-                    allowClear
-                    clearIcon={<div className='clearIcon' />}
-                    style={{ width: '100%' }}
-                    className='undp-select'
-                    value={yAxisIndicator}
-                    placeholder='Please select'
-                    onChange={d => {
-                      updateYAxisIndicator(d);
-                    }}
-                    defaultValue={
-                      focusArea === 'Tobacco'
-                        ? DEFAULT_VALUES_TOBACCO.secondMetric
-                        : focusArea === 'NCD'
-                        ? DEFAULT_VALUES_NCD.secondMetric
-                        : DEFAULT_VALUES_ALL.secondMetric
-                    }
-                    listHeight={400}
-                  >
-                    <Select.OptGroup label='Tobacco control'>
-                      {optionsTobacco.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
-                    <Select.OptGroup label='NCDs'>
-                      {optionsNCD.map(d => (
-                        <Select.Option className='undp-select-option' key={d}>
-                          {d}
-                        </Select.Option>
-                      ))}
-                    </Select.OptGroup>
                   </Select>
                 </div>
               ) : null}
@@ -354,7 +315,7 @@ export function Settings(props: Props) {
                       updateColorIndicator(d);
                     }}
                     defaultValue={
-                      focusArea === 'Tobacco'
+                      focusArea === 'Tobacco_control'
                         ? DEFAULT_VALUES_TOBACCO.colorMetric
                         : focusArea === 'NCD'
                         ? DEFAULT_VALUES_NCD.colorMetric
@@ -412,10 +373,22 @@ export function Settings(props: Props) {
                   Download Graph
                 </button>
               </div>
-              <p className='label' style={{ color: 'var(--gray-600)' }}>
-                These data may not be comparable across different types of
-                health investment cases
-              </p>
+              <div>
+                <p className='label' style={{ color: 'var(--gray-600)' }}>
+                  These data may not be comparable across different types of
+                  health investment cases
+                </p>
+                {focusArea === 'NCD' || focusArea === 'All' ? (
+                  <p className='label' style={{ color: 'var(--gray-600)' }}>
+                    Due to the high cost of medical treatments, clinical
+                    interventions such as NCD treatments often have a negative
+                    return-on-investment. While preventive measures can mitigate
+                    risks and generate economic returns, it&apos;s equally
+                    important to recognize the life-saving potential of clinical
+                    interventions.
+                  </p>
+                ) : null}
+              </div>
             </div>
           </div>
           {graphType !== 'map' ? (

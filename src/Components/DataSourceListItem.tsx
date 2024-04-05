@@ -33,6 +33,7 @@ const dataTableForExcel = (
   data: DataType[],
   indicator: IndicatorMetaDataType,
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const table: any = data
     .map(d => {
       const country = d['Country or Area'];

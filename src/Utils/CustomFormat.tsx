@@ -1,7 +1,10 @@
 import { format } from 'd3-format';
-import { KEY_WITH_PEOPLE_VALUE, KEY_WITH_YEAR_VALUE } from '../Constants';
 
-export const customFormat = (num: number, dataKey = '') => {
+export const customFormat = (
+  num: number,
+  isYear: boolean,
+  isPeopleValue: boolean,
+) => {
   const formatNum = (value: number, suffix: string) => {
     const formatSpecifier = value <= 20 ? '.1f' : '.0f';
     let formattedValue = format(formatSpecifier)(value);
@@ -10,11 +13,11 @@ export const customFormat = (num: number, dataKey = '') => {
     return `${formattedValue}${suffix}`;
   };
 
-  if (KEY_WITH_YEAR_VALUE.includes(dataKey)) {
+  if (isYear) {
     return format('.0f')(num); // Format as a whole number without a comma
   }
 
-  if (KEY_WITH_PEOPLE_VALUE.includes(dataKey)) {
+  if (isPeopleValue) {
     return format(',')(Math.round(num));
   }
 

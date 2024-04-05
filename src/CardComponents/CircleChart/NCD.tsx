@@ -3,9 +3,7 @@ import { customFormat } from '../../Utils/CustomFormat';
 
 interface Props {
   valuePrimary: number;
-  dataKeyPrimary: string;
   valueSecondary: number;
-  dataKeySecondary: string;
   graphTitle?: string;
   graphDescription?: string;
   year?: string | number;
@@ -49,9 +47,7 @@ const SourceEl = styled.div`
 export function CircleChartNCD(props: Props) {
   const {
     valuePrimary,
-    dataKeyPrimary,
     valueSecondary,
-    dataKeySecondary,
     graphTitle,
     year,
     source,
@@ -67,11 +63,8 @@ export function CircleChartNCD(props: Props) {
   const areaSecondary = (valueSecondary / valuePrimary) * areaPrimary;
   const radiusSecondary = Math.sqrt(areaSecondary / Math.PI);
 
-  const formattedPrimaryValue = customFormat(valuePrimary, dataKeyPrimary);
-  const formattedSecondaryValue = customFormat(
-    valueSecondary,
-    dataKeySecondary,
-  );
+  const formattedPrimaryValue = customFormat(valuePrimary, false, false);
+  const formattedSecondaryValue = customFormat(valueSecondary, false, false);
 
   const secondaryCircleYPosition = fixedRadius - radiusSecondary;
 
@@ -140,7 +133,8 @@ export function CircleChartNCD(props: Props) {
             style={{ fill: 'var(--white)', fontWeight: '600' }}
           >
             {formattedSecondaryValue} (
-            {customFormat((valueSecondary / valuePrimary) * 100, '')}%)
+            {customFormat((valueSecondary / valuePrimary) * 100, false, false)}
+            %)
           </LabelEl>
           <LabelEl
             x={0}

@@ -82,7 +82,8 @@ export function AppTopCards() {
           dataKey=''
           note='1 out of 2 people'
           suffix=' billion'
-          source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023) '
+          source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023)'
+          indicators={[]}
         />
         <ValueCard
           value={970}
@@ -91,17 +92,17 @@ export function AppTopCards() {
           dataKey=''
           note='1 out of 8 people'
           suffix=' million'
+          indicators={[]}
         />
         <ValueCardDouble
           value={1.3}
           value2={93}
           suffix=' million'
-          suffix2=' %'
-          dataKey2=''
-          dataKey=''
+          suffix2=' %'
           graphTitle='People die from road traffic crashes each year'
-          graphTitle2='Percent of total road fatalities that occur in LMICs'
+          graphTitle2='Percent of total road fatalities that occur in LMICs'
           source='WHO Road Traffic Injuries Key Facts (2022)'
+          indicators={[]}
         />
         <DonutChart
           graphTitle='Percent of global population breathing unhealthy air'
@@ -118,6 +119,7 @@ export function AppTopCards() {
           graphTitle='Number of neglected tropical diseases (NTDs)'
           graphTitle2='People affected by an NTD'
           source='WHO NTDs Key Facts (2022)'
+          indicators={[]}
         />
         <DonutChart
           graphTitle='Percent of global population that is moderately or severely food insecure'

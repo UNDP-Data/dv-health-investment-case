@@ -85,6 +85,7 @@ export function TobaccoSummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'tobacco_burden_GDP')
               ].DataSourceName
             }
+            indicators={indicators}
           />
         ) : null}
         {data.data.findIndex(el => el.indicator === 'averted_deaths') !== -1 ? (
@@ -105,6 +106,7 @@ export function TobaccoSummary(props: Props) {
                 indicators.findIndex(d => d.DataKey === 'averted_deaths')
               ].DataSourceName
             }
+            indicators={indicators}
           />
         ) : null}
         {data.data.findIndex(

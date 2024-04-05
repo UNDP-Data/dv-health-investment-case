@@ -19,12 +19,6 @@ import {
   DEFAULT_VALUES_TOBACCO,
   DEFAULT_VALUES_NCD,
   DEFAULT_VALUES_ALL,
-  KEYS_FROM_DATA_NCD,
-  KEYS_FROM_DATA_ALL,
-  KEYS_FROM_DATA_TOBACCO,
-  KEY_WITH_PERCENT_VALUE_NCD,
-  KEY_WITH_PERCENT_VALUE_ALL,
-  KEY_WITH_PERCENT_VALUE_TOBACCO,
 } from './Constants';
 
 const VizAreaEl = styled.div`
@@ -57,19 +51,19 @@ function WorldEl(props: Props) {
     selectedIncomeGroups: queryParams.get('incomeGroups')?.split('~') || [],
     selectedCountryGroup: queryParams.get('countryGroup') || 'All',
     xAxisIndicator:
-      queryParams.get('firstMetric') || focusArea === 'Tobacco'
+      queryParams.get('firstMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.firstMetric
         : focusArea === 'NCD'
         ? DEFAULT_VALUES_NCD.firstMetric
         : DEFAULT_VALUES_ALL.firstMetric,
     yAxisIndicator:
-      queryParams.get('secondMetric') || focusArea === 'Tobacco'
+      queryParams.get('secondMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.secondMetric
         : focusArea === 'NCD'
         ? DEFAULT_VALUES_NCD.secondMetric
         : DEFAULT_VALUES_ALL.secondMetric,
     colorIndicator:
-      queryParams.get('colorMetric') || focusArea === 'Tobacco'
+      queryParams.get('colorMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.colorMetric
         : focusArea === 'NCD'
         ? DEFAULT_VALUES_NCD.colorMetric
@@ -197,12 +191,12 @@ function WorldEl(props: Props) {
       .defer(
         csv,
         // `./Data/${focusArea}.csv`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/main/${focusArea}.csv`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/updated-data/All.csv`,
       )
       .defer(
         json,
         // `./Data/${focusArea}MetaData.json`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/main/${focusArea}MetaData.json`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/merge-metadata/AllMetaData.json`,
       )
       .defer(
         json,
@@ -235,6 +229,7 @@ function WorldEl(props: Props) {
           );
           const dataFormatted: DataType[] = countryListFromTaxonomy.map(d => {
             if (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code']) ===
               -1
             )
@@ -245,21 +240,25 @@ function WorldEl(props: Props) {
                 data.findIndex((el: any) => el.ISO_code === d['Alpha-3 code'])
               ];
             const selectedKeys =
-              focusArea === 'Tobacco'
-                ? KEYS_FROM_DATA_TOBACCO
-                : focusArea === 'NCD'
-                ? KEYS_FROM_DATA_NCD
-                : focusArea === 'All'
-                ? KEYS_FROM_DATA_ALL
-                : [];
+              focusArea === 'All'
+                ? indicatorMetaData.map(el => el.DataKey)
+                : indicatorMetaData
+                    .filter(
+                      el => el.FocusArea === focusArea.replaceAll('_', ' '),
+                    )
+                    .map(el => el.DataKey);
             const selectedKeysPercent =
-              focusArea === 'Tobacco'
-                ? KEY_WITH_PERCENT_VALUE_TOBACCO
-                : focusArea === 'NCD'
-                ? KEY_WITH_PERCENT_VALUE_NCD
-                : focusArea === 'All'
-                ? KEY_WITH_PERCENT_VALUE_ALL
-                : [];
+              focusArea === 'All'
+                ? indicatorMetaData
+                    .filter(el => el.IsPercent)
+                    .map(el => el.DataKey)
+                : indicatorMetaData
+                    .filter(
+                      el =>
+                        el.FocusArea === focusArea.replaceAll('_', ' ') &&
+                        el.IsPercent,
+                    )
+                    .map(el => el.DataKey);
             const indicatorData: IndicatorDataType[] = selectedKeys
               .map(key => ({
                 indicator: key,
@@ -294,7 +293,13 @@ function WorldEl(props: Props) {
               .map(d => d.UNDP_region)
               .filter(d => d && d !== '') as string[],
           );
-          setIndicatorsList(indicatorMetaData);
+          setIndicatorsList(
+            focusArea === 'All'
+              ? indicatorMetaData
+              : indicatorMetaData.filter(
+                  d => d.FocusArea === focusArea.replaceAll('_', ' '),
+                ),
+          );
         },
       );
   }, []);

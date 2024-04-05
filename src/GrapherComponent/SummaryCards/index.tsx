@@ -13,7 +13,7 @@ export function CountrySummary(props: Props) {
   const { data, indicators, focusArea } = props;
   return (
     <div>
-      {focusArea === 'Tobacco' ? (
+      {focusArea === 'Tobacco_control' ? (
         <TobaccoSummary data={data} indicators={indicators} />
       ) : focusArea === 'NCD' ? (
         <NCDSummary data={data} indicators={indicators} />

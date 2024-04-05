@@ -85,13 +85,13 @@ export function CircleChartTobacco(props: Props) {
   const areaTertiary = (minValue.value / maxValue.value) * areaPrimary;
   const radiusTertiary = Math.sqrt(areaTertiary / Math.PI);
 
-  const formattedPrimaryValue = customFormat(valuePrimary);
+  const formattedPrimaryValue = customFormat(valuePrimary, false, false);
   const formattedSecondaryValue = valueSecondary
-    ? customFormat(valueSecondary)
+    ? customFormat(valueSecondary, false, false)
     : null;
 
   const formattedTertiaryValue = valueTertiary
-    ? customFormat(valueTertiary)
+    ? customFormat(valueTertiary, false, false)
     : null;
 
   const secondaryCircleYPosition = fixedRadius - radiusSecondary;

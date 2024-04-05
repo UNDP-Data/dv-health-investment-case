@@ -17,7 +17,7 @@ function AppTopGraph(props: Props) {
         className='flex-div flex-wrap flex-hor-align-center gap-00'
         style={{ maxWidth: '1392px', margin: 'auto' }}
       >
-        {focusArea === 'Tobacco' ? (
+        {focusArea === 'Tobacco_control' ? (
           <TobaccoViz />
         ) : focusArea === 'NCD' ? (
           <NCDViz />
