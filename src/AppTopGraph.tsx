@@ -19,7 +19,7 @@ function AppTopGraph(props: Props) {
       >
         {focusArea === 'Tobacco_control' ? (
           <TobaccoViz />
-        ) : focusArea === 'NCD' ? (
+        ) : focusArea === 'NCDs' ? (
           <NCDViz />
         ) : focusArea === 'MentalHealth' ? (
           <MentalHealthViz />

@@ -164,7 +164,7 @@ export function Settings(props: Props) {
                   defaultValue={
                     focusArea === 'Tobacco_control'
                       ? DEFAULT_VALUES_TOBACCO.firstMetric
-                      : focusArea === 'NCD'
+                      : focusArea === 'NCDs'
                       ? DEFAULT_VALUES_NCD.firstMetric
                       : DEFAULT_VALUES_ALL.firstMetric
                   }
@@ -210,7 +210,7 @@ export function Settings(props: Props) {
                     defaultValue={
                       focusArea === 'Tobacco_control'
                         ? DEFAULT_VALUES_TOBACCO.secondMetric
-                        : focusArea === 'NCD'
+                        : focusArea === 'NCDs'
                         ? DEFAULT_VALUES_NCD.secondMetric
                         : DEFAULT_VALUES_ALL.secondMetric
                     }
@@ -317,7 +317,7 @@ export function Settings(props: Props) {
                     defaultValue={
                       focusArea === 'Tobacco_control'
                         ? DEFAULT_VALUES_TOBACCO.colorMetric
-                        : focusArea === 'NCD'
+                        : focusArea === 'NCDs'
                         ? DEFAULT_VALUES_NCD.colorMetric
                         : DEFAULT_VALUES_ALL.colorMetric
                     }
@@ -378,7 +378,7 @@ export function Settings(props: Props) {
                   These data may not be comparable across different types of
                   health investment cases
                 </p>
-                {focusArea === 'NCD' || focusArea === 'All' ? (
+                {focusArea === 'NCDs' || focusArea === 'All' ? (
                   <p className='label' style={{ color: 'var(--gray-600)' }}>
                     Due to the high cost of medical treatments, clinical
                     interventions such as NCD treatments often have a negative

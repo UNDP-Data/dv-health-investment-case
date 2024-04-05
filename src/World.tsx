@@ -53,19 +53,19 @@ function WorldEl(props: Props) {
     xAxisIndicator:
       queryParams.get('firstMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.firstMetric
-        : focusArea === 'NCD'
+        : focusArea === 'NCDs'
         ? DEFAULT_VALUES_NCD.firstMetric
         : DEFAULT_VALUES_ALL.firstMetric,
     yAxisIndicator:
       queryParams.get('secondMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.secondMetric
-        : focusArea === 'NCD'
+        : focusArea === 'NCDs'
         ? DEFAULT_VALUES_NCD.secondMetric
         : DEFAULT_VALUES_ALL.secondMetric,
     colorIndicator:
       queryParams.get('colorMetric') || focusArea === 'Tobacco_control'
         ? DEFAULT_VALUES_TOBACCO.colorMetric
-        : focusArea === 'NCD'
+        : focusArea === 'NCDs'
         ? DEFAULT_VALUES_NCD.colorMetric
         : DEFAULT_VALUES_ALL.colorMetric,
     sizeIndicator: queryParams.get('sizeMetric') || undefined,

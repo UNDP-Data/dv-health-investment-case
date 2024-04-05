@@ -45,7 +45,7 @@ Top graphs for the focus area pages will be rendered within the following div on
 
 ```
 
-Please note that there are three focus areas available right now: ~Tobacco_control, ~NCD, ~All (Tobacco control + NCD combined)
+Please note that there are three focus areas available right now: ~Tobacco_control, ~NCDs, ~All (Tobacco control + NCDs combined)
 
 ---
 

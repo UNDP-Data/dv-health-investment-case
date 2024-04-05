@@ -15,7 +15,7 @@ export function CountrySummary(props: Props) {
     <div>
       {focusArea === 'Tobacco_control' ? (
         <TobaccoSummary data={data} indicators={indicators} />
-      ) : focusArea === 'NCD' ? (
+      ) : focusArea === 'NCDs' ? (
         <NCDSummary data={data} indicators={indicators} />
       ) : null}
     </div>
