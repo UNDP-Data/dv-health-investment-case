@@ -617,7 +617,7 @@ export function UnivariateMap(props: Props) {
               <div className='univariate-map-legend-text'>
                 {xIndicatorMetaData.Indicator}
               </div>
-              <svg width='100%' viewBox={`0 0 ${320} ${30}`}>
+              <svg width='100%' height='30' viewBox={`0 0 ${320} ${30}`}>
                 <g>
                   {valueArray.map((d, i) => (
                     <g
