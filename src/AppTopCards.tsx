@@ -62,28 +62,28 @@ export function AppTopCards() {
         <DonutChart
           graphTitle='Percent of global population deaths caused by tobacco use each year'
           size={340}
-          value={[13, 87]}
+          value={[16, 84]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
           note='Total deaths: 8.7 million'
-          source='WHO Report on the Global Tobacco Epidemic (2023), UN World Population Prospects (2022)'
+          source='WHO Report on the Global Tobacco Epidemic (2023)'
         />
         <DotPlot
           graphTitle='People in the world incurring catastrophic out-of-pocket health spending'
           size={200}
           value={12}
           valueText='1.04 billion'
-          note='12 out of 100 people'
+          note='13 out of 100 people'
           source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023)'
           dotColors='var(--dark-red)'
         />
-        <ValueCard
-          value={4.5}
+        <DotPlot
           graphTitle='People in the world who do not have access to essential health services'
-          dataKey=''
-          note='1 out of 2 people'
-          suffix=' billion'
+          size={200}
+          value={57}
+          valueText='4.5 billion'
+          note='57 out of 100 people'
           source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023)'
-          indicators={[]}
+          dotColors='var(--dark-red)'
         />
         <ValueCard
           value={970}
