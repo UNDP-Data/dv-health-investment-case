@@ -66,6 +66,7 @@ export interface IndicatorMetaDataType {
   IsDivergent?: boolean;
   ScatterPlot?: boolean;
   Map?: boolean;
+  MapColor?: string;
   BarGraph?: boolean;
   Sizing?: boolean;
   Color?: boolean;

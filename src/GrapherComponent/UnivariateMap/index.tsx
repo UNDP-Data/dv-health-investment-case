@@ -78,6 +78,36 @@ export function UnivariateMap(props: Props) {
             : `${valueArray.length + 1}`) as '04' | '05' | '07' | '09' | '11'
         }`
       ]
+    : xIndicatorMetaData.MapColor
+    ? xIndicatorMetaData.MapColor === 'Negative'
+      ? UNDPColorModule.sequentialColors[
+          `negativeColorsx${
+            (valueArray.length + 1 < 10
+              ? `0${valueArray.length + 1}`
+              : `${valueArray.length + 1}`) as
+              | '04'
+              | '05'
+              | '06'
+              | '07'
+              | '08'
+              | '09'
+              | '10'
+          }`
+        ]
+      : UNDPColorModule.sequentialColors[
+          `neutralColorsx${
+            (valueArray.length + 1 < 10
+              ? `0${valueArray.length + 1}`
+              : `${valueArray.length + 1}`) as
+              | '04'
+              | '05'
+              | '06'
+              | '07'
+              | '08'
+              | '09'
+              | '10'
+          }`
+        ]
     : UNDPColorModule.sequentialColors[
         `neutralColorsx${
           (valueArray.length + 1 < 10
@@ -617,7 +647,7 @@ export function UnivariateMap(props: Props) {
               <div className='univariate-map-legend-text'>
                 {xIndicatorMetaData.Indicator}
               </div>
-              <svg width='100%' height='30' viewBox={`0 0 ${320} ${30}`}>
+              <svg width='320' height='30' viewBox={`0 0 ${320} ${30}`}>
                 <g>
                   {valueArray.map((d, i) => (
                     <g
