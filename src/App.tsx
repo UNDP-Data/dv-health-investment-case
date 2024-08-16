@@ -1,10 +1,18 @@
 import { Tabs } from 'antd';
+import styled from 'styled-components';
 import WorldEl from './World';
 import CountryEl from './Country';
 
 interface Props {
   focusArea: string;
 }
+
+const CustomTabContentHolder = styled.div`
+  .ant-tabs-content-holder {
+    padding: 0;
+    padding-top: 16px;
+  }
+`;
 
 export function App(props: Props) {
   const { focusArea } = props;
@@ -22,15 +30,17 @@ export function App(props: Props) {
   ];
   return (
     <div className='undp-container'>
-      <Tabs
-        defaultActiveKey='worldData'
-        className='undp-tabs'
-        items={mainTabs.map(d => ({
-          label: d.label,
-          key: d.key,
-          children: d.children,
-        }))}
-      />
+      <CustomTabContentHolder>
+        <Tabs
+          defaultActiveKey='worldData'
+          className='undp-tabs'
+          items={mainTabs.map(d => ({
+            label: d.label,
+            key: d.key,
+            children: d.children,
+          }))}
+        />
+      </CustomTabContentHolder>
     </div>
   );
 }
