@@ -8,10 +8,8 @@ interface Props {
 }
 
 const CustomTabContentHolder = styled.div`
-  .ant-tabs-content-holder {
-    padding: 0;
-    padding-top: 16px;
-  }
+  .undp-tabs .ant-tabs-content-holder {
+    padding: 2.5rem 0rem 0rem 0rem;
 `;
 
 export function App(props: Props) {
