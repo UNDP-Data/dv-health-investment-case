@@ -373,22 +373,6 @@ export function Settings(props: Props) {
                   Download Graph
                 </button>
               </div>
-              <div>
-                <p className='label' style={{ color: 'var(--gray-600)' }}>
-                  These data may not be comparable across different types of
-                  health investment cases
-                </p>
-                {focusArea === 'NCDs' || focusArea === 'All' ? (
-                  <p className='label' style={{ color: 'var(--gray-600)' }}>
-                    Due to the high cost of medical treatments, clinical
-                    interventions such as NCD treatments often have a negative
-                    return-on-investment. While preventive measures can mitigate
-                    risks and generate economic returns, it&apos;s equally
-                    important to recognize the life-saving potential of clinical
-                    interventions.
-                  </p>
-                ) : null}
-              </div>
             </div>
           </div>
           {graphType !== 'map' ? (
@@ -396,7 +380,7 @@ export function Settings(props: Props) {
               <button
                 type='button'
                 aria-label='Expand or collapse settings'
-                className='settings-sections-container-title'
+                className='settings-sections-container-title margin-00'
                 onClick={() => {
                   setSettingsExpanded(!settingExpanded);
                 }}
@@ -460,7 +444,7 @@ export function Settings(props: Props) {
             <button
               type='button'
               aria-label='Expand or collapse filters'
-              className='settings-sections-container-title'
+              className='settings-sections-container-title margin-00'
               onClick={() => {
                 setFilterExpanded(!filterExpanded);
               }}
@@ -569,6 +553,20 @@ export function Settings(props: Props) {
                 </Select>
               </div>
             </div>
+          </div>
+          <div className='padding-05'>
+            <p className='label' style={{ color: 'var(--gray-600)' }}>
+              These data may not be comparable across different types of health
+              investment cases
+            </p>
+            {focusArea === 'NCDs' || focusArea === 'All' ? (
+              <p className='label' style={{ color: 'var(--gray-600)' }}>
+                Clinical interventions often do not generate a return on the
+                investment due to the high cost of medical treatments. Still,
+                the life-saving potential of these interventions should not be
+                undervalued.
+              </p>
+            ) : null}
           </div>
         </>
       ) : (
