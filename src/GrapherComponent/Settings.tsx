@@ -397,7 +397,7 @@ export function Settings(props: Props) {
                 </h6>
               </button>
               <div
-                className='settings-sections-options-container'
+                className='settings-sections-options-container margin-top-05'
                 style={{ display: settingExpanded ? 'flex' : 'none' }}
               >
                 {graphType === 'scatterPlot' ? (
@@ -464,7 +464,7 @@ export function Settings(props: Props) {
               className='settings-sections-options-container'
               style={{ display: filterExpanded ? 'flex' : 'none' }}
             >
-              <div className='settings-option-div'>
+              <div className='settings-option-div margin-top-05'>
                 <p className='label'>UNDP Region</p>
                 <Select
                   mode='multiple'
