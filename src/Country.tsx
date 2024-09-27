@@ -125,6 +125,7 @@ function CountryEl(props: Props) {
               tobacco_reference_year: countryData.tobacco_reference_year,
               NCD_reference_year: countryData.NCD_reference_year,
               GDP_USD: countryData.GDP_USD,
+              GDP_USD_NCD: countryData.GDP_USD_1,
             };
           });
           setFinalData(dataFormatted.filter(d => d['Alpha-3 code'] !== 'ATA'));

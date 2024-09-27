@@ -126,11 +126,11 @@ export function NCDSummary(props: Props) {
           />
         ) : null}
         {data.data.findIndex(
-          el => el.indicator === '15y_econ_benefits_total' && data.GDP_USD,
-        ) !== -1 && data.GDP_USD ? (
+          el => el.indicator === '15y_econ_benefits_total' && data.GDP_USD_NCD,
+        ) !== -1 && data.GDP_USD_NCD ? (
           <CircleChartNCD
             graphTitle='Total economic benefits over 15 years from implementing all interventions, in USD'
-            valuePrimary={data.GDP_USD}
+            valuePrimary={data.GDP_USD_NCD}
             valueSecondary={
               data.data[
                 data.data.findIndex(

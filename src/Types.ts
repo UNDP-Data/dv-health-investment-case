@@ -35,6 +35,7 @@ export interface DataType extends CountryGroupDataType {
   NCD_reference_year?: string;
   tobacco_reference_year?: string;
   GDP_USD?: number;
+  GDP_USD_NCD?: number;
 }
 
 export interface IndicatorOptionsDataType {
