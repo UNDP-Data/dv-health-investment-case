@@ -190,13 +190,11 @@ function WorldEl(props: Props) {
     queue()
       .defer(
         csv,
-        // `./Data/${focusArea}.csv`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/main/All.csv`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-data-repo/main/data.csv`,
       )
       .defer(
         json,
-        // `./Data/${focusArea}MetaData.json`,
-        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/main/AllMetaData.json`,
+        `https://raw.githubusercontent.com/UNDP-Data/dv-health-investment-case-metadata/main/metadata.json`,
       )
       .defer(
         json,
