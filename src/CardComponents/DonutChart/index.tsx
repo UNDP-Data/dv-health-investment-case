@@ -9,6 +9,7 @@ interface Props {
   size: number;
   graphTitle?: string;
   source: string;
+  sourceLink?: string;
   graphDescription?: string;
 }
 
@@ -32,7 +33,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 export function DonutChart(props: Props) {
@@ -43,6 +44,7 @@ export function DonutChart(props: Props) {
     graphTitle,
     year,
     source,
+    sourceLink,
     graphDescription,
     note,
   } = props;
@@ -81,7 +83,22 @@ export function DonutChart(props: Props) {
           noteDonut={note}
         />
       </div>
-      <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+      <SourceEl className='margin-top-05'>
+        Source:{' '}
+        {sourceLink ? (
+          <a
+            className='undp-style'
+            style={{ color: 'var(--gray-600)' }}
+            href={sourceLink}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {source}
+          </a>
+        ) : (
+          source
+        )}
+      </SourceEl>
     </StatCardsEl>
   );
 }

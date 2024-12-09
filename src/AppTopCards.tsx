@@ -58,6 +58,7 @@ export function AppTopCards() {
           note='74 out of 100 people'
           source='WHO Noncommunicable Diseases Key Facts'
           dotColors='var(--dark-red)'
+          sourceLink='https://www.who.int/news-room/fact-sheets/detail/noncommunicable-diseases'
         />
         <DonutChart
           graphTitle='Percent of global population deaths caused by tobacco use each year'
@@ -66,6 +67,7 @@ export function AppTopCards() {
           colors={['var(--dark-red)', 'var(--gray-400)']}
           note='Total deaths: 8.7 million'
           source='WHO Report on the Global Tobacco Epidemic (2023)'
+          sourceLink='https://www.who.int/publications/i/item/9789240077164'
         />
         <DotPlot
           graphTitle='People in the world incurring catastrophic out-of-pocket health spending'
@@ -75,6 +77,7 @@ export function AppTopCards() {
           note='13 out of 100 people'
           source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023)'
           dotColors='var(--dark-red)'
+          sourceLink='https://www.who.int/publications/i/item/9789240080379'
         />
         <DotPlot
           graphTitle='People in the world who do not have access to essential health services'
@@ -84,42 +87,47 @@ export function AppTopCards() {
           note='57 out of 100 people'
           source='WHO and WB Tracking Universal Health Coverage 2023 Global Monitoring Report (2023)'
           dotColors='var(--dark-red)'
+          sourceLink='https://www.who.int/publications/i/item/9789240080379'
         />
         <ValueCard
           value={970}
           graphTitle='People in the world living with a mental health condition'
-          source='WHO Mental Health Key Facts (2022)'
+          source='WHO Mental Health (2022)'
           dataKey=''
           note='1 out of 8 people'
           suffix=' million'
           indicators={[]}
+          sourceLink='https://www.who.int/health-topics/mental-health#tab=tab_2'
         />
         <ValueCardDouble
-          value={1.3}
-          value2={93}
+          value={1.2}
+          value2={92}
           suffix=' million'
           suffix2=' %'
-          graphTitle='People die from road traffic crashes each year'
+          graphTitle='People who have died from road traffic crashes each year'
           graphTitle2='Percent of total road fatalities that occur in LMICs'
-          source='WHO Road Traffic Injuries Key Facts (2022)'
+          source='WHO Road Traffic Injuries Key Facts (2023)'
           indicators={[]}
+          sourceLink='https://www.who.int/news-room/fact-sheets/detail/road-traffic-injuries'
         />
         <DonutChart
           graphTitle='Percent of global population breathing unhealthy air'
           size={340}
           value={[99, 1]}
           colors={['var(--dark-red)', 'var(--gray-400)']}
-          source='WHO Air Pollution Key Facts (2022)'
+          source='WHO Ambient Air Pollution Key Facts (2024)'
+          sourceLink='https://www.who.int/news-room/fact-sheets/detail/ambient-(outdoor)-air-quality-and-health'
         />
         <ValueCardDouble
-          value={20}
-          value2={1.7}
+          value={22}
+          value2={1.6}
           suffix=''
           suffix2=' billion'
           graphTitle='Number of neglected tropical diseases (NTDs)'
           graphTitle2='People affected by an NTD'
-          source='WHO NTDs Key Facts (2022)'
+          source='WHO NTDs (2024)'
           indicators={[]}
+          sourceLink='https://www.who.int/health-topics/neglected-tropical-diseases#tab=tab_1'
         />
         <DonutChart
           graphTitle='Percent of global population that is moderately or severely food insecure'
@@ -128,6 +136,7 @@ export function AppTopCards() {
           colors={['var(--dark-red)', 'var(--gray-400)']}
           note='Total: 2.3 billion people'
           source='Global Nutrition Report (2022)'
+          sourceLink='https://globalnutritionreport.org/reports/2022-global-nutrition-report/'
         />
       </WrapperEl>
     </div>

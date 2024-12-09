@@ -10,6 +10,7 @@ interface Props {
   suffix?: string;
   prefix?: string;
   source: string;
+  sourceLink?: string;
   year2?: string | number;
   value2: number;
   graphTitle2: string;
@@ -41,7 +42,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 const StatEl = styled.h3`
@@ -73,6 +74,7 @@ export function ValueCardDouble(props: Props) {
     graphTitle,
     suffix,
     source,
+    sourceLink,
     prefix,
     graphDescription,
     year2,
@@ -155,7 +157,22 @@ export function ValueCardDouble(props: Props) {
         </StatEl>
       </div>
       {source && source !== '' ? (
-        <SourceEl className='margin-top-05'>Source: {source}</SourceEl>
+        <SourceEl className='margin-top-05'>
+          Source:{' '}
+          {sourceLink ? (
+            <a
+              className='undp-style'
+              style={{ color: 'var(--gray-600)' }}
+              href={sourceLink}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {source}
+            </a>
+          ) : (
+            source
+          )}
+        </SourceEl>
       ) : null}
     </StatCardsEl>
   );

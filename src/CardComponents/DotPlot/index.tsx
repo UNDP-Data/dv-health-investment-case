@@ -8,6 +8,7 @@ interface Props {
   size: number;
   graphTitle?: string;
   source: string;
+  sourceLink?: string;
   dotColors?: string;
   graphDescription?: string;
 }
@@ -32,7 +33,7 @@ const StatCardsEl = styled.div`
 
 const SourceEl = styled.div`
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--gray-600);
 `;
 
 export function DotPlot(props: Props) {
@@ -44,6 +45,7 @@ export function DotPlot(props: Props) {
     note,
     year,
     source,
+    sourceLink,
     dotColors,
     graphDescription,
   } = props;
@@ -101,8 +103,24 @@ export function DotPlot(props: Props) {
           ))}
         </g>
       </svg>
+
       <SourceEl className='margin-top-05'>
-        Source: {source} {year ? `(${year})` : null}
+        Source:{' '}
+        {sourceLink ? (
+          <a
+            className='undp-style'
+            style={{ color: 'var(--gray-600)' }}
+            href={sourceLink}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            {source} {year ? `(${year})` : null}
+          </a>
+        ) : (
+          <>
+            {source} {year ? `(${year})` : null}
+          </>
+        )}
       </SourceEl>
     </StatCardsEl>
   );
