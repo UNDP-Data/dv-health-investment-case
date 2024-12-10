@@ -164,7 +164,7 @@ export function ValueCardDouble(props: Props) {
               className='undp-style'
               style={{
                 color: 'var(--gray-600)',
-                fontSize: '0.875rem!important',
+                fontSize: '0.875rem',
               }}
               href={sourceLink}
               target='_blank'
