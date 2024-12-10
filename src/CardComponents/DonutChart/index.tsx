@@ -32,7 +32,7 @@ const StatCardsEl = styled.div`
 `;
 
 const SourceEl = styled.div`
-  font-size: 0.875rem;
+  font-size: 0.875rem !important;
   color: var(--gray-600);
 `;
 
