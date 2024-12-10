@@ -90,7 +90,7 @@ export function DonutChart(props: Props) {
             className='undp-style'
             style={{
               color: 'var(--gray-600)',
-              fontSize: '0.875rem !important;',
+              fontSize: '0.875rem!important',
             }}
             href={sourceLink}
             target='_blank'
