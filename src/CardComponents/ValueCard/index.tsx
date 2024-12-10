@@ -127,7 +127,10 @@ export function ValueCard(props: Props) {
           {sourceLink ? (
             <a
               className='undp-style'
-              style={{ color: 'var(--gray-600)' }}
+              style={{
+                color: 'var(--gray-600)',
+                fontSize: '0.875rem !important;',
+              }}
               href={sourceLink}
               target='_blank'
               rel='noopener noreferrer'

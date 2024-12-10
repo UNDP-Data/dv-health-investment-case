@@ -32,7 +32,7 @@ const StatCardsEl = styled.div`
 `;
 
 const SourceEl = styled.div`
-  font-size: 1rem;
+  font-size: 0.875rem !important;
   color: var(--gray-600);
 `;
 
@@ -109,7 +109,10 @@ export function DotPlot(props: Props) {
         {sourceLink ? (
           <a
             className='undp-style'
-            style={{ color: 'var(--gray-600)' }}
+            style={{
+              color: 'var(--gray-600)',
+              fontSize: '0.875rem !important;',
+            }}
             href={sourceLink}
             target='_blank'
             rel='noopener noreferrer'
