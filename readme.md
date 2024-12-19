@@ -1,4 +1,4 @@
-# Health Investment Case Visualization
+# Health Investment Case Visualizations
 
 #### This project aims to provide interactive visualizations for exploring and analyzing health investment cases. [Click here to see the interface](https://gray-flower-008fd9910.4.azurestaticapps.net).
 
