@@ -60,11 +60,14 @@ Apart from the mentioned `div` above the following `script` and `link` needs to 
 
 ## Pages on DFP Where the Visualization is Used<a name="section-03"></a>
 
-- [Health Investment Case](https://data-prod.acquia.undp.org/insights/health-investment-case)
+- [Making the Case for Investment in Health](https://data.undp.org/insights/health-investment-case)
 
-- [Tobacco Health Investment Case](https://data-prod.acquia.undp.org/insights/health-investment-case/tobacco-control)
+- [Tobacco Health Investment Case](https://data.undp.org/insights/health-investment-case/tobacco-control)
 
-- [NCDs Health Investment Case](https://data-prod.acquia.undp.org/insights/health-investment-case/ncds)
+- [NCDs Health Investment Case](https://data.undp.org/insights/health-investment-case/ncds)
+  
+- [Mental Health Investment Case](https://data.undp.org/insights/health-investment-case/mental-health)
+
 
 ## Related Repos<a name="section-04"></a>
 
