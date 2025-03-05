@@ -264,10 +264,9 @@ function WorldEl(props: Props) {
                   countryData[key] === ''
                     ? -999999
                     : selectedKeysPercent.indexOf(key) !== -1
-                    ? +countryData[key] * 100
+                    ? parseFloat((+countryData[key] * 100).toFixed(1))
                     : +countryData[key],
               }))
-
               .filter(el => el.value !== -999999);
             return {
               ...d,
