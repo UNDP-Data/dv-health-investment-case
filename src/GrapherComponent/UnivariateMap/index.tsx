@@ -733,10 +733,10 @@ export function UnivariateMap(props: Props) {
           </div>
         </div>
       </div>
-      <div style={{ padding: '0 0 1rem 2rem', width: '80%' }}>
+      <div style={{ padding: '0 0 1rem 2rem' }}>
         <p
           className='undp-typography'
-          style={{ fontSize: '0.9rem', color: '#AAA', marginBottom: '0' }}
+          style={{ fontSize: '0.875rem', color: '#AAA', marginBottom: '0' }}
         >
           The designations employed and the presentation of material on this map
           do not imply the expression of any opinion whatsoever on the part of
