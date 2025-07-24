@@ -733,6 +733,18 @@ export function UnivariateMap(props: Props) {
           </div>
         </div>
       </div>
+      <div style={{ padding: '0 0 1rem 2rem', width: '80%' }}>
+        <p
+          className='undp-typography'
+          style={{ fontSize: '0.9rem', color: '#AAA', marginBottom: '0' }}
+        >
+          The designations employed and the presentation of material on this map
+          do not imply the expression of any opinion whatsoever on the part of
+          the Secretariat of the United Nations or UNDP concerning the legal
+          status of any country, territory, city or area or its authorities, or
+          concerning the delimitation of its frontiers or boundaries.
+        </p>
+      </div>
       {hoverData ? <Tooltip data={hoverData} /> : null}
     </>
   );
